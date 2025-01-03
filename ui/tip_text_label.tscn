@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://ru31tkvn3m6i"]
+
+[ext_resource type="FontVariation" path="res://font/font_variation.tres" id="1_cmjvc"]
+[ext_resource type="FontVariation" path="res://font/font_variation_i.tres" id="2_iiquc"]
+[ext_resource type="Script" uid="uid://dvce0w216iubm" path="res://scripts/gui/components/TipBuilder.cs" id="3_yp0n7"]
+
+[node name="RichTextLabel" type="RichTextLabel"]
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("1_cmjvc")
+theme_override_fonts/italics_font = ExtResource("2_iiquc")
+bbcode_enabled = true
+text = "Tiip
+"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("3_yp0n7")

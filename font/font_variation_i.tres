@@ -1,0 +1,10 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://d2l18fmlwqajy"]
+
+[ext_resource type="FontFile" uid="uid://ddkndblysv701" path="res://font/AlimamaFangYuanTiVF-Thin.ttf" id="1_6y8t6"]
+
+[resource]
+base_font = ExtResource("1_6y8t6")
+variation_embolden = 0.72
+variation_transform = Transform2D(1, 0.25, 0, 1, 0, 0)
+spacing_top = 5
+baseline_offset = -0.08

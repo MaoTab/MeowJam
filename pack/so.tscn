@@ -1,0 +1,274 @@
+[gd_scene load_steps=58 format=3 uid="uid://86dv0yqg665d"]
+
+[ext_resource type="Shader" path="res://shader/outline.gdshader" id="1_ncweb"]
+[ext_resource type="Script" uid="uid://dk7cao4nt3as7" path="res://scripts/Role.cs" id="2_xu7pu"]
+[ext_resource type="Texture2D" uid="uid://dsi27vyyuqqhb" path="res://texture/char/yogsothoth/idle/yogsothoth-zskj_Idle1_1_350.png" id="3_geoe7"]
+[ext_resource type="Texture2D" uid="uid://cnqia84wq8k6p" path="res://texture/char/yogsothoth/idle/yogsothoth-zskj_Idle1_2_350.png" id="4_ev04t"]
+[ext_resource type="Texture2D" uid="uid://biqbyt3vnh4mu" path="res://texture/char/yogsothoth/idle/yogsothoth-zskj_Idle1_3_550.png" id="5_62sv6"]
+[ext_resource type="Texture2D" uid="uid://bpkgstsgwp5qf" path="res://texture/char/yogsothoth/idle/yogsothoth-zskj_Idle1_4_250.png" id="6_4h4s4"]
+[ext_resource type="Texture2D" uid="uid://d3by31enxtjqo" path="res://texture/char/yogsothoth/idle/yogsothoth-zskj_Idle1_5_350.png" id="7_05lqi"]
+[ext_resource type="Texture2D" uid="uid://c1w50sabg2hr" path="res://texture/char/yogsothoth/idle/yogsothoth-zskj_Idle1_6_350.png" id="8_i2jpt"]
+[ext_resource type="Texture2D" uid="uid://s2huatgpypc7" path="res://texture/char/yogsothoth/idle/yogsothoth-zskj_Idle1_7_550.png" id="9_ss17b"]
+[ext_resource type="Texture2D" uid="uid://g85mt7err0wi" path="res://texture/char/yogsothoth/idle/yogsothoth-zskj_Idle1_8_250.png" id="10_jlsk7"]
+[ext_resource type="Texture2D" uid="uid://dm51xlh2g5nt2" path="res://texture/char/yogsothoth/idle/yogsothoth-zskj_Idle1_9_350.png" id="11_313ox"]
+[ext_resource type="Texture2D" uid="uid://251c8lvqoluu" path="res://texture/char/yogsothoth/idle/yogsothoth-zskj_Idle1_10_50.png" id="12_yi2oa"]
+[ext_resource type="Texture2D" uid="uid://bo2d865tro2cw" path="res://texture/char/yogsothoth/idle/yogsothoth-zskj_Idle1_11_150.png" id="13_flfuk"]
+[ext_resource type="Texture2D" uid="uid://cdvdp7wdyeim8" path="res://texture/char/yogsothoth/idle/yogsothoth-zskj_Idle1_12_150.png" id="14_obcw2"]
+[ext_resource type="Texture2D" uid="uid://bvumlguxwdtki" path="res://texture/char/yogsothoth/idle/yogsothoth-zskj_Idle1_13_150.png" id="15_8ivlq"]
+[ext_resource type="Texture2D" uid="uid://k7nbu34a4qhk" path="res://texture/char/yogsothoth/idle/yogsothoth-zskj_Idle1_14_400.png" id="16_k1uwq"]
+[ext_resource type="Texture2D" uid="uid://b57urlb4otsm3" path="res://texture/char/yogsothoth/idle/yogsothoth-zskj_Idle1_15_250.png" id="17_k37p4"]
+[ext_resource type="Texture2D" uid="uid://bb4gum8tltaj3" path="res://texture/char/yogsothoth/idle/yogsothoth-zskj_Idle1_16_350.png" id="18_p8kfw"]
+[ext_resource type="Texture2D" uid="uid://cl7oguotkhqvn" path="res://texture/char/yogsothoth/idle/yogsothoth-zskj_Idle1_17_350.png" id="19_glweq"]
+[ext_resource type="Texture2D" uid="uid://c1ffmqwhjuiyk" path="res://texture/char/yogsothoth/idle/yogsothoth-zskj_Idle1_18_550.png" id="20_6o682"]
+[ext_resource type="Texture2D" uid="uid://dcaem1fmjvwit" path="res://texture/char/yogsothoth/idle/yogsothoth-zskj_Idle1_19_250.png" id="21_h2xwk"]
+[ext_resource type="Texture2D" uid="uid://dlye7a0336ufd" path="res://texture/char/yogsothoth/walk/yogsothoth-zskj_Move_1_100.png" id="22_nhqib"]
+[ext_resource type="Texture2D" uid="uid://dolh0xcttaq0f" path="res://texture/char/yogsothoth/walk/yogsothoth-zskj_Move_2_100.png" id="23_lbln3"]
+[ext_resource type="Texture2D" uid="uid://xuqqiwbnnwfm" path="res://texture/char/yogsothoth/walk/yogsothoth-zskj_Move_3_100.png" id="24_lr3ho"]
+[ext_resource type="Texture2D" uid="uid://788at82sy2qa" path="res://texture/char/yogsothoth/walk/yogsothoth-zskj_Move_4_100.png" id="25_q23mt"]
+[ext_resource type="Texture2D" uid="uid://bn8fjow2j5h2o" path="res://texture/char/yogsothoth/walk/yogsothoth-zskj_Move_5_100.png" id="26_gnbca"]
+[ext_resource type="Texture2D" uid="uid://bglgothv2sc5g" path="res://texture/char/yogsothoth/walk/yogsothoth-zskj_Move_6_100.png" id="27_nbua2"]
+[ext_resource type="Texture2D" uid="uid://ce5rcbgk7o0r0" path="res://texture/char/yogsothoth/walk/yogsothoth-zskj_Move_7_100.png" id="28_anulu"]
+[ext_resource type="Texture2D" uid="uid://c3qa71oc465ds" path="res://texture/char/yogsothoth/walk/yogsothoth-zskj_Move_8_100.png" id="29_5qpfk"]
+[ext_resource type="Texture2D" uid="uid://oll2u6obak8x" path="res://texture/char/yogsothoth/walk/yogsothoth-zskj_Move_9_100.png" id="30_2f3ky"]
+[ext_resource type="Texture2D" uid="uid://cf4h0xunqpptn" path="res://texture/char/yogsothoth/walk/yogsothoth-zskj_Move_10_100.png" id="31_xit4v"]
+[ext_resource type="Texture2D" uid="uid://cfmb1nlvtqwxd" path="res://texture/char/yogsothoth/walk/yogsothoth-zskj_Move_11_100.png" id="32_3h6gh"]
+[ext_resource type="Texture2D" uid="uid://6jmolsjifte1" path="res://texture/char/yogsothoth/walk/yogsothoth-zskj_Move_12_100.png" id="33_55h2r"]
+[ext_resource type="Texture2D" uid="uid://dhun22t7ya5d0" path="res://texture/char/yogsothoth/walk/yogsothoth-zskj_Move_13_100.png" id="34_kx1cj"]
+[ext_resource type="Texture2D" uid="uid://d3mn5hgjmftee" path="res://texture/char/yogsothoth/walk/yogsothoth-zskj_Move_14_100.png" id="35_0kvg0"]
+[ext_resource type="Texture2D" uid="uid://c4tm410l1ijdd" path="res://texture/char/yogsothoth/walk/yogsothoth-zskj_Move_15_100.png" id="36_3gb36"]
+[ext_resource type="Texture2D" uid="uid://be7o6u80i4j0m" path="res://texture/char/yogsothoth/walk/yogsothoth-zskj_Move_16_100.png" id="37_538hb"]
+[ext_resource type="Texture2D" uid="uid://dh3oj4o7nsfic" path="res://texture/char/yogsothoth/walk/yogsothoth-zskj_Move_17_100.png" id="38_sxj6g"]
+[ext_resource type="Texture2D" uid="uid://b10d5xwekrih5" path="res://texture/char/yogsothoth/walk/yogsothoth-zskj_Move_18_100.png" id="39_rne5a"]
+[ext_resource type="Texture2D" uid="uid://c0uv1paycycuh" path="res://texture/char/yogsothoth/walk/yogsothoth-zskj_Move_19_100.png" id="40_sktoe"]
+[ext_resource type="Texture2D" uid="uid://yy4orskmsxym" path="res://texture/char/yogsothoth/walk/yogsothoth-zskj_Move_20_100.png" id="41_k24fp"]
+[ext_resource type="Texture2D" uid="uid://dkg6upjbm3xyx" path="res://texture/char/yogsothoth/walk/yogsothoth-zskj_Move_21_100.png" id="42_encey"]
+[ext_resource type="Texture2D" uid="uid://hb0y4wv5j24c" path="res://texture/char/yogsothoth/walk/yogsothoth-zskj_Move_22_100.png" id="43_h1rr0"]
+[ext_resource type="Texture2D" uid="uid://r0k8lat2bc1c" path="res://texture/char/yogsothoth/walk/yogsothoth-zskj_Move_23_100.png" id="44_17jun"]
+[ext_resource type="Texture2D" uid="uid://qswnme7bsclo" path="res://texture/char/yogsothoth/walk/yogsothoth-zskj_Move_24_100.png" id="45_b2y4j"]
+[ext_resource type="Texture2D" uid="uid://mo5cxn0krn8r" path="res://texture/char/yogsothoth/walk/yogsothoth-zskj_Move_25_100.png" id="46_ynitm"]
+[ext_resource type="Texture2D" uid="uid://cbb1lglrvi6nc" path="res://texture/char/yogsothoth/walk/yogsothoth-zskj_Move_26_100.png" id="47_iv1ef"]
+[ext_resource type="Texture2D" uid="uid://dakm76hlyytd6" path="res://texture/char/yogsothoth/walk/yogsothoth-zskj_Move_27_100.png" id="48_7gngm"]
+[ext_resource type="Texture2D" uid="uid://vu3nqy4738vx" path="res://texture/char/yogsothoth/walk/yogsothoth-zskj_Move_28_100.png" id="49_bw60s"]
+[ext_resource type="Texture2D" uid="uid://bc80tryn5xtdb" path="res://texture/char/yogsothoth/walk/yogsothoth-zskj_Move_29_100.png" id="50_r04ft"]
+[ext_resource type="Texture2D" uid="uid://brj6fqvvtu7bf" path="res://texture/char/yogsothoth/walk/yogsothoth-zskj_Move_30_100.png" id="51_wjjtu"]
+[ext_resource type="Texture2D" uid="uid://bn8qmfswtseen" path="res://texture/char/yogsothoth/walk/yogsothoth-zskj_Move_31_100.png" id="52_ddqoh"]
+[ext_resource type="Texture2D" uid="uid://bkb6g7db0cini" path="res://texture/char/yogsothoth/walk/yogsothoth-zskj_Move_32_100.png" id="53_jsedm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6ncfj"]
+resource_local_to_scene = true
+shader = ExtResource("1_ncweb")
+shader_parameter/thickness = 0.0
+shader_parameter/ring_count = 4
+shader_parameter/ring_offset = 0.0
+shader_parameter/outline_color = Color(0.447615, 0.595031, 0.660938, 1)
+shader_parameter/border_clipping_fix = false
+shader_parameter/aspect_ratio = 1.0
+shader_parameter/square_border = false
+shader_parameter/offset = null
+shader_parameter/max_or_add = false
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_52eb8"]
+radius = 3.0
+height = 24.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v5yfc"]
+animations = [{
+"frames": [{
+"duration": 3.0,
+"texture": ExtResource("3_geoe7")
+}, {
+"duration": 3.0,
+"texture": ExtResource("4_ev04t")
+}, {
+"duration": 3.0,
+"texture": ExtResource("5_62sv6")
+}, {
+"duration": 3.0,
+"texture": ExtResource("6_4h4s4")
+}, {
+"duration": 3.0,
+"texture": ExtResource("7_05lqi")
+}, {
+"duration": 3.0,
+"texture": ExtResource("8_i2jpt")
+}, {
+"duration": 3.0,
+"texture": ExtResource("9_ss17b")
+}, {
+"duration": 3.0,
+"texture": ExtResource("10_jlsk7")
+}, {
+"duration": 3.0,
+"texture": ExtResource("11_313ox")
+}, {
+"duration": 3.0,
+"texture": ExtResource("12_yi2oa")
+}, {
+"duration": 3.0,
+"texture": ExtResource("13_flfuk")
+}, {
+"duration": 3.0,
+"texture": ExtResource("14_obcw2")
+}, {
+"duration": 3.0,
+"texture": ExtResource("15_8ivlq")
+}, {
+"duration": 3.0,
+"texture": ExtResource("16_k1uwq")
+}, {
+"duration": 3.0,
+"texture": ExtResource("17_k37p4")
+}, {
+"duration": 3.0,
+"texture": ExtResource("18_p8kfw")
+}, {
+"duration": 3.0,
+"texture": ExtResource("19_glweq")
+}, {
+"duration": 3.0,
+"texture": ExtResource("20_6o682")
+}, {
+"duration": 3.0,
+"texture": ExtResource("21_h2xwk")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_nhqib")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_lbln3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_lr3ho")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_q23mt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_gnbca")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_nbua2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_anulu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_5qpfk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_2f3ky")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_xit4v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_3h6gh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_55h2r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_kx1cj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_0kvg0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_3gb36")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_538hb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_sxj6g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_rne5a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_sktoe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_k24fp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_encey")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_h1rr0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_17jun")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_b2y4j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_ynitm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_iv1ef")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_7gngm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_bw60s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_r04ft")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_wjjtu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_ddqoh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_jsedm")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5l17q"]
+size = Vector2(22, 50)
+
+[node name="So" type="CharacterBody2D" node_paths=PackedStringArray("MouseCollider", "DrawNode")]
+material = SubResource("ShaderMaterial_6ncfj")
+motion_mode = 1
+platform_on_leave = 2
+platform_wall_layers = 1
+script = ExtResource("2_xu7pu")
+MouseCollider = NodePath("Darw/AnimatedSprite2D/MouseCollider")
+DrawNode = NodePath("Darw")
+
+[node name="MoveCollider" type="CollisionShape2D" parent="."]
+position = Vector2(8, 39)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_52eb8")
+
+[node name="Darw" type="Node2D" parent="."]
+use_parent_material = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Darw"]
+texture_filter = 1
+use_parent_material = true
+sprite_frames = SubResource("SpriteFrames_v5yfc")
+animation = &"Walk"
+frame_progress = 0.0517189
+speed_scale = 3.0
+
+[node name="MouseCollider" type="Area2D" parent="Darw/AnimatedSprite2D"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Darw/AnimatedSprite2D/MouseCollider"]
+position = Vector2(8, 15)
+shape = SubResource("RectangleShape2D_5l17q")

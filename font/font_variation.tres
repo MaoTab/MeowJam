@@ -1,0 +1,9 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://bkk4780a0klcv"]
+
+[ext_resource type="FontFile" uid="uid://ddkndblysv701" path="res://font/AlimamaFangYuanTiVF-Thin.ttf" id="1_fwvqa"]
+
+[resource]
+base_font = ExtResource("1_fwvqa")
+variation_embolden = 0.72
+spacing_top = 3
+baseline_offset = -0.08
