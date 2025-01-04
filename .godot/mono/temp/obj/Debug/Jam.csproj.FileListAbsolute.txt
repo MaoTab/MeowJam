@@ -178,3 +178,4 @@ C:\Users\MaoTou\Documents\GitHub\MeowJam\.godot\mono\temp\obj\Debug\refint\Jam.d
 C:\Users\MaoTou\Documents\GitHub\MeowJam\.godot\mono\temp\obj\Debug\Jam.pdb
 C:\Users\MaoTou\Documents\GitHub\MeowJam\.godot\mono\temp\obj\Debug\Jam.genruntimeconfig.cache
 C:\Users\MaoTou\Documents\GitHub\MeowJam\.godot\mono\temp\obj\Debug\ref\Jam.dll
+C:\Users\MaoTou\Documents\GitHub\MeowJam\.godot\mono\temp\obj\Debug\Jam.sourcelink.json

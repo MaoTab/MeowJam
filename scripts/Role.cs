@@ -65,10 +65,17 @@ public partial class Role : CharacterBody2D , ISelect
     /// </summary>
     [Export] public float TalkDistance = 20f;
     
+    public Vector2 CameraFollowPos;
+    
     /// <summary>
     /// 角色朝向
     /// </summary>
     public EFaceDir FaceDir = EFaceDir.E;
+    
+    /// <summary>
+    /// 跑步
+    /// </summary>
+    public bool Run;
     
     public enum EFaceDir
     {
@@ -92,7 +99,8 @@ public partial class Role : CharacterBody2D , ISelect
     public enum AnimateState
     {
         Idle,
-        Walk
+        Walk,
+        Run
     }
     
     // MARK: - Init()
@@ -100,15 +108,15 @@ public partial class Role : CharacterBody2D , ISelect
     {
         // 初始化移动位置
         MovePos = Position;
-
+        
+        _shader = (ShaderMaterial)Material;
+        
         if (MouseCollider.GetChild(0) is CollisionShape2D mouseColliderShape)
         {
             MouseColliderShape = mouseColliderShape;
             MouseCollider.MouseEntered += MouseEntered;
             MouseCollider.MouseExited += MouseExited;
         }
-        
-        _shader = (ShaderMaterial)Material;
         
         foreach (var node in DrawNode.GetChildren())
         {
@@ -128,52 +136,8 @@ public partial class Role : CharacterBody2D , ISelect
     {
         if(StopPhysicsProcess) return;
         
-        // 获取 Area2D 的全局范围
-        Rect2 areaRect = GetGlobalRect();
-
-        // 检查鼠标是否在 Area2D 的范围内
-        if (areaRect.HasPoint(Game.SceneMousePos))
-        {
-            MouseEntered();
-            
-            // if (Game.Select == this)
-            // {
-            //     List<string> tipList;
-            //     if (Game.ControlRole == this)
-            //     {
-            //         tipList = new List<string>();
-            //
-            //         tipList.Add("这是你。");
-            //         tipList.Add("line");
-            //         tipList.Add("[i][color=#c17a56]没什么特别的。[/color][/i]");
-            //     }
-            //     else
-            //     {
-            //         tipList = new List<string>();
-            //         tipList.Add("这是ta。");
-            //         tipList.Add("line");
-            //
-            //         if (IsTalkable())
-            //         {
-            //             tipList.Add("左键对话。");
-            //         }
-            //         else
-            //         {
-            //             tipList.Add("你得再靠近点才能跟他交互。");
-            //         }
-            //
-            //         tipList.Add("line");
-            //         tipList.Add("[i][color=#c17a56]也没什么特别的。[/color][/i]");
-            //     }
-            //
-            //     Game.Gui.RefreshListTip(tipList);
-            // }
-        }
-        else
-        {
-            MouseExited();
-        }
-
+        CameraFollowPos = Position;
+        
         Move();
         Animate();
     }
@@ -224,9 +188,11 @@ public partial class Role : CharacterBody2D , ISelect
         {
             tipList = new List<string>();
 
-            tipList.Add("犹格索托斯");
+            tipList.Add("雪莉");
             tipList.Add("line");
-            tipList.Add("[i][color=#c17a56]泡泡！泡泡！！！！[/color][/i]");
+            tipList.Add("[i][color=#c17a56]遗失了记忆的猫，曾经是个人类。[/color][/i]");
+            tipList.Add("[i][color=#c17a56]虽然不擅长为人处世，但却意外的热心肠，是个可靠的帮手。[/color][/i]");
+            tipList.Add("[i][color=#c17a56]不过，总觉得她的身上还隐藏着更大的秘密……[/color][/i]");
             tipList.Add("[i][color=#c17a56]撕哈，撕哈---[/color][/i]");
         }
         else
@@ -264,8 +230,7 @@ public partial class Role : CharacterBody2D , ISelect
             Face2Char(Game.ControlRole);
             Game.ControlRole.Face2Char(this);
             
-            // TODO 点击角色对话
-           // Game.Yarn.PlayNode("S_对话");
+            Game.Yarn.PlayNode("Node_对话");
         }
     }
     
@@ -290,6 +255,9 @@ public partial class Role : CharacterBody2D , ISelect
                 case AnimateState.Walk:
                     // part.SetSpeedScale(MoveSpeed / 25f);
                     part.Play("Walk");
+                    break;
+                case AnimateState.Run:
+                    part.Play("Run");
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(animateState), animateState, null);
@@ -365,10 +333,13 @@ public partial class Role : CharacterBody2D , ISelect
             return;
         }
         
-        InputMoveDirection = InputMoveDirection.Normalized();
+        var inputMoveDirection = InputMoveDirection.Normalized();
         
         // 位移部分
-        var collision = MoveAndCollide((InputMoveDirection * MoveSpeed) * (float)Game.PhysicsDelta);
+        var collision =
+            Run ? MoveAndCollide(inputMoveDirection * MoveSpeed * 3 * (float)Game.PhysicsDelta) 
+                : MoveAndCollide(inputMoveDirection * MoveSpeed * (float)Game.PhysicsDelta);
+        
         
         if (collision != null)
         {
@@ -397,7 +368,14 @@ public partial class Role : CharacterBody2D , ISelect
         }
         else
         {
-            PlayAnimate(AnimateState.Walk);
+            if (Run)
+            {
+                PlayAnimate(AnimateState.Run);
+            }
+            else
+            {
+                PlayAnimate(AnimateState.Walk);
+            }
         }
     }
     
@@ -408,8 +386,8 @@ public partial class Role : CharacterBody2D , ISelect
     /// <returns></returns>
     public bool IsTalkable()
     {
-        // 与玩家距离小于20则可以对话
-        return Game.ControlRole.GetDistanceTo(Position) <= Game.ControlRole.TalkDistance;
+        // 与玩家距离小于XX则可以对话
+        return Game.ControlRole.GetDistanceTo(Position) <= Game.ControlRole.TalkDistance + TalkDistance;
     }
     
     // MARK: - GetDistanceTo()
@@ -454,6 +432,20 @@ public partial class Role : CharacterBody2D , ISelect
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+        }
+    }
+
+    public void Input(Vector2 direction,bool isRun)
+    {
+        if (isRun)
+        {
+            InputMoveDirection = direction * 3;
+            Run = true;
+        }
+        else
+        {
+            InputMoveDirection = direction;
+            Run = false;
         }
     }
 }

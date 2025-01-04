@@ -1,3 +1,5 @@
+res://pack/snow.tscn
+res://scripts/Role.cs
 res://scene.tscn
 res://ui/tip_box.tscn
 res://ui/tip_h_separator.tscn
@@ -35,7 +37,11 @@ res://scripts/gui/components/TipBox.cs
 res://addons/YarnSpinner-Godot/Runtime/LineProviders/TextLineProvider.cs
 res://addons/YarnSpinner-Godot/Editor/YarnMarkupPaletteInspectorPlugin.cs
 res://addons/YarnSpinner-Godot/Runtime/Commands/DefaultActions.cs
-res://scripts/Role.cs
 res://addons/YarnSpinner-Godot/Runtime/DialogueRunner.cs
 res://addons/YarnSpinner-Godot/Runtime/Views/OptionView.cs
 res://addons/YarnSpinner-Godot/Runtime/Localization.cs
+res://ui/text_label.tscn
+res://scene.gdshader
+res://scripts/gui/components/MButton.cs
+res://ui/button.tscn
+res://scripts/YarnRuntime.cs

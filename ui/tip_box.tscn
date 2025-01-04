@@ -1,17 +1,130 @@
-[gd_scene load_steps=3 format=3 uid="uid://de2vw7yum8xlh"]
+[gd_scene load_steps=8 format=3 uid="uid://ds7qf64d3uyec"]
 
-[ext_resource type="StyleBox" path="res://ui/tip_box_style.tres" id="1_2t1x2"]
 [ext_resource type="Script" uid="uid://cvrin68v7c5l7" path="res://scripts/gui/components/TipBox.cs" id="1_58o06"]
 
-[node name="TipBox" type="PanelContainer" node_paths=PackedStringArray("VBox")]
-offset_right = 11.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5c1cw"]
+resource_local_to_scene = true
+bg_color = Color(0.133333, 0.133333, 0.133333, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.87451, 0.87451, 0.87451, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="Animation" id="Animation_kxa5i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_isy5j"]
+_data = {
+&"RESET": SubResource("Animation_kxa5i")
+}
+
+[sub_resource type="Animation" id="Animation_isy5j"]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.133972, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 20)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.133972, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5q73o"]
+resource_name = "tip_box"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.133972, 1),
+"update": 0,
+"values": [Vector2(0, 51), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.133972, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gue2w"]
+_data = {
+&"Hide": SubResource("Animation_isy5j"),
+&"Show": SubResource("Animation_5q73o")
+}
+
+[node name="TipBox" type="Control" node_paths=PackedStringArray("VBox", "AnimationPlayer")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_58o06")
+VBox = NodePath("Border/MarginContainer/VBoxContainer")
+AnimationPlayer = NodePath("Border/AnimationPlayer")
+
+[node name="Border" type="PanelContainer" parent="."]
+layout_mode = 2
+offset_right = 12.0
 offset_bottom = 30.0
 mouse_filter = 2
-theme_override_styles/panel = ExtResource("1_2t1x2")
-script = ExtResource("1_58o06")
-VBox = NodePath("MarginContainer/VBoxContainer")
+theme_override_styles/panel = SubResource("StyleBoxFlat_5c1cw")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="Border"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 5
@@ -19,6 +132,12 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Border/MarginContainer"]
 layout_mode = 2
 mouse_filter = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Border"]
+libraries = {
+&"": SubResource("AnimationLibrary_isy5j"),
+&"tip_box": SubResource("AnimationLibrary_gue2w")
+}

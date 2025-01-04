@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://cussg35rit1ml"]
+
+[ext_resource type="Script" uid="uid://bi4rucbqi38h0" path="res://scripts/gui/components/MButton.cs" id="1_43qr1"]
+[ext_resource type="FontFile" uid="uid://ddkndblysv701" path="res://font/AlimamaFangYuanTiVF-Thin.ttf" id="3_d6w4c"]
+
+[node name="Button" type="PanelContainer" node_paths=PackedStringArray("ButtonBase", "TextLabel", "_textureRect")]
+script = ExtResource("1_43qr1")
+ButtonBase = NodePath("Button")
+TextLabel = NodePath("HBoxContainer/MarginContainer/RichTextLabel")
+_textureRect = NodePath("HBoxContainer/MarginContainer2/TextureRect")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = -5
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer2"]
+layout_mode = 2
+mouse_filter = 2
+expand_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/normal_font = ExtResource("3_d6w4c")
+bbcode_enabled = true
+text = "Button"
+fit_content = true
+autowrap_mode = 0

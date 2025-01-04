@@ -6,10 +6,29 @@ namespace Jam;
 public partial class TipBox : Control
 {
     [Export] public Control VBox;
+    [Export] public AnimationPlayer AnimationPlayer;
     public string Key;
     public bool Freeze;
 
     public Action OnMouseInsideTip;
+
+    public void Creat()
+    {
+        AnimationPlayer.Play("tip_box/Show");
+    }
+
+    public void Destroy()
+    {
+        AnimationPlayer.Play("tip_box/Hide");
+        AnimationPlayer.AnimationFinished += name =>
+        {
+            // 取消事件订阅
+            GameEvent.OnMouseLeftDown -= MouseExitEvent;
+            
+            QueueFree();
+        };
+    }
+    
     public void BindMouseExit(Action onMouseInsideTip)
     {
         OnMouseInsideTip = onMouseInsideTip;
@@ -28,11 +47,5 @@ public partial class TipBox : Control
         {
             OnMouseInsideTip.Invoke();
         }
-    }
-    
-    public override void _ExitTree() 
-    {
-        // 取消事件订阅
-        GameEvent.OnMouseLeftDown -= MouseExitEvent;
     }
 }

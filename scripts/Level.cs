@@ -23,6 +23,7 @@ public partial class Level : Node2D
         {
             if (node is Role role)
             {
+                role.Init();
                 Ais.Add(role.Name,role);
             }
         }

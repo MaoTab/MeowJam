@@ -66,6 +66,7 @@ public partial class Interface : Control
         AddChild(node);
         if (node is not TipBox tipBox) return;
         _tipBoxes.Add(tipBox);
+        
         tipBox.Key = key;
         foreach (var meta in metas)
         {
@@ -83,7 +84,8 @@ public partial class Interface : Control
             tipBox.VBox.AddChild(textLabel);
             textLabel.Text = meta;
         }
-
+        
+        tipBox.Creat();
         _lockTipPos = lockPos;
         _asyncTip = true;
     }
@@ -96,7 +98,7 @@ public partial class Interface : Control
 
         if (node is not TipBox tipBox) return;
         _tipBoxes.Add(tipBox);
-
+        
         node = _tipTextPackedScene.Instantiate();
         if (node is not TipBuilder textLabel) return;
         textLabel.LockPos = lockPos;
@@ -105,7 +107,7 @@ public partial class Interface : Control
         
         textLabel.Text = Tr(meta.AsString());
         
-
+        tipBox.Creat();
         _lockTipPos = lockPos;
         _asyncTip = true;
     }
@@ -209,7 +211,7 @@ public partial class Interface : Control
         _asyncTip = false;
         foreach (var tipBox in _tipBoxes)
         {
-            tipBox.QueueFree();
+            tipBox.Destroy();
         }
 
         _tipBoxes.Clear();
@@ -253,7 +255,7 @@ public partial class Interface : Control
         if (!TryGetLastTip(out TipBox lastTip) && lastTip == null) return;
         _tipBoxes.RemoveAt(_tipBoxes.Count - 1);
         RemoveChild(lastTip);
-        lastTip.Free();
+        lastTip.Destroy();
         _asyncTip = false;
         // 避免在Tick中关了没重新显示，同时避免第二行Tip错误地更新名称框的逻辑
         if (_tipBoxes.Count != 0) return;
@@ -265,7 +267,7 @@ public partial class Interface : Control
 
         _tipBoxes.RemoveAt(_tipBoxes.Count - 1);
         RemoveChild(lastTip);
-        lastTip.QueueFree();
+        lastTip.Destroy();
         _asyncTip = false;
         tipBuilder.Freeze = false;
 
@@ -285,7 +287,7 @@ public partial class Interface : Control
     }
     #endregion
 
-    public void PhysicsProcess()
+    public void Process()
     {
         if (_asyncTip)
         {
@@ -308,7 +310,7 @@ public partial class Interface : Control
                     else
                     {
                         Vector2 tipSize = lastTip.Size;
-                        var mousePos = Game.MousePos + new Vector2(10, 0) - new Vector2(0, tipSize.Y + 15);
+                        var mousePos = Game.MousePos + new Vector2(10, 0) - new Vector2(0, tipSize.Y - 35);
 
                         // 确定Tip最后的位置
                         var clampedPosition = new Vector2(
