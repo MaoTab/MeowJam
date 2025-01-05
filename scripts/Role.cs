@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using Godot;
 
 namespace Jam;
@@ -141,7 +143,8 @@ public partial class Role : CharacterBody2D , ISelect
         Move();
         Animate();
     }
-
+    
+    
     // MARK: - MouseExited()
     private new void MouseExited()
     {
@@ -184,7 +187,7 @@ public partial class Role : CharacterBody2D , ISelect
         
         List<string> tipList;
 
-        if (Game.ControlRole == this)
+        if (Game.ControlRole == this) // 玩家选中自身时
         {
             tipList = new List<string>();
 
@@ -341,10 +344,10 @@ public partial class Role : CharacterBody2D , ISelect
                 : MoveAndCollide(inputMoveDirection * MoveSpeed * (float)Game.PhysicsDelta);
         
         
-        if (collision != null)
-        {
-            Velocity = Velocity.Slide(collision.GetNormal());
-        }
+        // if (collision != null)
+        // {
+        //     Velocity = Velocity.Slide(collision.GetNormal());
+        // }
 
         MoveAndSlide();
     }

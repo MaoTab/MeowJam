@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Godot;
 using YarnSpinnerGodot;
 
 namespace Jam;
@@ -34,6 +35,22 @@ public class YarnRuntime
         _dialogueRunner.SetProject(project);
         _dialogueRunner.OnHandleOptions += OnDialogueRunnerOnHandleOptions;
         _dialogueRunner.OnHandleLine += OnDialogueRunnerOnHandleLine;
+
+        _dialogueRunner.onDialogueComplete += () =>
+        {
+            GD.Print("Dialogue complete");
+        };
+
+        _dialogueRunner.onNodeComplete += name =>
+        {
+            GD.Print("Node complete");
+        };
+        
+        _dialogueRunner.AddCommandHandler("end",(() =>
+        {
+            Game.Gui.DlgInterface.RemoveAllDlg();
+        }));
+        
         // 对标准行的处理
         async void OnDialogueRunnerOnHandleLine(LocalizedLine localizedLine)
         {

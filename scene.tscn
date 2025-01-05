@@ -1,8 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://c5ipbraa1ubnx"]
+[gd_scene load_steps=15 format=3 uid="uid://c5ipbraa1ubnx"]
 
 [ext_resource type="Script" uid="uid://c5jgom1w22vgn" path="res://scripts/Root.cs" id="1_ulcgi"]
 [ext_resource type="Script" uid="uid://cyc446ovneiu4" path="res://scripts/Level.cs" id="2_ee5iq"]
-[ext_resource type="Shader" uid="uid://dvx6w7v1plfsm" path="res://scene.gdshader" id="2_fy5k1"]
 [ext_resource type="Texture2D" uid="uid://tt2t215hq6sg" path="res://texture/townsendgover_bg_1.png" id="3_6ncfj"]
 [ext_resource type="Shader" uid="uid://dclypwy16ocid" path="res://shader/outline.gdshader" id="3_jlvtx"]
 [ext_resource type="PackedScene" uid="uid://ccko0sgx88y3t" path="res://pack/snow.tscn" id="4_5juve"]
@@ -13,13 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://ds7qf64d3uyec" path="res://ui/tip_box.tscn" id="55_dcc87"]
 [ext_resource type="PackedScene" uid="uid://ru31tkvn3m6i" path="res://ui/text_label.tscn" id="56_ee5iq"]
 [ext_resource type="PackedScene" uid="uid://3v238bfaugxi" path="res://ui/tip_h_separator.tscn" id="57_cy07d"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5c1cw"]
-shader = ExtResource("2_fy5k1")
-shader_parameter/whiteColor = Color(0.961, 0.98, 0.937, 1)
-shader_parameter/lightGreyColor = Color(0.75, 0.75, 0.75, 1)
-shader_parameter/darkGreyColor = Color(0.45, 0.45, 0.45, 1)
-shader_parameter/blackColor = Color(0.25, 0.25, 0.25, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5juve"]
 resource_local_to_scene = true
@@ -54,7 +46,6 @@ _gui = NodePath("CanvasLayer/Control")
 _camera = NodePath("CanvasGroup/Level-NoMove/Camera2D")
 
 [node name="CanvasGroup" type="CanvasGroup" parent="."]
-material = SubResource("ShaderMaterial_5c1cw")
 
 [node name="Level-NoMove" type="Node2D" parent="CanvasGroup" node_paths=PackedStringArray("Point", "PlayerNode", "AiNode")]
 script = ExtResource("2_ee5iq")
@@ -75,7 +66,7 @@ position = Vector2(-9, 41)
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CanvasGroup/Level-NoMove/Static-NoMove/TownsendgoverBg1/StaticBody2D"]
 position = Vector2(9, -41)
 build_mode = 1
-polygon = PackedVector2Array(-241, -6, -141, -7, -140, 54, 109, 55, 109, -11, 248, -9, 246, 98, 222, 104, 213, 130, 171, 130, 170, 96, -243, 97)
+polygon = PackedVector2Array(-249, -15, -129, -15, -129, 49, 103, 49, 103, -15, 255, -15, 255, 105, 222, 104, 223, 137, 167, 137, 167, 105, -249, 105)
 
 [node name="Roles-NoMove" type="Node2D" parent="CanvasGroup/Level-NoMove"]
 y_sort_enabled = true
@@ -99,8 +90,8 @@ script = ExtResource("55_cy07d")
 [node name="Control" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("DlgInterface", "_tipZone", "_darkMask")]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
+offset_right = 1152.0
+offset_bottom = 648.0
 mouse_filter = 2
 script = ExtResource("54_5l17q")
 DlgInterface = NodePath("Dlg")
@@ -125,19 +116,22 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 8.0
+offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
 [node name="Dlg" type="Control" parent="CanvasLayer/Control" node_paths=PackedStringArray("DlgTextList", "_optionBox")]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1440.0
+offset_bottom = 664.0
+mouse_filter = 2
 script = ExtResource("12_akxrc")
 _dlgTextPackedScene = ExtResource("56_ee5iq")
-DlgTextList = NodePath("PanelContainer/MarginContainer/ScrollContainer/List/DlgTextList")
+DlgTextList = NodePath("PanelContainer/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgTextList")
 _optionButtonPackedScene = ExtResource("13_gu47o")
-_optionBox = NodePath("PanelContainer/MarginContainer/ScrollContainer/List/DlgOp")
+_optionBox = NodePath("PanelContainer/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgOp")
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control/Dlg"]
 layout_mode = 0
@@ -154,11 +148,22 @@ theme_override_constants/margin_right = 5
 [node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control/Dlg/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="List" type="VBoxContainer" parent="CanvasLayer/Control/Dlg/PanelContainer/MarginContainer/ScrollContainer"]
+[node name="ScrollList" type="VBoxContainer" parent="CanvasLayer/Control/Dlg/PanelContainer/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/Dlg/PanelContainer/MarginContainer/ScrollContainer/ScrollList"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="List" type="VBoxContainer" parent="CanvasLayer/Control/Dlg/PanelContainer/MarginContainer/ScrollContainer/ScrollList/MarginContainer"]
 layout_mode = 2
 
-[node name="DlgTextList" type="VBoxContainer" parent="CanvasLayer/Control/Dlg/PanelContainer/MarginContainer/ScrollContainer/List"]
+[node name="DlgTextList" type="VBoxContainer" parent="CanvasLayer/Control/Dlg/PanelContainer/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List"]
 layout_mode = 2
 
-[node name="DlgOp" type="VBoxContainer" parent="CanvasLayer/Control/Dlg/PanelContainer/MarginContainer/ScrollContainer/List"]
+[node name="DlgOp" type="VBoxContainer" parent="CanvasLayer/Control/Dlg/PanelContainer/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List"]
 layout_mode = 2

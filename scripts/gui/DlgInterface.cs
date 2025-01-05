@@ -230,4 +230,13 @@ public partial class DlgInterface : Control, IUi
             node.QueueFree();
         }
     }
+    
+    // MARK: - RemoveAllDlg()
+    public void RemoveAllDlg()
+    {
+        foreach (var node in DlgTextList.GetChildren())
+        {
+            node.QueueFree();
+        }
+    }
 }
