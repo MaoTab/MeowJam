@@ -56,7 +56,7 @@ public partial class Role : CharacterBody2D , ISelect
     /// 绘制节点，用于存放所有精灵渲染器的父节点
     /// </summary>
     [Export] public Node2D DrawNode;
-    
+   
     /// <summary>
     /// 身体部位
     /// </summary>
@@ -148,6 +148,8 @@ public partial class Role : CharacterBody2D , ISelect
     // MARK: - MouseExited()
     private new void MouseExited()
     {
+        if(!Game.CanControl) return;
+        
         if (Game.Select == this)
         {
             Game.Select = null;
@@ -156,18 +158,14 @@ public partial class Role : CharacterBody2D , ISelect
         {
             return;
         }
-        
-        Game.Gui.RemoveAllTip();
 
-        GameEvent.OnMouseLeftDown -= OnClick;
-
-        _shader.SetShaderParameter("thickness", 0f);
+        DisableHover();
     }
     
     // MARK: - MouseEntered()
     private new void MouseEntered()
     {
-        
+        if(!Game.CanControl) return;
         if (Game.Select == null)
         {
             Game.Gui.RemoveAllTip();
@@ -223,16 +221,26 @@ public partial class Role : CharacterBody2D , ISelect
 
         _shader.SetShaderParameter("thickness", 1f);
     }
+
+    public void DisableHover()
+    {
+        Game.Gui.RemoveAllTip();
+        GameEvent.OnMouseLeftDown -= OnClick;
+        _shader.SetShaderParameter("thickness", 0f);
+    }
     
     // MARK: - OnClick()
     public void OnClick(Vector2 _)
     {
+        if(!Game.CanControl) return;
         if (IsTalkable() && Game.ControlRole != this)
         {
+            DisableHover();
+            
             // 对话时调整自身的朝向，避免背着身子跟对方对话
             Face2Char(Game.ControlRole);
             Game.ControlRole.Face2Char(this);
-            
+            Game.CanControl = false;
             Game.Yarn.PlayNode("Node_对话");
         }
     }
@@ -440,6 +448,7 @@ public partial class Role : CharacterBody2D , ISelect
 
     public void Input(Vector2 direction,bool isRun)
     {
+        if(!Game.CanControl) return;
         if (isRun)
         {
             InputMoveDirection = direction * 3;

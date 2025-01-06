@@ -1,0 +1,244 @@
+[gd_scene load_steps=12 format=3 uid="uid://ct50h7dqufm8m"]
+
+[ext_resource type="Script" uid="uid://b7muxavy7o8ok" path="res://scripts/gui/components/DlgPart.cs" id="1_mfve8"]
+[ext_resource type="FontVariation" uid="uid://b2k1gvhu6adm3" path="res://font/font_variation.tres" id="2_ubcxv"]
+[ext_resource type="FontVariation" path="res://font/font_variation_i.tres" id="3_sxg3l"]
+[ext_resource type="Script" uid="uid://dvce0w216iubm" path="res://scripts/gui/components/TipBuilder.cs" id="4_87wox"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8hm71"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mfve8"]
+
+[sub_resource type="Animation" id="Animation_8hm71"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/DlgText/Anim/PanelContainer:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/DlgText/Anim/PanelContainer:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-50.33, 36.625)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VBoxContainer/DlgText/Anim/PanelContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_223my"]
+_data = {
+&"RESET": SubResource("Animation_8hm71")
+}
+
+[sub_resource type="Animation" id="Animation_ubcxv"]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/DlgText/Anim/PanelContainer:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.125, 1),
+"update": 0,
+"values": [-0.523599, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/DlgText/Anim/PanelContainer:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.125, 1),
+"update": 0,
+"values": [Vector2(-50.33, 36.625), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VBoxContainer/DlgText/Anim/PanelContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.125, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_mfve8"]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/DlgText/Anim/PanelContainer:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.129408, 1),
+"update": 0,
+"values": [0.356047, -6.03893e-05]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/DlgText/Anim/PanelContainer:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.129408, 1),
+"update": 0,
+"values": [Vector2(62.215, 54.31), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VBoxContainer/DlgText/Anim/PanelContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.129408, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.999885)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sxg3l"]
+_data = {
+&"Show": SubResource("Animation_ubcxv"),
+&"Show_R": SubResource("Animation_mfve8")
+}
+
+[node name="RightDlgPart" type="HBoxContainer" node_paths=PackedStringArray("NameBox", "NameTextLabel", "HBox", "SizeTextLabel", "AnimTextLabel", "AnimationPlayer")]
+layout_direction = 2
+script = ExtResource("1_mfve8")
+NameBox = NodePath("DlgPart/VBoxContainer/DlgName")
+NameTextLabel = NodePath("DlgPart/VBoxContainer/DlgName/MarginContainer/Text")
+HBox = NodePath("DlgPart/VBoxContainer")
+SizeTextLabel = NodePath("DlgPart/VBoxContainer/DlgText/SizeLayer/MarginContainer/SizeText")
+AnimTextLabel = NodePath("DlgPart/VBoxContainer/DlgText/Anim/PanelContainer/MarginContainer/AnimText")
+AnimationPlayer = NodePath("AnimationPlayer")
+
+[node name="DlgPart" type="PanelContainer" parent="."]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_8hm71")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DlgPart"]
+layout_direction = 2
+layout_mode = 2
+
+[node name="DlgName" type="PanelContainer" parent="DlgPart/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="DlgPart/VBoxContainer/DlgName"]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="Text" type="RichTextLabel" parent="DlgPart/VBoxContainer/DlgName/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_ubcxv")
+theme_override_fonts/italics_font = ExtResource("3_sxg3l")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "Maot"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("4_87wox")
+
+[node name="DlgText" type="PanelContainer" parent="DlgPart/VBoxContainer"]
+custom_minimum_size = Vector2(370, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_mfve8")
+
+[node name="Anim" type="Control" parent="DlgPart/VBoxContainer/DlgText"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="DlgPart/VBoxContainer/DlgText/Anim"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="DlgPart/VBoxContainer/DlgText/Anim/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="AnimText" type="RichTextLabel" parent="DlgPart/VBoxContainer/DlgText/Anim/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_ubcxv")
+theme_override_fonts/italics_font = ExtResource("3_sxg3l")
+bbcode_enabled = true
+scroll_active = false
+autowrap_mode = 1
+script = ExtResource("4_87wox")
+
+[node name="SizeLayer" type="PanelContainer" parent="DlgPart/VBoxContainer/DlgText"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="DlgPart/VBoxContainer/DlgText/SizeLayer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="SizeText" type="RichTextLabel" parent="DlgPart/VBoxContainer/DlgText/SizeLayer/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_ubcxv")
+theme_override_fonts/italics_font = ExtResource("3_sxg3l")
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+autowrap_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../DlgPart")
+libraries = {
+&"": SubResource("AnimationLibrary_223my"),
+&"dlg_part": SubResource("AnimationLibrary_sxg3l")
+}

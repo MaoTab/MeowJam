@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c5ipbraa1ubnx"]
+[gd_scene load_steps=20 format=3 uid="uid://c5ipbraa1ubnx"]
 
 [ext_resource type="Script" uid="uid://c5jgom1w22vgn" path="res://scripts/Root.cs" id="1_ulcgi"]
 [ext_resource type="Script" uid="uid://cyc446ovneiu4" path="res://scripts/Level.cs" id="2_ee5iq"]
@@ -6,6 +6,7 @@
 [ext_resource type="Shader" uid="uid://dclypwy16ocid" path="res://shader/outline.gdshader" id="3_jlvtx"]
 [ext_resource type="PackedScene" uid="uid://ccko0sgx88y3t" path="res://pack/snow.tscn" id="4_5juve"]
 [ext_resource type="Script" uid="uid://dua8yc8gnrssu" path="res://scripts/gui/DlgInterface.cs" id="12_akxrc"]
+[ext_resource type="PackedScene" uid="uid://ct50h7dqufm8m" path="res://ui/right_dlg_part.tscn" id="12_gu47o"]
 [ext_resource type="PackedScene" uid="uid://cussg35rit1ml" path="res://ui/button.tscn" id="13_gu47o"]
 [ext_resource type="Script" uid="uid://dqblsea76tnfv" path="res://scripts/Interface.cs" id="54_5l17q"]
 [ext_resource type="Script" uid="uid://b7nhjoes6w41c" path="res://scripts/Camera.cs" id="55_cy07d"]
@@ -38,6 +39,70 @@ shader_parameter/aspect_ratio = 1.0
 shader_parameter/square_border = false
 shader_parameter/offset = null
 shader_parameter/max_or_add = false
+
+[sub_resource type="Animation" id="Animation_gu47o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(576, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8hm71"]
+_data = {
+&"RESET": SubResource("Animation_gu47o")
+}
+
+[sub_resource type="Animation" id="Animation_akxrc"]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.120742, 1),
+"update": 0,
+"values": [Vector2(576, 250), Vector2(576, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.120742, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gu47o"]
+_data = {
+&"Show": SubResource("Animation_akxrc")
+}
 
 [node name="Root" type="Node" node_paths=PackedStringArray("_level", "_gui", "_camera")]
 script = ExtResource("1_ulcgi")
@@ -122,20 +187,22 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Dlg" type="Control" parent="CanvasLayer/Control" node_paths=PackedStringArray("DlgTextList", "_optionBox")]
+[node name="Dlg" type="Control" parent="CanvasLayer/Control" node_paths=PackedStringArray("animationPlayer", "DlgTextList", "_optionBox")]
 anchors_preset = 0
 offset_right = 1440.0
 offset_bottom = 664.0
 mouse_filter = 2
 script = ExtResource("12_akxrc")
-_dlgTextPackedScene = ExtResource("56_ee5iq")
+animationPlayer = NodePath("AnimationPlayer")
 DlgTextList = NodePath("PanelContainer/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgTextList")
 _optionButtonPackedScene = ExtResource("13_gu47o")
 _optionBox = NodePath("PanelContainer/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgOp")
+_dlgPartPackedScene = ExtResource("12_gu47o")
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control/Dlg"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 0
-offset_left = 704.0
+offset_left = 576.0
 offset_right = 1088.0
 offset_bottom = 648.0
 
@@ -165,5 +232,15 @@ layout_mode = 2
 [node name="DlgTextList" type="VBoxContainer" parent="CanvasLayer/Control/Dlg/PanelContainer/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List"]
 layout_mode = 2
 
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Control/Dlg/PanelContainer/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List"]
+layout_mode = 2
+
 [node name="DlgOp" type="VBoxContainer" parent="CanvasLayer/Control/Dlg/PanelContainer/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List"]
 layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/Dlg"]
+libraries = {
+&"": SubResource("AnimationLibrary_8hm71"),
+&"dlg": SubResource("AnimationLibrary_gu47o")
+}

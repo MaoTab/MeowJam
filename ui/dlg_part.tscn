@@ -1,0 +1,150 @@
+[gd_scene load_steps=10 format=3 uid="uid://403lsivt4fop"]
+
+[ext_resource type="Script" uid="uid://b7muxavy7o8ok" path="res://scripts/gui/components/DlgPart.cs" id="1_21ad4"]
+[ext_resource type="FontVariation" uid="uid://b2k1gvhu6adm3" path="res://font/font_variation.tres" id="2_unn0v"]
+[ext_resource type="FontVariation" path="res://font/font_variation_i.tres" id="3_8ab5r"]
+[ext_resource type="Script" uid="uid://dvce0w216iubm" path="res://scripts/gui/components/TipBuilder.cs" id="4_311mg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8hm71"]
+
+[sub_resource type="Animation" id="Animation_8hm71"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimLayer/PanelContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimLayer/PanelContainer:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.541052]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimLayer/PanelContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_223my"]
+_data = {
+&"RESET": SubResource("Animation_8hm71")
+}
+
+[sub_resource type="Animation" id="Animation_17rhs"]
+resource_name = "dlg_part"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimLayer/PanelContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.138696, 1),
+"update": 0,
+"values": [Vector2(-58, 67), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimLayer/PanelContainer:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.138696, 1),
+"update": 0,
+"values": [-0.541052, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimLayer/PanelContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.138696, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8j1ou"]
+_data = {
+&"Show": SubResource("Animation_17rhs")
+}
+
+[node name="DlgPart" type="PanelContainer" node_paths=PackedStringArray("SizeTextLabel", "AnimTextLabel", "AnimationPlayer")]
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_8hm71")
+script = ExtResource("1_21ad4")
+SizeTextLabel = NodePath("SizeLayer/SizeText")
+AnimTextLabel = NodePath("AnimLayer/PanelContainer/AnimText")
+AnimationPlayer = NodePath("AnimationPlayer")
+
+[node name="AnimLayer" type="Control" parent="."]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="AnimLayer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.541052
+
+[node name="AnimText" type="RichTextLabel" parent="AnimLayer/PanelContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_unn0v")
+theme_override_fonts/italics_font = ExtResource("3_8ab5r")
+bbcode_enabled = true
+text = "
+"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("4_311mg")
+
+[node name="SizeLayer" type="PanelContainer" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="SizeText" type="RichTextLabel" parent="SizeLayer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_unn0v")
+theme_override_fonts/italics_font = ExtResource("3_8ab5r")
+bbcode_enabled = true
+text = "Tiip
+"
+fit_content = true
+autowrap_mode = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_223my"),
+&"dlg_part": SubResource("AnimationLibrary_8j1ou")
+}

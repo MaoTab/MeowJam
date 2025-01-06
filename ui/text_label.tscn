@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ru31tkvn3m6i"]
 
-[ext_resource type="FontVariation" path="res://font/font_variation.tres" id="1_cmjvc"]
+[ext_resource type="FontVariation" uid="uid://b2k1gvhu6adm3" path="res://font/font_variation.tres" id="1_cmjvc"]
 [ext_resource type="FontVariation" path="res://font/font_variation_i.tres" id="2_iiquc"]
 [ext_resource type="Script" uid="uid://dvce0w216iubm" path="res://scripts/gui/components/TipBuilder.cs" id="3_yp0n7"]
 

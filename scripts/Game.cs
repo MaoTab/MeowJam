@@ -38,6 +38,12 @@ public static class Game
     public static Role ControlRole{get;set;}
     
     /// <summary>
+    /// 是否可操作
+    /// </summary>
+    public static bool CanControl{get;set;}
+
+    
+    /// <summary>
     /// 游戏物理时间差量
     /// </summary>
     public static Double PhysicsDelta{get;set;}

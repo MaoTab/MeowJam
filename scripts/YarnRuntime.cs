@@ -17,9 +17,17 @@ public class YarnRuntime
         // 开始对话默认打开对话框
         // Game.Gui.ShowDialogueZone();
 		
-        if(_dialogueRunner.Dialogue.IsActive) Stop();
-        _dialogueRunner.Dialogue.SetNode(node);
-        _dialogueRunner.ContinueDialogue();
+        // if(_dialogueRunner.Dialogue.IsActive) Stop();
+
+        void OnFinsh()
+        {
+            _dialogueRunner.Dialogue.SetNode(node);
+            _dialogueRunner.ContinueDialogue();
+            Game.Gui.DlgInterface.OnAnimationFinish -= OnFinsh;
+        }
+
+        Game.Gui.DlgInterface.OnAnimationFinish += OnFinsh;
+        Game.Gui.DlgInterface.Show();
     }
     
     public void Stop()
@@ -48,15 +56,22 @@ public class YarnRuntime
         
         _dialogueRunner.AddCommandHandler("end",(() =>
         {
+            Game.Gui.DlgInterface.Hide();
+            
             Game.Gui.DlgInterface.RemoveAllDlg();
+            
+            Game.CanControl = true;
         }));
         
         // 对标准行的处理
         async void OnDialogueRunnerOnHandleLine(LocalizedLine localizedLine)
         {
             var line = localizedLine.TextWithoutCharacterName.Text;
-            await Game.Gui.DlgInterface.AddDlgText(line);
-            _dialogueRunner.ContinueDialogue();
+            var charName = localizedLine.CharacterName;
+            await Game.Gui.DlgInterface.AddDlgText(charName,line, () =>
+            {
+                _dialogueRunner.ContinueDialogue();
+            } );
         }
 
         // 对选项的处理
@@ -71,11 +86,17 @@ public class YarnRuntime
                 var hasTip = false;
                 var tipList = new List<string>();
                 bool isTipHeld = false;
-                
-                void OnClick()
+
+                async void OnClick()
                 {
                     Game.Gui.DlgInterface.RemoveAllOption();
-                    _dialogueRunner.SelectedOption(option.DialogueOptionID);
+                    
+                    await Game.Gui.DlgInterface.AddDlgText("Player",line, () =>
+                    {
+                        _dialogueRunner.SelectedOption(option.DialogueOptionID);
+                    } );
+                    //
+                    // _dialogueRunner.SelectedOption(option.DialogueOptionID);
                 }
                 
                 void HandleTipDisplay(bool isEntering)

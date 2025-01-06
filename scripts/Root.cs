@@ -17,6 +17,7 @@ public partial class Root : Node
         Game.Level = _level.Init();
         Game.Gui = _gui;
         Game.Camera = _camera;
+        Game.CanControl = true;
     }
 
     public override void _Process(double delta)

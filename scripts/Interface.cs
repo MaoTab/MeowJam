@@ -20,6 +20,7 @@ public partial class Interface : Control
      private bool _asyncTip;
      private bool _lockTipPos;
      [Export] private Control _darkMask;
+    
      
     // MARK: - GetLastTip()
     private bool TryGetLastTip(out TipBox lastTip)
