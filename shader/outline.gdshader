@@ -19,7 +19,7 @@ void vertex(){
 	}
 }
 
-vec2 square(float i){ // samples a square pattern
+vec2 square(float i){ // 正方形采样
 	i *= 2.0;
 	return (vec2(
 		clamp(abs(mod(i,2.0)-1.0),0.25,0.75),
@@ -29,7 +29,7 @@ vec2 square(float i){ // samples a square pattern
 
 vec4 tex(sampler2D sampler, vec2 uv){
 	vec4 clr;
-	if (uv.x > 0.0 && uv.y > 0.0 && uv.x < 1.0 && uv.y < 1.0){ // bleeding texture sampling fix
+	if (uv.x > 0.0 && uv.y > 0.0 && uv.x < 1.0 && uv.y < 1.0){ //  修正混合纹纹理
 		clr = texture(sampler, uv);
 	}else{clr = vec4(0.0);}
 	return clr;
@@ -53,7 +53,7 @@ void fragment(){
 	if (square_border){
 		for(int i=0;i<ring_count;++i){
 			float r = float(i) / float(ring_count) + ring_offset;
-			alpha = max(alpha,texture(TEXTURE, uv + o + size * square(r) * vec2(aspect_ratio,1.0)).a * outline_color.a);}// texture sampling fix is disabled because both with and without give the same result
+			alpha = max(alpha,texture(TEXTURE, uv + o + size * square(r) * vec2(aspect_ratio,1.0)).a * outline_color.a);}//停用混合纹理修复，因为和没有取样的结果是一致的
 	}else{
 		for(int i=0;i<ring_count;++i){
 			float r = float(i) * 3.14159 / float(ring_count) * 2.0 + ring_offset;

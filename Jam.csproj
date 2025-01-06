@@ -12,4 +12,10 @@
     <PackageReference Include="NLua" Version="1.7.3" />
     <PackageReference Include="OmniSharp.Extensions.LanguageProtocol.Testing" Version="0.19.7" />
   </ItemGroup>
+<ItemGroup>
+  <Content Include="shader\outline.gdshader" />
+  <Content Include="shader\outline.gdshader.uid" />
+  <Content Include="shader\scene.gdshader" />
+  <Content Include="shader\scene.gdshader.uid" />
+</ItemGroup>
 </Project>
