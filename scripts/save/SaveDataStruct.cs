@@ -11,4 +11,9 @@ public struct SaveDataStruct
     /// 存储角色名称
     /// </summary>
     public System.Collections.Generic.Dictionary<string, string> NameTag;
+
+    public void DoSave()
+    {
+        
+    }
 }

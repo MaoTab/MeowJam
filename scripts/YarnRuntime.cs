@@ -54,6 +54,45 @@ public class YarnRuntime
             GD.Print("Node complete");
         };
         
+        _dialogueRunner.AddFunction<string,int>("prism_get",((name) =>
+        {
+            return name switch
+            {
+                "phy" => Game.PlayerData.PsyPrism.Level,
+                "soc" => Game.PlayerData.SocPrism.Level,
+                "self" => Game.PlayerData.SelfPrism.Level,
+                "bio" => Game.PlayerData.BioPrism.Level,
+                _ => 0
+            };
+        }));
+        
+        _dialogueRunner.AddCommandHandler<string,int>("prism_add",((name,level) =>
+        {
+            switch (name)
+            {
+                case "phy":
+                    Game.PlayerData.PsyPrism.Level += level;
+                    break;
+                case "soc":
+                    Game.PlayerData.SocPrism.Level += level;
+                    break;
+                case "self":
+                    Game.PlayerData.SelfPrism.Level += level;
+                    break;
+                case "bio":
+                    Game.PlayerData.BioPrism.Level += level;
+                    break;
+            }
+            
+            _dialogueRunner.ContinueDialogue();
+        }));
+
+        _dialogueRunner.AddCommandHandler("save", () =>
+        {
+            Game.PlayerData.Save();
+            _dialogueRunner.ContinueDialogue();
+        });
+        
         _dialogueRunner.AddCommandHandler("end",(() =>
         {
             Game.Gui.DlgInterface.Hide();
@@ -136,4 +175,12 @@ public class YarnRuntime
         _dialogueRunner.startAutomatically = false;
         _dialogueRunner.Init(); // 初始化并启动Yarn
     }
+    
+    # if !DEBUG
+    [YarnFunction("prism_get")]
+    public int prism_get(string node)
+    {
+        return 0;
+    }
+    #endif
 }

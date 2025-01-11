@@ -13,6 +13,7 @@
     <PackageReference Include="OmniSharp.Extensions.LanguageProtocol.Testing" Version="0.19.7" />
   </ItemGroup>
 <ItemGroup>
+  <Content Include="data\prism.txt" />
   <Content Include="shader\outline.gdshader" />
   <Content Include="shader\outline.gdshader.uid" />
   <Content Include="shader\scene.gdshader" />

@@ -38,6 +38,11 @@ public static class Game
     public static Role ControlRole{get;set;}
     
     /// <summary>
+    /// 玩家角色数据
+    /// </summary>
+    public static PlayerData PlayerData { get; set; }
+    
+    /// <summary>
     /// 是否可操作
     /// </summary>
     public static bool CanControl{get;set;}
