@@ -1,20 +1,30 @@
-[gd_scene load_steps=20 format=3 uid="uid://c5ipbraa1ubnx"]
+[gd_scene load_steps=42 format=3 uid="uid://c5ipbraa1ubnx"]
 
 [ext_resource type="Script" uid="uid://c5jgom1w22vgn" path="res://scripts/Root.cs" id="1_ulcgi"]
 [ext_resource type="Script" uid="uid://cyc446ovneiu4" path="res://scripts/Level.cs" id="2_ee5iq"]
 [ext_resource type="Texture2D" uid="uid://tt2t215hq6sg" path="res://texture/townsendgover_bg_1.png" id="3_6ncfj"]
 [ext_resource type="Shader" uid="uid://dclypwy16ocid" path="res://shader/outline.gdshader" id="3_jlvtx"]
 [ext_resource type="PackedScene" uid="uid://ccko0sgx88y3t" path="res://pack/snow.tscn" id="4_5juve"]
+[ext_resource type="Texture2D" uid="uid://dshhm2koihtu3" path="res://texture/text_player_shadow.png" id="6_bw2g3"]
+[ext_resource type="Texture2D" uid="uid://d0v36wlaegf1l" path="res://ui.png" id="6_xpof7"]
 [ext_resource type="Script" uid="uid://dua8yc8gnrssu" path="res://scripts/gui/DlgInterface.cs" id="12_akxrc"]
 [ext_resource type="PackedScene" uid="uid://ct50h7dqufm8m" path="res://ui/right_dlg_part.tscn" id="12_gu47o"]
+[ext_resource type="Script" uid="uid://c2ahm0j0om4ty" path="res://scripts/gui/Vote.cs" id="13_8j1ou"]
 [ext_resource type="PackedScene" uid="uid://cussg35rit1ml" path="res://ui/button.tscn" id="13_gu47o"]
+[ext_resource type="Script" uid="uid://df21p28invwmp" path="res://scripts/gui/PlayerData.cs" id="14_8j1ou"]
+[ext_resource type="Script" uid="uid://1to417disg7o" path="res://scripts/gui/components/PrismDataBar.cs" id="14_17rhs"]
+[ext_resource type="FontVariation" uid="uid://b2k1gvhu6adm3" path="res://font/font_variation.tres" id="14_223my"]
+[ext_resource type="Script" uid="uid://ddc3jo65cw3pp" path="res://scripts/gui/components/VoteBar.cs" id="14_o3hm7"]
+[ext_resource type="FontVariation" path="res://font/font_variation_i.tres" id="15_17rhs"]
+[ext_resource type="Script" uid="uid://dvce0w216iubm" path="res://scripts/gui/components/TipBuilder.cs" id="16_8j1ou"]
+[ext_resource type="Script" uid="uid://b7muxavy7o8ok" path="res://scripts/gui/components/DlgPart.cs" id="19_302uq"]
 [ext_resource type="Script" uid="uid://dqblsea76tnfv" path="res://scripts/Interface.cs" id="54_5l17q"]
 [ext_resource type="Script" uid="uid://b7nhjoes6w41c" path="res://scripts/Camera.cs" id="55_cy07d"]
 [ext_resource type="PackedScene" uid="uid://ds7qf64d3uyec" path="res://ui/tip_box.tscn" id="55_dcc87"]
 [ext_resource type="PackedScene" uid="uid://ru31tkvn3m6i" path="res://ui/text_label.tscn" id="56_ee5iq"]
 [ext_resource type="PackedScene" uid="uid://3v238bfaugxi" path="res://ui/tip_h_separator.tscn" id="57_cy07d"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5juve"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o3hm7"]
 resource_local_to_scene = true
 shader = ExtResource("3_jlvtx")
 shader_parameter/thickness = 0.0
@@ -27,25 +37,146 @@ shader_parameter/square_border = false
 shader_parameter/offset = null
 shader_parameter/max_or_add = false
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fy5k1"]
-resource_local_to_scene = true
-shader = ExtResource("3_jlvtx")
-shader_parameter/thickness = 0.0
-shader_parameter/ring_count = 4
-shader_parameter/ring_offset = 0.0
-shader_parameter/outline_color = Color(0.447615, 0.595031, 0.660938, 1)
-shader_parameter/border_clipping_fix = false
-shader_parameter/aspect_ratio = 1.0
-shader_parameter/square_border = false
-shader_parameter/offset = null
-shader_parameter/max_or_add = false
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpof7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8hm71"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mfve8"]
+
+[sub_resource type="Animation" id="Animation_8hm71"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/DlgText/Anim/PanelContainer:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/DlgText/Anim/PanelContainer:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-50.33, 36.625)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VBoxContainer/DlgText/Anim/PanelContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_223my"]
+_data = {
+&"RESET": SubResource("Animation_8hm71")
+}
+
+[sub_resource type="Animation" id="Animation_ubcxv"]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/DlgText/Anim/PanelContainer:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.125, 1),
+"update": 0,
+"values": [-0.523599, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/DlgText/Anim/PanelContainer:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.125, 1),
+"update": 0,
+"values": [Vector2(-50.33, 36.625), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VBoxContainer/DlgText/Anim/PanelContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.125, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_mfve8"]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/DlgText/Anim/PanelContainer:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.129408, 1),
+"update": 0,
+"values": [0.356047, -6.03893e-05]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/DlgText/Anim/PanelContainer:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.129408, 1),
+"update": 0,
+"values": [Vector2(62.215, 54.31), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VBoxContainer/DlgText/Anim/PanelContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.129408, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.999885)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sxg3l"]
+_data = {
+&"Show": SubResource("Animation_ubcxv"),
+&"Show_R": SubResource("Animation_mfve8")
+}
 
 [sub_resource type="Animation" id="Animation_gu47o"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PanelContainer:position")
+tracks/0/path = NodePath("Panel:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -57,7 +188,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PanelContainer:modulate")
+tracks/1/path = NodePath("Panel:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -77,19 +208,19 @@ length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PanelContainer:position")
+tracks/0/path = NodePath("Panel:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(0.120742, 1),
 "update": 0,
-"values": [Vector2(576, 250), Vector2(576, 0)]
+"values": [Vector2(576, 250), Vector2(1152, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PanelContainer:modulate")
+tracks/1/path = NodePath("Panel:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -104,6 +235,62 @@ _data = {
 &"Show": SubResource("Animation_akxrc")
 }
 
+[sub_resource type="Animation" id="Animation_17rhs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(128, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8j1ou"]
+_data = {
+&"RESET": SubResource("Animation_17rhs")
+}
+
+[sub_resource type="Animation" id="Animation_o3hm7"]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 0.125),
+"update": 0,
+"values": [Vector2(-312, 0), Vector2(128, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xpof7"]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(128, 0), Vector2(-336, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xpof7"]
+_data = {
+&"Hide": SubResource("Animation_xpof7"),
+&"Show": SubResource("Animation_o3hm7")
+}
+
 [node name="Root" type="Node" node_paths=PackedStringArray("_level", "_gui", "_camera")]
 script = ExtResource("1_ulcgi")
 _level = NodePath("CanvasGroup/Level-NoMove")
@@ -115,35 +302,23 @@ _camera = NodePath("CanvasGroup/Level-NoMove/Camera2D")
 [node name="Level-NoMove" type="Node2D" parent="CanvasGroup" node_paths=PackedStringArray("Point", "PlayerNode", "AiNode")]
 script = ExtResource("2_ee5iq")
 Point = {}
-PlayerNode = NodePath("Roles-NoMove/So")
+PlayerNode = NodePath("Roles-NoMove/Snow")
 AiNode = NodePath("Roles-NoMove/AI")
 
 [node name="Static-NoMove" type="Node2D" parent="CanvasGroup/Level-NoMove"]
 
 [node name="TownsendgoverBg1" type="Sprite2D" parent="CanvasGroup/Level-NoMove/Static-NoMove"]
-texture_filter = 1
-position = Vector2(9, -41)
+position = Vector2(-24, -8)
 texture = ExtResource("3_6ncfj")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="CanvasGroup/Level-NoMove/Static-NoMove/TownsendgoverBg1"]
-position = Vector2(-9, 41)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CanvasGroup/Level-NoMove/Static-NoMove/TownsendgoverBg1/StaticBody2D"]
-position = Vector2(9, -41)
-build_mode = 1
-polygon = PackedVector2Array(-249, -15, -129, -15, -129, 49, 103, 49, 103, -15, 255, -15, 255, 105, 222, 104, 223, 137, 167, 137, 167, 105, -249, 105)
 
 [node name="Roles-NoMove" type="Node2D" parent="CanvasGroup/Level-NoMove"]
 y_sort_enabled = true
 
 [node name="AI" type="Node2D" parent="CanvasGroup/Level-NoMove/Roles-NoMove"]
 
-[node name="Snow" parent="CanvasGroup/Level-NoMove/Roles-NoMove/AI" instance=ExtResource("4_5juve")]
-material = SubResource("ShaderMaterial_5juve")
-position = Vector2(-160, 0)
-
-[node name="So" parent="CanvasGroup/Level-NoMove/Roles-NoMove" instance=ExtResource("4_5juve")]
-material = SubResource("ShaderMaterial_fy5k1")
+[node name="Snow" parent="CanvasGroup/Level-NoMove/Roles-NoMove" instance=ExtResource("4_5juve")]
+material = SubResource("ShaderMaterial_o3hm7")
+MoveSpeed = 2.0
 
 [node name="Camera2D" type="Camera2D" parent="CanvasGroup/Level-NoMove"]
 zoom = Vector2(2, 2)
@@ -152,19 +327,41 @@ script = ExtResource("55_cy07d")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("DlgInterface", "_tipZone", "_darkMask")]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0.2)
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("6_xpof7")
+
+[node name="Control" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("DlgInterface", "PlayerData", "Vote", "_tipZone", "_darkMask")]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 1152.0
-offset_bottom = 648.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 mouse_filter = 2
 script = ExtResource("54_5l17q")
 DlgInterface = NodePath("Dlg")
+PlayerData = NodePath("UpperUI/PanelContainer/MarginContainer/PlayerData")
+Vote = NodePath("Vote")
 _tipZone = NodePath("TipZone")
 _tipBoxPackedScene = ExtResource("55_dcc87")
 _darkMask = NodePath("Panel")
 _tipTextPackedScene = ExtResource("56_ee5iq")
 _tipHSeparatorPackedScene = ExtResource("57_cy07d")
+
+[node name="DEBUG-UIZONE" type="ReferenceRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+border_width = 4.0
 
 [node name="Panel" type="Panel" parent="CanvasLayer/Control"]
 visible = false
@@ -187,60 +384,619 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="UpperUI" type="Control" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control/UpperUI"]
+layout_mode = 0
+offset_right = 1128.0
+offset_bottom = 184.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/UpperUI/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 45
+theme_override_constants/margin_right = 80
+
+[node name="PlayerData" type="VBoxContainer" parent="CanvasLayer/Control/UpperUI/PanelContainer/MarginContainer" node_paths=PackedStringArray("BioBar", "PsyBar", "SocBar", "SelfBar")]
+custom_minimum_size = Vector2(230, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+script = ExtResource("14_8j1ou")
+BioBar = NodePath("Bio")
+PsyBar = NodePath("Psy")
+SocBar = NodePath("Soc")
+SelfBar = NodePath("Self")
+
+[node name="Bio" type="HBoxContainer" parent="CanvasLayer/Control/UpperUI/PanelContainer/MarginContainer/PlayerData" node_paths=PackedStringArray("TextLabel", "Bar")]
+layout_mode = 2
+script = ExtResource("14_17rhs")
+TextLabel = NodePath("Bar/RichTextLabel")
+Bar = NodePath("Bar")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control/UpperUI/PanelContainer/MarginContainer/PlayerData/Bio"]
+custom_minimum_size = Vector2(53, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("14_223my")
+theme_override_fonts/italics_font = ExtResource("15_17rhs")
+bbcode_enabled = true
+text = "BIO："
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+script = ExtResource("16_8j1ou")
+
+[node name="Bar" type="HSplitContainer" parent="CanvasLayer/Control/UpperUI/PanelContainer/MarginContainer/PlayerData/Bio"]
+layout_mode = 2
+size_flags_horizontal = 3
+split_offset = 310
+dragging_enabled = false
+dragger_visibility = 1
+
+[node name="ProgressBar3" type="ProgressBar" parent="CanvasLayer/Control/UpperUI/PanelContainer/MarginContainer/PlayerData/Bio/Bar"]
+layout_mode = 2
+size_flags_vertical = 1
+show_percentage = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control/UpperUI/PanelContainer/MarginContainer/PlayerData/Bio/Bar"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("14_223my")
+theme_override_fonts/italics_font = ExtResource("15_17rhs")
+bbcode_enabled = true
+text = "4"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+script = ExtResource("16_8j1ou")
+
+[node name="Psy" type="HBoxContainer" parent="CanvasLayer/Control/UpperUI/PanelContainer/MarginContainer/PlayerData" node_paths=PackedStringArray("TextLabel", "Bar")]
+layout_mode = 2
+script = ExtResource("14_17rhs")
+TextLabel = NodePath("Bar/RichTextLabel")
+Bar = NodePath("Bar")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control/UpperUI/PanelContainer/MarginContainer/PlayerData/Psy"]
+custom_minimum_size = Vector2(53, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("14_223my")
+theme_override_fonts/italics_font = ExtResource("15_17rhs")
+bbcode_enabled = true
+text = "PSY："
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+script = ExtResource("16_8j1ou")
+
+[node name="Bar" type="HSplitContainer" parent="CanvasLayer/Control/UpperUI/PanelContainer/MarginContainer/PlayerData/Psy"]
+layout_mode = 2
+size_flags_horizontal = 3
+split_offset = 325
+dragger_visibility = 1
+
+[node name="ProgressBar3" type="ProgressBar" parent="CanvasLayer/Control/UpperUI/PanelContainer/MarginContainer/PlayerData/Psy/Bar"]
+layout_mode = 2
+size_flags_vertical = 1
+show_percentage = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control/UpperUI/PanelContainer/MarginContainer/PlayerData/Psy/Bar"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("14_223my")
+theme_override_fonts/italics_font = ExtResource("15_17rhs")
+bbcode_enabled = true
+text = "4"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+script = ExtResource("16_8j1ou")
+
+[node name="Soc" type="HBoxContainer" parent="CanvasLayer/Control/UpperUI/PanelContainer/MarginContainer/PlayerData" node_paths=PackedStringArray("TextLabel", "Bar")]
+layout_mode = 2
+script = ExtResource("14_17rhs")
+TextLabel = NodePath("Bar/RichTextLabel")
+Bar = NodePath("Bar")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control/UpperUI/PanelContainer/MarginContainer/PlayerData/Soc"]
+custom_minimum_size = Vector2(53, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("14_223my")
+theme_override_fonts/italics_font = ExtResource("15_17rhs")
+bbcode_enabled = true
+text = "SOC："
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+script = ExtResource("16_8j1ou")
+
+[node name="Bar" type="HSplitContainer" parent="CanvasLayer/Control/UpperUI/PanelContainer/MarginContainer/PlayerData/Soc"]
+layout_mode = 2
+size_flags_horizontal = 3
+split_offset = 325
+dragger_visibility = 1
+
+[node name="ProgressBar3" type="ProgressBar" parent="CanvasLayer/Control/UpperUI/PanelContainer/MarginContainer/PlayerData/Soc/Bar"]
+layout_mode = 2
+size_flags_vertical = 1
+show_percentage = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control/UpperUI/PanelContainer/MarginContainer/PlayerData/Soc/Bar"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("14_223my")
+theme_override_fonts/italics_font = ExtResource("15_17rhs")
+bbcode_enabled = true
+text = "4"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+script = ExtResource("16_8j1ou")
+
+[node name="Self" type="HBoxContainer" parent="CanvasLayer/Control/UpperUI/PanelContainer/MarginContainer/PlayerData" node_paths=PackedStringArray("TextLabel", "Bar")]
+layout_mode = 2
+script = ExtResource("14_17rhs")
+TextLabel = NodePath("Bar/RichTextLabel")
+Bar = NodePath("Bar")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control/UpperUI/PanelContainer/MarginContainer/PlayerData/Self"]
+custom_minimum_size = Vector2(53, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("14_223my")
+theme_override_fonts/italics_font = ExtResource("15_17rhs")
+bbcode_enabled = true
+text = "SELF："
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+script = ExtResource("16_8j1ou")
+
+[node name="Bar" type="HSplitContainer" parent="CanvasLayer/Control/UpperUI/PanelContainer/MarginContainer/PlayerData/Self"]
+layout_mode = 2
+size_flags_horizontal = 3
+split_offset = 325
+dragger_visibility = 1
+
+[node name="ProgressBar3" type="ProgressBar" parent="CanvasLayer/Control/UpperUI/PanelContainer/MarginContainer/PlayerData/Self/Bar"]
+layout_mode = 2
+size_flags_vertical = 1
+show_percentage = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control/UpperUI/PanelContainer/MarginContainer/PlayerData/Self/Bar"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("14_223my")
+theme_override_fonts/italics_font = ExtResource("15_17rhs")
+bbcode_enabled = true
+text = "4"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+script = ExtResource("16_8j1ou")
+
+[node name="Hunger" type="TextureProgressBar" parent="CanvasLayer/Control/UpperUI"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 288.0
+offset_top = 24.0
+offset_right = 416.0
+offset_bottom = 152.0
+value = 39.0
+fill_mode = 3
+nine_patch_stretch = true
+texture_under = ExtResource("6_bw2g3")
+texture_over = ExtResource("6_bw2g3")
+texture_progress = ExtResource("6_bw2g3")
+
+[node name="HP" type="TextureProgressBar" parent="CanvasLayer/Control/UpperUI"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 464.0
+offset_top = 24.0
+offset_right = 592.0
+offset_bottom = 152.0
+value = 39.0
+fill_mode = 3
+nine_patch_stretch = true
+texture_under = ExtResource("6_bw2g3")
+texture_over = ExtResource("6_bw2g3")
+texture_progress = ExtResource("6_bw2g3")
+
+[node name="HP2" type="TextureProgressBar" parent="CanvasLayer/Control/UpperUI"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 632.0
+offset_top = 24.0
+offset_right = 760.0
+offset_bottom = 152.0
+value = 39.0
+fill_mode = 3
+nine_patch_stretch = true
+texture_under = ExtResource("6_bw2g3")
+texture_over = ExtResource("6_bw2g3")
+texture_progress = ExtResource("6_bw2g3")
+
 [node name="Dlg" type="Control" parent="CanvasLayer/Control" node_paths=PackedStringArray("animationPlayer", "DlgTextList", "_optionBox")]
-anchors_preset = 0
-offset_right = 1440.0
-offset_bottom = 664.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("12_akxrc")
 animationPlayer = NodePath("AnimationPlayer")
-DlgTextList = NodePath("PanelContainer/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgTextList")
+DlgTextList = NodePath("Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgTextList")
 _optionButtonPackedScene = ExtResource("13_gu47o")
-_optionBox = NodePath("PanelContainer/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgOp")
+_optionBox = NodePath("Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgOp")
 _dlgPartPackedScene = ExtResource("12_gu47o")
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control/Dlg"]
+[node name="Panel" type="PanelContainer" parent="CanvasLayer/Control/Dlg"]
 modulate = Color(1, 1, 1, 0)
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = 576.0
-offset_right = 1088.0
-offset_bottom = 648.0
+offset_right = -600.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xpof7")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/Dlg/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/Dlg/Panel"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 5
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control/Dlg/PanelContainer/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer"]
 layout_mode = 2
 
-[node name="ScrollList" type="VBoxContainer" parent="CanvasLayer/Control/Dlg/PanelContainer/MarginContainer/ScrollContainer"]
+[node name="ScrollList" type="VBoxContainer" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/Dlg/PanelContainer/MarginContainer/ScrollContainer/ScrollList"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="List" type="VBoxContainer" parent="CanvasLayer/Control/Dlg/PanelContainer/MarginContainer/ScrollContainer/ScrollList/MarginContainer"]
+[node name="List" type="VBoxContainer" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer"]
 layout_mode = 2
 
-[node name="DlgTextList" type="VBoxContainer" parent="CanvasLayer/Control/Dlg/PanelContainer/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List"]
+[node name="DlgTextList" type="VBoxContainer" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List"]
 layout_mode = 2
 
-[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Control/Dlg/PanelContainer/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List"]
+[node name="RightDlgPart" type="HBoxContainer" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgTextList" node_paths=PackedStringArray("NameBox", "NameTextLabel", "HBox", "SizeTextLabel", "AnimTextLabel", "AnimationPlayer")]
+layout_direction = 2
+layout_mode = 2
+script = ExtResource("19_302uq")
+NameBox = NodePath("DlgPart/VBoxContainer/DlgName")
+NameTextLabel = NodePath("DlgPart/VBoxContainer/DlgName/MarginContainer/Text")
+HBox = NodePath("DlgPart/VBoxContainer")
+SizeTextLabel = NodePath("DlgPart/VBoxContainer/DlgText/SizeLayer/MarginContainer/SizeText")
+AnimTextLabel = NodePath("DlgPart/VBoxContainer/DlgText/Anim/PanelContainer/MarginContainer/AnimText")
+AnimationPlayer = NodePath("AnimationPlayer")
+
+[node name="DlgPart" type="PanelContainer" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgTextList/RightDlgPart"]
+layout_direction = 3
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_8hm71")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgTextList/RightDlgPart/DlgPart"]
+layout_direction = 2
 layout_mode = 2
 
-[node name="DlgOp" type="VBoxContainer" parent="CanvasLayer/Control/Dlg/PanelContainer/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List"]
+[node name="DlgName" type="PanelContainer" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgTextList/RightDlgPart/DlgPart/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgTextList/RightDlgPart/DlgPart/VBoxContainer/DlgName"]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="Text" type="RichTextLabel" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgTextList/RightDlgPart/DlgPart/VBoxContainer/DlgName/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("14_223my")
+theme_override_fonts/italics_font = ExtResource("15_17rhs")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "Maot"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("16_8j1ou")
+
+[node name="DlgText" type="PanelContainer" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgTextList/RightDlgPart/DlgPart/VBoxContainer"]
+custom_minimum_size = Vector2(370, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_mfve8")
+
+[node name="Anim" type="Control" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgTextList/RightDlgPart/DlgPart/VBoxContainer/DlgText"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgTextList/RightDlgPart/DlgPart/VBoxContainer/DlgText/Anim"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -50.33
+offset_top = 36.625
+offset_right = -50.33
+offset_bottom = 36.625
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgTextList/RightDlgPart/DlgPart/VBoxContainer/DlgText/Anim/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 130
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 65
+theme_override_constants/margin_bottom = 5
+
+[node name="AnimText" type="RichTextLabel" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgTextList/RightDlgPart/DlgPart/VBoxContainer/DlgText/Anim/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("14_223my")
+theme_override_fonts/italics_font = ExtResource("15_17rhs")
+bbcode_enabled = true
+text = "肉体：
+有如七大洋一般的水量冲入你那脑子能容纳的一小碗里，眼前叮当作响。你最后的记忆是你和桌上的十几个啤酒瓶一同从酒馆的窗户飞了出来，那是多萝西干的好事，她对所有人都露出了可怖的“獠牙”。那些啤酒瓶的玻璃碎片正“饱和式打击”你的双手，我甚至能感觉到你脸上应该也扎进去一部分。"
+scroll_active = false
+autowrap_mode = 1
+script = ExtResource("16_8j1ou")
+
+[node name="SizeLayer" type="PanelContainer" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgTextList/RightDlgPart/DlgPart/VBoxContainer/DlgText"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgTextList/RightDlgPart/DlgPart/VBoxContainer/DlgText/SizeLayer"]
+layout_mode = 2
+theme_override_constants/margin_left = 130
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 65
+theme_override_constants/margin_bottom = 5
+
+[node name="SizeText" type="RichTextLabel" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgTextList/RightDlgPart/DlgPart/VBoxContainer/DlgText/SizeLayer/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("14_223my")
+theme_override_fonts/italics_font = ExtResource("15_17rhs")
+bbcode_enabled = true
+text = "肉体：
+有如七大洋一般的水量冲入你那脑子能容纳的一小碗里，眼前叮当作响。你最后的记忆是你和桌上的十几个啤酒瓶一同从酒馆的窗户飞了出来，那是多萝西干的好事，她对所有人都露出了可怖的“獠牙”。那些啤酒瓶的玻璃碎片正“饱和式打击”你的双手，我甚至能感觉到你脸上应该也扎进去一部分。"
+fit_content = true
+scroll_active = false
+autowrap_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgTextList/RightDlgPart"]
+root_node = NodePath("../DlgPart")
+libraries = {
+&"": SubResource("AnimationLibrary_223my"),
+&"dlg_part": SubResource("AnimationLibrary_sxg3l")
+}
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List"]
+layout_mode = 2
+
+[node name="DlgOp" type="VBoxContainer" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List"]
 layout_mode = 2
 size_flags_horizontal = 8
+
+[node name="Control" type="Control" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/Control"]
+layout_mode = 0
+offset_left = -69.0
+offset_top = 408.0
+offset_right = 123.0
+offset_bottom = 664.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/Dlg"]
 libraries = {
 &"": SubResource("AnimationLibrary_8hm71"),
 &"dlg": SubResource("AnimationLibrary_gu47o")
+}
+
+[node name="Vote" type="Control" parent="CanvasLayer/Control" node_paths=PackedStringArray("BioBar", "PsyBar", "SocBar", "AnimationPlayer")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("13_8j1ou")
+BioBar = NodePath("MarginContainer/HBoxContainer/VBoxContainer")
+PsyBar = NodePath("MarginContainer/HBoxContainer/VBoxContainer2")
+SocBar = NodePath("MarginContainer/HBoxContainer/VBoxContainer3")
+AnimationPlayer = NodePath("AnimationPlayer")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/Vote"]
+layout_mode = 0
+offset_left = 128.0
+offset_right = 576.0
+offset_bottom = 832.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/Vote/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Vote/MarginContainer/HBoxContainer" node_paths=PackedStringArray("TextLabel", "Bar")]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+script = ExtResource("14_o3hm7")
+TextLabel = NodePath("Bar/RichTextLabel")
+Bar = NodePath("Bar")
+
+[node name="Bar" type="VSplitContainer" parent="CanvasLayer/Control/Vote/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+dragging_enabled = false
+dragger_visibility = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control/Vote/MarginContainer/HBoxContainer/VBoxContainer/Bar"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("14_223my")
+theme_override_fonts/italics_font = ExtResource("15_17rhs")
+bbcode_enabled = true
+text = "4"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+script = ExtResource("16_8j1ou")
+
+[node name="ProgressBar3" type="ProgressBar" parent="CanvasLayer/Control/Vote/MarginContainer/HBoxContainer/VBoxContainer/Bar"]
+layout_mode = 2
+size_flags_vertical = 1
+fill_mode = 3
+show_percentage = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control/Vote/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(53, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("14_223my")
+theme_override_fonts/italics_font = ExtResource("15_17rhs")
+bbcode_enabled = true
+text = "BIO"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+script = ExtResource("16_8j1ou")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Control/Vote/MarginContainer/HBoxContainer" node_paths=PackedStringArray("TextLabel", "Bar")]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+script = ExtResource("14_o3hm7")
+TextLabel = NodePath("Bar/RichTextLabel")
+Bar = NodePath("Bar")
+
+[node name="Bar" type="VSplitContainer" parent="CanvasLayer/Control/Vote/MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+dragging_enabled = false
+dragger_visibility = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control/Vote/MarginContainer/HBoxContainer/VBoxContainer2/Bar"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("14_223my")
+theme_override_fonts/italics_font = ExtResource("15_17rhs")
+bbcode_enabled = true
+text = "4"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+script = ExtResource("16_8j1ou")
+
+[node name="ProgressBar3" type="ProgressBar" parent="CanvasLayer/Control/Vote/MarginContainer/HBoxContainer/VBoxContainer2/Bar"]
+layout_mode = 2
+size_flags_vertical = 1
+fill_mode = 3
+show_percentage = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control/Vote/MarginContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(53, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("14_223my")
+theme_override_fonts/italics_font = ExtResource("15_17rhs")
+bbcode_enabled = true
+text = "PSY"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+script = ExtResource("16_8j1ou")
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="CanvasLayer/Control/Vote/MarginContainer/HBoxContainer" node_paths=PackedStringArray("TextLabel", "Bar")]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+script = ExtResource("14_o3hm7")
+TextLabel = NodePath("Bar/RichTextLabel")
+Bar = NodePath("Bar")
+
+[node name="Bar" type="VSplitContainer" parent="CanvasLayer/Control/Vote/MarginContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+dragging_enabled = false
+dragger_visibility = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control/Vote/MarginContainer/HBoxContainer/VBoxContainer3/Bar"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("14_223my")
+theme_override_fonts/italics_font = ExtResource("15_17rhs")
+bbcode_enabled = true
+text = "4"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+script = ExtResource("16_8j1ou")
+
+[node name="ProgressBar3" type="ProgressBar" parent="CanvasLayer/Control/Vote/MarginContainer/HBoxContainer/VBoxContainer3/Bar"]
+layout_mode = 2
+size_flags_vertical = 1
+fill_mode = 3
+show_percentage = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control/Vote/MarginContainer/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(53, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("14_223my")
+theme_override_fonts/italics_font = ExtResource("15_17rhs")
+bbcode_enabled = true
+text = "SOC"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+script = ExtResource("16_8j1ou")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/Vote"]
+libraries = {
+&"": SubResource("AnimationLibrary_8j1ou"),
+&"vote": SubResource("AnimationLibrary_xpof7")
 }

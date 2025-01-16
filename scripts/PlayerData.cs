@@ -70,27 +70,26 @@ public class PlayerData
         SelfPrism.Init(jsonToken.SelfPrism);
         
         // 读取存档文件
-        var load = FileAccess.Open("user://prism.txt", FileAccess.ModeFlags.ReadWrite);
+        var loadData = FileAccess.GetFileAsString("user://prism.txt");
+        var load = FileAccess.Open("user://prism.txt", FileAccess.ModeFlags.WriteRead);
+        
        
-        if (load != null)
+        if (loadData.Length > 0)
         {
-            if (load.GetLine().Length > 0)
+            var loadToken = JsonConvert.DeserializeObject<JObject>(loadData);
+            if (loadToken != null)
             {
-                var loadToken = JsonConvert.DeserializeObject<JObject>(load.GetLine());
-                if (loadToken != null)
-                {
-                    // 读取存档数据
-                    BioPrism.Level = loadToken[nameof(BioPrism) ]!.Value<int>();
-                    PsyPrism.Level = loadToken[nameof(PsyPrism)]!.Value<int>();
-                    SocPrism.Level = loadToken[nameof(SocPrism)]!.Value<int>();
-                    SelfPrism.Level = loadToken[nameof(SelfPrism)]!.Value<int>();
-                    Hunger = loadToken[nameof(Hunger)]!.Value<int>();
-                    Hp = loadToken[nameof(Hp)]!.Value<int>();
-                }
+                // 读取存档数据
+                BioPrism.Level = loadToken[nameof(BioPrism) ]!.Value<int>();
+                PsyPrism.Level = loadToken[nameof(PsyPrism)]!.Value<int>();
+                SocPrism.Level = loadToken[nameof(SocPrism)]!.Value<int>();
+                SelfPrism.Level = loadToken[nameof(SelfPrism)]!.Value<int>();
+                Hunger = loadToken[nameof(Hunger)]!.Value<int>();
+                Hp = loadToken[nameof(Hp)]!.Value<int>();
             }
         }
         
-        var save = new JObject()
+        var save = new JObject
         {
             {nameof(BioPrism) , BioPrism.Level},
             {nameof(PsyPrism) , PsyPrism.Level},

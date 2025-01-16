@@ -4,12 +4,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using Godot;
 
-namespace Jam;
+namespace Jam.scripts;
 
 public partial class Interface : Control
 {
     [Export] public DlgInterface DlgInterface;
+    [Export] public gui.PlayerData PlayerData;
+    [Export] public gui.Vote Vote;
 
+    public void Init()
+    {
+        PlayerData.Init();
+        Vote.Init();
+    }
     
      #region Tip部分
     

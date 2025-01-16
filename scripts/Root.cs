@@ -1,7 +1,8 @@
 using Godot;
 using Jam;
 using YarnSpinnerGodot;
- 
+using Interface = Jam.scripts.Interface;
+
 public partial class Root : Node
 {
     [Export] private Level _level;
@@ -15,10 +16,13 @@ public partial class Root : Node
         Game.Yarn = new YarnRuntime().Init(yarnProject);
         Game.Yarn.Start();
         Game.Level = _level.Init();
-        Game.Gui = _gui;
-        Game.Camera = _camera;
-        Game.CanControl = true;
         Game.PlayerData = new PlayerData().Init();
+        Game.Gui = _gui;
+        Game.Gui.Init();
+        Game.Camera = _camera;
+        Game.CanControl = false;
+        
+        Game.Yarn.PlayNode("Node_对话");
     }
 
     public override void _Process(double delta)

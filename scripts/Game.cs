@@ -10,7 +10,7 @@ public static class Game
     /// </summary>
     public static Root Root { get; set; }
     
-    public static Interface Gui;
+    public static scripts.Interface Gui;
     
     /// <summary>
     /// Yarn运行时

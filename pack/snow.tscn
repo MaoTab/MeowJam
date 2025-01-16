@@ -83,8 +83,8 @@ shader_parameter/max_or_add = false
 radius = 3.0
 height = 24.0
 
-[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_ojky0"]
-points = PackedVector2Array(-6, -22.01, -7, 2.99, -5, 25.99, 9, 25.99, 7, 3.99, 11, -22.01)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ojky0"]
+size = Vector2(21, 53)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_v5yfc"]
 animations = [{
@@ -310,7 +310,8 @@ collision_layer = 16
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MouseCollider"]
-shape = SubResource("ConvexPolygonShape2D_ojky0")
+position = Vector2(0.5, 0.489999)
+shape = SubResource("RectangleShape2D_ojky0")
 
 [node name="TextPlayerShadow" type="Sprite2D" parent="."]
 texture_filter = 1

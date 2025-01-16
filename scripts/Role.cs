@@ -311,6 +311,15 @@ public partial class Role : CharacterBody2D , ISelect
         // destination.Modulate = new Color(1, 0, 0, 1);
     }
     
+    // MARK: - MoveTo()
+    public void MoveTo(Vector2 pos,Action onComplete = null)
+    {
+        moveMode = EMoveMode.Point;
+        MovePos = Position + pos;
+        OnMoveComplete = onComplete;
+    }
+
+    
     // MARK: - Move()
     public void Move()
     {
@@ -322,7 +331,7 @@ public partial class Role : CharacterBody2D , ISelect
                 return; 
             case EMoveMode.Point:
                 // 非输入性移动
-                if (Position.DistanceTo(MovePos) <= 0.5f)
+                if (Position.DistanceTo(MovePos) <= 0.1f)
                 {
                     if (OnMoveComplete != null)
                     {
@@ -331,7 +340,7 @@ public partial class Role : CharacterBody2D , ISelect
                         return;
                     }
                 }
-                Position = MathfHelper.V2Lerp(Position, MovePos, MoveSpeed * (float)Game.PhysicsDelta);
+                Position = MathfHelper.V2Lerp(Position, MovePos, MoveSpeed * .5f * (float)Game.PhysicsDelta);
                 return; 
             default:
                 throw new ArgumentOutOfRangeException();

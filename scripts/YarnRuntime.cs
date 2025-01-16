@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Godot;
 using YarnSpinnerGodot;
@@ -19,15 +20,16 @@ public class YarnRuntime
 		
         // if(_dialogueRunner.Dialogue.IsActive) Stop();
 
-        void OnFinsh()
+        Game.Gui.DlgInterface.OnAnimationFinish += OnFinish;
+        Game.Gui.DlgInterface.Show();
+        return;
+
+        void OnFinish()
         {
             _dialogueRunner.Dialogue.SetNode(node);
             _dialogueRunner.ContinueDialogue();
-            Game.Gui.DlgInterface.OnAnimationFinish -= OnFinsh;
+            Game.Gui.DlgInterface.OnAnimationFinish -= OnFinish;
         }
-
-        Game.Gui.DlgInterface.OnAnimationFinish += OnFinsh;
-        Game.Gui.DlgInterface.Show();
     }
     
     public void Stop()
@@ -54,11 +56,36 @@ public class YarnRuntime
             GD.Print("Node complete");
         };
         
+        _dialogueRunner.AddCommandHandler<int,int>(("move_to"), (x,y) =>
+        {
+            Game.ControlRole.MoveTo(new Vector2(x,y), () =>
+            {
+                _dialogueRunner.ContinueDialogue();
+            });
+        });
+        
+        _dialogueRunner.AddCommandHandler(("obs"), () =>
+        {
+            
+        });
+        
+        _dialogueRunner.AddCommandHandler("vote",(() =>
+        {
+            Game.Gui.Vote.Show();
+            _dialogueRunner.ContinueDialogue();
+        }));
+        
+        _dialogueRunner.AddCommandHandler("vote_over",(() =>
+        {
+            Game.Gui.Vote.Hide();
+            _dialogueRunner.ContinueDialogue();
+        }));
+        
         _dialogueRunner.AddFunction<string,int>("prism_get",((name) =>
         {
             return name switch
             {
-                "phy" => Game.PlayerData.PsyPrism.Level,
+                "psy" => Game.PlayerData.PsyPrism.Level,
                 "soc" => Game.PlayerData.SocPrism.Level,
                 "self" => Game.PlayerData.SelfPrism.Level,
                 "bio" => Game.PlayerData.BioPrism.Level,
@@ -70,17 +97,21 @@ public class YarnRuntime
         {
             switch (name)
             {
-                case "phy":
+                case "psy":
                     Game.PlayerData.PsyPrism.Level += level;
+                    Game.Gui.PlayerData.RefreshPsy();
                     break;
                 case "soc":
                     Game.PlayerData.SocPrism.Level += level;
+                    Game.Gui.PlayerData.RefreshSoc();
                     break;
                 case "self":
                     Game.PlayerData.SelfPrism.Level += level;
+                    Game.Gui.PlayerData.RefreshSelf();
                     break;
                 case "bio":
                     Game.PlayerData.BioPrism.Level += level;
+                    Game.Gui.PlayerData.RefreshBio();
                     break;
             }
             
@@ -107,10 +138,40 @@ public class YarnRuntime
         {
             var line = localizedLine.TextWithoutCharacterName.Text;
             var charName = localizedLine.CharacterName;
-            await Game.Gui.DlgInterface.AddDlgText(charName,line, () =>
+            var skipContinue = false;
+
+            foreach (var attribute in localizedLine.TextWithoutCharacterName.Attributes)
             {
-                _dialogueRunner.ContinueDialogue();
-            } );
+                switch (attribute.Name)
+                {
+                    case "continue":
+                        skipContinue = true;
+                        break;
+                }
+            }
+
+#pragma warning disable VSTHRD101
+            await Game.Gui.DlgInterface.AddDlgText(charName,line, async void () =>
+            {
+                if (skipContinue)
+                {
+                    _dialogueRunner.ContinueDialogue();
+                }
+                else
+                {
+                    await Game.Gui.DlgInterface.AddOption("继续", () =>
+                        {
+                            Game.Gui.DlgInterface.RemoveAllOption();
+                            _dialogueRunner.ContinueDialogue();
+                        }, 
+                        //() => HandleTipDisplay(true), // OnEnter
+                        //() => HandleTipDisplay(false), // OnExit
+                        () => {}, 
+                        () => {},
+                        () => {},10);
+                }
+            });
+#pragma warning restore VSTHRD101
         }
 
         // 对选项的处理
@@ -120,12 +181,41 @@ public class YarnRuntime
             foreach (var option in options)
             {
                 if (!option.IsAvailable) continue; // 选项不激活则跳过
+
+                Action onEnter = () => {};
+                Action onExit = () => {};
                 
                 var line = option.Line.TextWithoutCharacterName.Text;
                 var hasTip = false;
                 var tipList = new List<string>();
-                bool isTipHeld = false;
+                bool isTipHeld;
 
+                foreach (var attribute in option.Line.TextWithoutCharacterName.Attributes)
+                {
+                    switch (attribute.Name)
+                    {
+                        case "vote":
+                            if (attribute.Properties.TryGetValue("t", out var property))
+                            {
+                                switch (property.StringValue)
+                                {
+                                    case "psy":
+                                        onEnter += () => Game.Gui.Vote.ViewVotingResults(0, Game.PlayerData.SelfPrism.Level, 0);
+                                          break;
+                                    case "soc":
+                                        onEnter += () => Game.Gui.Vote.ViewVotingResults(0, 0, Game.PlayerData.SelfPrism.Level);
+                                        break;
+                                    case "bio":
+                                        onEnter += () => Game.Gui.Vote.ViewVotingResults(Game.PlayerData.SelfPrism.Level, 0, 0);
+                                        break;
+                                }
+                                
+                                onExit += () => Game.Gui.Vote.Normal();
+                            }
+                            break;
+                    }
+                }
+                
                 async void OnClick()
                 {
                     Game.Gui.DlgInterface.RemoveAllOption();
@@ -160,8 +250,10 @@ public class YarnRuntime
                 
                 await Task.Delay(50); // 增加一些延迟，避免文本还没显示完就开始弹选项了（实际上是文本显示完一瞬间就开始弹选项造成的错觉）
                 await Game.Gui.DlgInterface.AddOption(line, OnClick, 
-                    () => HandleTipDisplay(true), // OnEnter
-                    () => HandleTipDisplay(false), // OnExit
+                    //() => HandleTipDisplay(true), // OnEnter
+                    //() => HandleTipDisplay(false), // OnExit
+                    () => { onEnter.Invoke(); }, 
+                    () => { onExit.Invoke();},
                     OnHold,10);
             }
         }

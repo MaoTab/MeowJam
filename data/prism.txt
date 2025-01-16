@@ -1,18 +1,18 @@
 {
   "PsyPrism": {
-    "MaxLevel": 3,
+    "MaxLevel": 4,
     "MinLevel": 0
   },
   "SocPrism": {
-    "MaxLevel": 3,
+    "MaxLevel": 4,
     "MinLevel": 0
   },
   "BioPrism": {
-      "MaxLevel": 3,
+      "MaxLevel": 4,
       "MinLevel": 0
     },
 "SelfPrism": {
-      "MaxLevel": 3,
+      "MaxLevel": 4,
       "MinLevel": 0
     }
 }
