@@ -56,7 +56,7 @@ public partial class DlgPart : Control
             NameTextLabel.Text = name;
         }
         
-        string fullText = name + "：" + newLine; // 使用 newLine 作为全文本
+        string fullText = name + newLine; // 使用 newLine 作为全文本
         
 #pragma warning disable VSTHRD101
         

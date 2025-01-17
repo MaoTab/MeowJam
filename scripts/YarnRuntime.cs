@@ -10,6 +10,7 @@ public class YarnRuntime
 {
     private DialogueRunner _dialogueRunner;
     
+    // MARK: - PlayNode()
     public void PlayNode(string node)
     {
         // 开始对话默认锁定玩家位移
@@ -32,13 +33,15 @@ public class YarnRuntime
         }
     }
     
+    
+    // MARK: - Stop()
     public void Stop()
     {
         _dialogueRunner.Dialogue.Stop();
         // _dialogueRunner.Stop();
     }
 
-    
+    // MARK: - Init()
     public YarnRuntime Init(YarnProject project)
     {
         _dialogueRunner = new DialogueRunner();
@@ -51,19 +54,53 @@ public class YarnRuntime
             GD.Print("Dialogue complete");
         };
 
-        _dialogueRunner.onNodeComplete += name =>
+        _dialogueRunner.onNodeComplete += _ =>
         {
             GD.Print("Node complete");
         };
         
-        _dialogueRunner.AddCommandHandler<int,int>(("move_to"), (x,y) =>
+        // MARK: - show_ill
+        _dialogueRunner.AddCommandHandler<string,string>(("show_ill"), (target,path) =>
         {
-            Game.ControlRole.MoveTo(new Vector2(x,y), () =>
+            Game.Gui.Event.ShowIllustration(target, path , () =>
             {
                 _dialogueRunner.ContinueDialogue();
             });
         });
         
+        // MARK: - move_to
+        _dialogueRunner.AddCommandHandler<int,int>(("move_to"), (x,y) =>
+        {
+            _ =  Game.Gui.DlgInterface.AddDlgText("", "[wave]移动中...[/wave]", null);
+            
+            
+            Game.ControlRole.MoveTo(new Vector2(x,y), () =>
+            {
+                Game.Gui.DlgInterface.RemovePreDlg();
+                _dialogueRunner.ContinueDialogue();
+            });
+        });
+        
+        // MARK: - move_to_node
+        _dialogueRunner.AddCommandHandler<string>(("move_to_node"), (name) =>
+        {
+            if (Game.Level.LevelNodes.TryGetValue(name, out var node))
+            {
+                _ = Game.Gui.DlgInterface.AddDlgText("", "[wave]移动中...[/wave]", null);
+                
+                Game.ControlRole.MoveTo(node.Position,() =>
+                {
+                    Game.Gui.DlgInterface.RemovePreDlg();
+                    _dialogueRunner.ContinueDialogue();
+                });
+            }
+            else
+            {
+                _dialogueRunner.ContinueDialogue();
+            }
+        });
+        
+        // MARK: - event
         _dialogueRunner.AddCommandHandler<string,string>(("event"), (name,de) =>
         {
             Game.Gui.Event.ShowEvent(name,de,(() =>
@@ -72,18 +109,21 @@ public class YarnRuntime
             }));
         });
         
+        // MARK: - vote
         _dialogueRunner.AddCommandHandler("vote",(() =>
         {
             Game.Gui.Vote.Show();
             _dialogueRunner.ContinueDialogue();
         }));
         
+        // MARK: - vote_over
         _dialogueRunner.AddCommandHandler("vote_over",(() =>
         {
             Game.Gui.Vote.Hide();
             _dialogueRunner.ContinueDialogue();
         }));
         
+        // MARK: - prism_get
         _dialogueRunner.AddFunction<string,int>("prism_get",((name) =>
         {
             return name switch
@@ -96,6 +136,7 @@ public class YarnRuntime
             };
         }));
         
+        // MARK: - prism_add
         _dialogueRunner.AddCommandHandler<string,int>("prism_add",((name,level) =>
         {
             switch (name)
@@ -121,12 +162,14 @@ public class YarnRuntime
             _dialogueRunner.ContinueDialogue();
         }));
 
+        // MARK: - save
         _dialogueRunner.AddCommandHandler("save", () =>
         {
             Game.PlayerData.Save();
             _dialogueRunner.ContinueDialogue();
         });
         
+        // MARK: - end
         _dialogueRunner.AddCommandHandler("end",(() =>
         {
             Game.Gui.DlgInterface.Hide();
@@ -136,6 +179,7 @@ public class YarnRuntime
             Game.CanControl = true;
         }));
         
+        // MARK: - OnDialogueRunnerOnHandleOptions()
         // 对标准行的处理
         async void OnDialogueRunnerOnHandleLine(LocalizedLine localizedLine)
         {
@@ -177,6 +221,7 @@ public class YarnRuntime
 #pragma warning restore VSTHRD101
         }
 
+        // MARK: - OnDialogueRunnerOnHandleOptions()
         // 对选项的处理
         async void OnDialogueRunnerOnHandleOptions(DialogueOption[] options)
         {
@@ -190,7 +235,7 @@ public class YarnRuntime
                 
                 var line = option.Line.TextWithoutCharacterName.Text;
                 var hasTip = false;
-                var tipList = new List<string>();
+                List<string> tipList;
                 bool isTipHeld;
 
                 foreach (var attribute in option.Line.TextWithoutCharacterName.Attributes)
@@ -231,7 +276,9 @@ public class YarnRuntime
                     // _dialogueRunner.SelectedOption(option.DialogueOptionID);
                 }
                 
+#pragma warning disable CS8321 // 已声明本地函数，但从未使用过
                 void HandleTipDisplay(bool isEntering)
+#pragma warning restore CS8321 // 已声明本地函数，但从未使用过
                 {
                     if (!hasTip) return;
                     if (isEntering)
@@ -246,6 +293,7 @@ public class YarnRuntime
                 
                 void OnHold()
                 {
+                    // ReSharper disable once ConditionIsAlwaysTrueOrFalse
                     if (!hasTip) return;
                     isTipHeld = true;
                     Game.Gui.FreezeTipFromButton();
@@ -264,6 +312,8 @@ public class YarnRuntime
         return this;
     }
     
+    
+    // MARK: - Start()
     public void Start()
     {
         _dialogueRunner.startNode = "Node_NULL";

@@ -43,20 +43,16 @@ public partial class DlgInterface : Control, IUi
         }
 
         DlgTextList.AddChild(node);
-
-        var showName = name;
-
-        switch (name)
+        
+        string showName;
+        
+        if (!string.IsNullOrEmpty(name))
         {
-            case "肉体":
-                showName = "[color=#ff6188]肉体[/color]";
-                break;
-            case "情感":
-                showName = "[color=#aa9bf0]情感[/color]";
-                break;
-            case "理性":
-                showName = "[color=#78dce8]理性[/color]";
-                break;
+            showName = name + "："; 
+        }
+        else
+        {
+            showName = "";
         }
         
         dlgPart.Creat(showName,true,newLine,onFinish);
@@ -189,6 +185,15 @@ public partial class DlgInterface : Control, IUi
         {
             node.QueueFree();
         }
+    }
+    
+    // MARK: - RemovePreDlg()
+    /// <summary>
+    /// 移除上一个对话框
+    /// </summary>
+    public void RemovePreDlg()
+    {
+        DlgTextList.GetChildren()[^1].QueueFree();
     }
     
     public Action OnAnimationFinish { get; set; }

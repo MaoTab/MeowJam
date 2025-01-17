@@ -1,5 +1,7 @@
 using System;
+
 using Godot;
+using Godot.Collections;
 
 namespace Jam.scripts.gui;
 
@@ -8,31 +10,87 @@ public partial class Event  : Control , IUi
     /// <summary>
     /// 事件名称
     /// </summary>
-    [Export] private RichTextLabel eventNameLabel;
+    [Export] private RichTextLabel _eventNameLabel;
     
     /// <summary>
     /// 事件细节
     /// </summary>
-    [Export] private RichTextLabel eventDeLabel;
+    [Export] private RichTextLabel _eventDeLabel;
     
-    [Export] private AnimationPlayer animationPlayer;
+    [Export] private AnimationPlayer _uiAnimationPlayer;
+    [Export] private AnimationPlayer _playerIllustrantionAnimationPlayer;
+    [Export] private AnimationPlayer _npcIllustrantionAnimationPlayer;
+    
+    [Export] private Sprite2D _playerSprite; 
+    [Export] private Sprite2D _npcSprite;
     
     public EUIState State { get; set; }
     
     
-    private bool isEvent;
+    private bool _isEvent;
     
     public void Init()
     {
-        animationPlayer.Play("RESET");
+        _uiAnimationPlayer.Play("RESET");
     }
 
+    /// <summary>
+    /// 立绘缓存
+    /// </summary>
+    public Dictionary<string, CompressedTexture2D> IllData = new();
+
+    /// <summary>
+    /// 显示立绘
+    /// </summary>
+    /// <param name="target">图层</param>
+    /// <param name="path">立绘资源路径</param>
+    /// <param name="onFinish">完成时</param>
+    public void ShowIllustration(string target, string path, Action onFinish)
+    {
+        // 从缓存中查找立绘，如果没有缓存则尝试从资源里加载精灵图
+        var texture =
+            IllData.TryGetValue(path, out var ill) ? ill :
+            ResourceLoader.Load<CompressedTexture2D>($"res://texture/char/{path}.png");
+        
+        if(texture == null) return;
+        
+        // 缓存立绘
+        IllData.Add(path, texture);
+        
+        switch (target)
+        {
+            case "player":
+                _playerSprite.Texture = texture;
+                _playerIllustrantionAnimationPlayer.Play("illustration/Show");
+                break;
+            case "npc":
+                _npcSprite.Texture = texture;
+                _npcIllustrantionAnimationPlayer.Play("illustration/Show");
+                
+                void OnShowFinish(StringName s)
+                {
+                    onFinish?.Invoke();
+                    _npcIllustrantionAnimationPlayer.AnimationFinished -= OnShowFinish;
+                }
+
+                _npcIllustrantionAnimationPlayer.AnimationFinished += OnShowFinish;
+                break;
+        }
+    }
+    
     public void ShowEvent(string eventName,string eventDe,Action onFinish)
     {
-        if (isEvent)
+        if (_isEvent)
         {
-            animationPlayer.Play("event/Hide");
-            animationPlayer.AnimationFinished += OnHideFinsh;
+            _uiAnimationPlayer.Play("event/Hide");
+            
+            void OnHideFinish(StringName s)
+            {
+                ShowAnima();
+                _uiAnimationPlayer.AnimationFinished -= OnHideFinish;
+            }
+            
+            _uiAnimationPlayer.AnimationFinished += OnHideFinish;
         }
         else
         {
@@ -40,27 +98,21 @@ public partial class Event  : Control , IUi
         }
 
         return;
-
-        void OnHideFinsh(StringName s)
-        {
-            ShowAnima();
-            animationPlayer.AnimationFinished -= OnHideFinsh;
-        }
-        
-        void OnShowFinsh(StringName s)
-        {
-            onFinish?.Invoke();
-            animationPlayer.AnimationFinished -= OnShowFinsh;
-        }
         
         void ShowAnima()
         {
-            eventNameLabel.Text = eventName;
-            eventDeLabel.Text = eventDe;
-            isEvent = true;
+            _eventNameLabel.Text = eventName;
+            _eventDeLabel.Text = eventDe;
+            _isEvent = true;
         
-            animationPlayer.Play("event/Show");
-            animationPlayer.AnimationFinished += OnShowFinsh;
+            void OnShowFinish(StringName s)
+            {
+                onFinish?.Invoke();
+                _uiAnimationPlayer.AnimationFinished -= OnShowFinish;
+            }
+            
+            _uiAnimationPlayer.Play("event/Show");
+            _uiAnimationPlayer.AnimationFinished += OnShowFinish;
         }
     }
 }

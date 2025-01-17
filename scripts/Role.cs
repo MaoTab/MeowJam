@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 using Godot;
 
 namespace Jam;
@@ -11,7 +9,7 @@ public partial class Role : CharacterBody2D , ISelect
     /// <summary>
     /// 移动模式
     /// </summary>
-    public EMoveMode moveMode = EMoveMode.Input;
+    public EMoveMode MoveMode = EMoveMode.Input;
     
     [Export] public float MoveSpeed = 50f;
     
@@ -298,13 +296,13 @@ public partial class Role : CharacterBody2D , ISelect
     // MARK: - MovePath()
     public void MovePath(Action onFinished)
     {
-        if (moveMode == EMoveMode.Path)
+        if (MoveMode == EMoveMode.Path)
         {
             onFinished?.Invoke();
             return;
         }
 
-        moveMode = EMoveMode.Path;
+        MoveMode = EMoveMode.Path;
         
         var paths = new List<Vector2>();
         
@@ -314,7 +312,7 @@ public partial class Role : CharacterBody2D , ISelect
     // MARK: - MoveTo()
     public void MoveTo(Vector2 pos,Action onComplete = null)
     {
-        moveMode = EMoveMode.Point;
+        MoveMode = EMoveMode.Point;
         MovePos = Position + pos;
         OnMoveComplete = onComplete;
     }
@@ -323,7 +321,7 @@ public partial class Role : CharacterBody2D , ISelect
     // MARK: - Move()
     public void Move()
     {
-        switch (moveMode)
+        switch (MoveMode)
         {
             case EMoveMode.Input:
                 break;
@@ -331,7 +329,7 @@ public partial class Role : CharacterBody2D , ISelect
                 return; 
             case EMoveMode.Point:
                 // 非输入性移动
-                if (Position.DistanceTo(MovePos) <= 0.1f)
+                if (Position.DistanceTo(MovePos) <= 1f)
                 {
                     if (OnMoveComplete != null)
                     {
@@ -340,7 +338,7 @@ public partial class Role : CharacterBody2D , ISelect
                         return;
                     }
                 }
-                Position = MathfHelper.V2Lerp(Position, MovePos, MoveSpeed * .5f * (float)Game.PhysicsDelta);
+                Position = MathfHelper.V2Lerp(Position, MovePos, MoveSpeed * .5f /*点对点移动硬核降速*/ * (float)Game.PhysicsDelta);
                 return; 
             default:
                 throw new ArgumentOutOfRangeException();

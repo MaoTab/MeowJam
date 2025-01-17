@@ -6,14 +6,15 @@ position: -2924,-1392
 title: Node_对话
 position: -2937,-1220
 ---
-
+<<move_to 0 0>>
 <<event "开始事件" "冲冲冲！">>
-
+<<show_ill "player" "char">>
 社会:当前SOC：{format_invariant(prism_get("soc"))}[continue/]
 ->离开
     <<end>>
 ->进入测试环节
     Maot:测试环节[continue/]
+    <<move_to 30 45>>
     <<event "测试环节" "狠狠地测事！">>
     <<jump Node_测试>>
 ->序章

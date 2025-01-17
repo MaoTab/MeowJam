@@ -12,6 +12,11 @@ public partial class Level : Node2D
     
     [Export] public Role PlayerNode;
     
+    /// <summary>
+    /// 场景中的节点
+    /// </summary>
+    [Export] public Dictionary<string, Node2D> LevelNodes;
+    
     [Export] public Node2D AiNode;
     public Dictionary<string,Role> Ais = new();
     
