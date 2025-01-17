@@ -91,6 +91,11 @@ public partial class Role : CharacterBody2D , ISelect
 
     public bool StopPhysicsProcess;
     private ShaderMaterial _shader;
+
+    /// <summary>
+    /// 距离容差
+    /// </summary>
+    public float DistanceTolerance = 1f;
     
     /// <summary>
     /// 当前动画状态
@@ -313,7 +318,7 @@ public partial class Role : CharacterBody2D , ISelect
     public void MoveTo(Vector2 pos,Action onComplete = null)
     {
         MoveMode = EMoveMode.Point;
-        MovePos = Position + pos;
+        MovePos =  pos;
         OnMoveComplete = onComplete;
     }
 
@@ -329,7 +334,7 @@ public partial class Role : CharacterBody2D , ISelect
                 return; 
             case EMoveMode.Point:
                 // 非输入性移动
-                if (Position.DistanceTo(MovePos) <= 1f)
+                if (Position.DistanceTo(MovePos) <= DistanceTolerance)
                 {
                     if (OnMoveComplete != null)
                     {
@@ -380,7 +385,7 @@ public partial class Role : CharacterBody2D , ISelect
             }
         }
         
-        if (Position.DistanceTo(MovePos) <= 0.1f)
+        if (Position.DistanceTo(MovePos) <= DistanceTolerance)
         {
             PlayAnimate(AnimateState.Idle);
         }
@@ -394,6 +399,13 @@ public partial class Role : CharacterBody2D , ISelect
             {
                 PlayAnimate(AnimateState.Walk);
             }
+        }
+        
+        // 根据距离调整动画速度
+        var speedScale= float.Clamp(Position.DistanceTo(MovePos) * 2, 0f, 1f);
+        foreach (var part in BodyParts.Values)
+        {
+            part.SpeedScale = speedScale;
         }
     }
     

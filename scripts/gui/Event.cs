@@ -21,8 +21,8 @@ public partial class Event  : Control , IUi
     [Export] private AnimationPlayer _playerIllustrantionAnimationPlayer;
     [Export] private AnimationPlayer _npcIllustrantionAnimationPlayer;
     
-    [Export] private Sprite2D _playerSprite; 
-    [Export] private Sprite2D _npcSprite;
+    [Export] private TextureRect _playerSprite; 
+    [Export] private TextureRect _npcSprite;
     
     public EUIState State { get; set; }
     
@@ -32,6 +32,8 @@ public partial class Event  : Control , IUi
     public void Init()
     {
         _uiAnimationPlayer.Play("RESET");
+        _playerIllustrantionAnimationPlayer.Play("RESET");
+        _npcIllustrantionAnimationPlayer.Play("RESET");
     }
 
     /// <summary>
@@ -48,32 +50,48 @@ public partial class Event  : Control , IUi
     public void ShowIllustration(string target, string path, Action onFinish)
     {
         // 从缓存中查找立绘，如果没有缓存则尝试从资源里加载精灵图
-        var texture =
-            IllData.TryGetValue(path, out var ill) ? ill :
-            ResourceLoader.Load<CompressedTexture2D>($"res://texture/char/{path}.png");
+        CompressedTexture2D texture;
+        /*texture = IllData.TryGetValue(path, out var ill) ? ill :
+            ResourceLoader.Load<CompressedTexture2D>($"res://texture/char/{path}.png");*/
         
-        if(texture == null) return;
+        if(IllData.TryGetValue(path, out var ill))
+        {
+            texture = ill;
+        }
+        else
+        {
+            texture =  ResourceLoader.Load<CompressedTexture2D>($"res://texture/char/{path}.png");
+            if(texture == null) return;
+            // 缓存立绘
+            IllData.Add(path, texture);
+        }
         
-        // 缓存立绘
-        IllData.Add(path, texture);
-        
+        // 一坨简单粗暴的状态机
         switch (target)
         {
             case "player":
                 _playerSprite.Texture = texture;
-                _playerIllustrantionAnimationPlayer.Play("illustration/Show");
+                _playerIllustrantionAnimationPlayer.Play("player_ill/Show");
+                
+                void OnPlayerShowFinish(StringName s)
+                {
+                    onFinish?.Invoke();
+                    _playerIllustrantionAnimationPlayer.AnimationFinished -= OnPlayerShowFinish;
+                }
+
+                _playerIllustrantionAnimationPlayer.AnimationFinished += OnPlayerShowFinish;
                 break;
             case "npc":
                 _npcSprite.Texture = texture;
-                _npcIllustrantionAnimationPlayer.Play("illustration/Show");
+                _npcIllustrantionAnimationPlayer.Play("npc_ill/Show");
                 
-                void OnShowFinish(StringName s)
+                void OnNpcShowFinish(StringName s)
                 {
                     onFinish?.Invoke();
-                    _npcIllustrantionAnimationPlayer.AnimationFinished -= OnShowFinish;
+                    _npcIllustrantionAnimationPlayer.AnimationFinished -= OnNpcShowFinish;
                 }
 
-                _npcIllustrantionAnimationPlayer.AnimationFinished += OnShowFinish;
+                _npcIllustrantionAnimationPlayer.AnimationFinished += OnNpcShowFinish;
                 break;
         }
     }

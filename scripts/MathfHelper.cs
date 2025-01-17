@@ -14,6 +14,13 @@ public static class MathfHelper
         );
     }
     
+    /// <summary>
+    /// 求近值
+    /// </summary>
+    /// <param name="a"></param>
+    /// <param name="b"></param>
+    /// <param name="tolerance">差量</param>
+    /// <returns></returns>
     public static bool AetF(float a, float b, float tolerance = 0.1f)
     {
         return Math.Abs(a - b) < tolerance;

@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Godot;
+using Jam.scripts;
 
 namespace Jam;
 
@@ -13,7 +14,16 @@ public partial class DlgInterface : Control, IUi
     [Export] private PackedScene _optionButtonPackedScene;
     [Export] private Control _optionBox;
     
+    [Export] private PackedScene _separatorPackedScene;
+    
     [Export] private PackedScene _dlgPartPackedScene;
+    [Export] private TextureRect _headTextureRect;
+    
+    [Export] private CompressedTexture2D _bioHeadTexture;
+    [Export] private CompressedTexture2D _psyHeadTexture;
+    [Export] private CompressedTexture2D _socHeadTexture;
+    
+    [Export] private AnimationPlayerPlus _headAnimationPlayer;
     
     /// <summary>
     /// 逐段打印时使用的结束符
@@ -30,9 +40,22 @@ public partial class DlgInterface : Control, IUi
     /// 上一个对话的角色名
     /// </summary>
     private string preName = "";
+
+    // MARK: - AddSeparator()
+    public void AddSeparator(string text)
+    {
+        var node = _separatorPackedScene.Instantiate();
+        if (node is not HDlgSeparator hdlgSeparator)
+        {
+            return;
+        }
+        
+        hdlgSeparator.label.Text = text;
+        
+        DlgTextList.AddChild(node);
+    }
     
     // MARK: - AddDlgText()
-    
     public async Task AddDlgText(string name, string newLine,Action onFinish)
     {
         
@@ -46,16 +69,33 @@ public partial class DlgInterface : Control, IUi
         
         string showName;
         
-        if (!string.IsNullOrEmpty(name))
-        {
-            showName = name + "："; 
-        }
-        else
+        if (string.IsNullOrEmpty(name))
         {
             showName = "";
         }
+        else
+        {
+            showName = name + "：";
+
+            switch (name)
+            {
+                case "肉体":
+                    _headTextureRect.Texture = _bioHeadTexture;
+                    break;
+                case "理性":
+                    _headTextureRect.Texture = _bioHeadTexture;
+                    break;
+                case "情感":
+                    _headTextureRect.Texture = _bioHeadTexture;
+                    break;
+            }
+           
+        }
         
         dlgPart.Creat(showName,true,newLine,onFinish);
+        
+        await _headAnimationPlayer.PlayAsync("head/Hide");
+        await _headAnimationPlayer.PlayAsync("head/Show");
         
         // if (preName != name)
         // {
@@ -73,7 +113,6 @@ public partial class DlgInterface : Control, IUi
     /// </summary>
     /// <param name="optionContent">选项的内容</param>
     /// <param name="onClick">当选项被按下时</param>
-    /// <param name="record">选择选项后向对话历史输入的内容</param>
     /// <param name="onEnter">鼠标悬停在选项上时</param>
     /// <param name="onExit">鼠标离开选项上时</param>
     /// <param name="onHoldDown">鼠标按住事件</param>
@@ -202,13 +241,13 @@ public partial class DlgInterface : Control, IUi
     {
         animationPlayer.Play("dlg/Show");
 
-        void OnFinsh(StringName s)
+        void OnFinish(StringName s)
         {
             OnAnimationFinish?.Invoke();
-            animationPlayer.AnimationFinished -= OnFinsh;
+            animationPlayer.AnimationFinished -= OnFinish;
         }
 
-        animationPlayer.AnimationFinished += OnFinsh;
+        animationPlayer.AnimationFinished += OnFinish;
     }
     
     public new void Hide()

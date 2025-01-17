@@ -13,14 +13,6 @@ public class YarnRuntime
     // MARK: - PlayNode()
     public void PlayNode(string node)
     {
-        // 开始对话默认锁定玩家位移
-        // Game.Core.StopInput();
-		
-        // 开始对话默认打开对话框
-        // Game.Gui.ShowDialogueZone();
-		
-        // if(_dialogueRunner.Dialogue.IsActive) Stop();
-
         Game.Gui.DlgInterface.OnAnimationFinish += OnFinish;
         Game.Gui.DlgInterface.Show();
         return;
@@ -32,7 +24,6 @@ public class YarnRuntime
             Game.Gui.DlgInterface.OnAnimationFinish -= OnFinish;
         }
     }
-    
     
     // MARK: - Stop()
     public void Stop()
@@ -58,6 +49,32 @@ public class YarnRuntime
         {
             GD.Print("Node complete");
         };
+        
+        // MARK: - dlg_mode
+        _dialogueRunner.AddCommandHandler<string>("dlg_mode",((mode) =>
+        {
+            switch (mode)
+            {
+                case "perception":
+                    Game.Gui.DlgInterface.AddSeparator("感知");
+                    break;
+                case "discussion":
+                    Game.Gui.DlgInterface.AddSeparator("讨论");
+                    break;
+                case "do":
+                    Game.Gui.DlgInterface.AddSeparator("执行");
+                    break;
+            }
+            
+            _dialogueRunner.ContinueDialogue();
+        }));
+        
+        // MARK: - clear_dlg
+        _dialogueRunner.AddCommandHandler("clear_dlg",(() =>
+        {
+            Game.Gui.DlgInterface.RemoveAllDlg();
+            _dialogueRunner.ContinueDialogue();
+        }));
         
         // MARK: - show_ill
         _dialogueRunner.AddCommandHandler<string,string>(("show_ill"), (target,path) =>
@@ -100,8 +117,8 @@ public class YarnRuntime
             }
         });
         
-        // MARK: - event
-        _dialogueRunner.AddCommandHandler<string,string>(("event"), (name,de) =>
+        // MARK: - show_event
+        _dialogueRunner.AddCommandHandler<string,string>(("show_event"), (name,de) =>
         {
             Game.Gui.Event.ShowEvent(name,de,(() =>
             {
@@ -326,6 +343,26 @@ public class YarnRuntime
     public int prism_get(string node)
     {
         return 0;
+    }
+
+    [YarnCommand("show_event")]
+    public void 显示事件(string 事件标题,string 事件描述)
+    {
+    }
+
+    [YarnCommand("show_ill")]
+    public void 显示立绘(string 目标,string 立绘路径)
+    {
+    }
+
+    [YarnCommand("move_to")]
+    public void 移动至坐标位置(int x,int y)
+    {
+    }
+    
+    [YarnCommand("clear_dlg")]
+    public void 清空对话列表()
+    {
     }
     #endif
 }

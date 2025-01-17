@@ -8,17 +8,17 @@ namespace Jam;
 public class PlayerData
 {
     /// <summary>
-    /// 生物棱镜
+    /// 生物棱镜 肉体
     /// </summary>
     public PrismData BioPrism;
     
     /// <summary>
-    /// 心理棱镜
+    /// 心理棱镜 理性
     /// </summary>
     public PrismData PsyPrism;
     
     /// <summary>
-    /// 社会棱镜
+    /// 社会棱镜 情感
     /// </summary>
     public PrismData SocPrism;
     

@@ -58,34 +58,22 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("VBoxContainer/DlgText/Anim/PanelContainer:rotation")
+tracks/0/path = NodePath("VBoxContainer/DlgText/Anim/PanelContainer:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(0.125, 1),
 "update": 0,
-"values": [-0.523599, 0.0]
+"values": [Vector2(-50.33, 36.625), Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("VBoxContainer/DlgText/Anim/PanelContainer:position")
+tracks/1/path = NodePath("VBoxContainer/DlgText/Anim/PanelContainer:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(0.125, 1),
-"update": 0,
-"values": [Vector2(-50.33, 36.625), Vector2(0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("VBoxContainer/DlgText/Anim/PanelContainer:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(0.125, 1),
 "update": 0,
@@ -195,6 +183,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -50.33
+offset_top = 36.625
+offset_right = -50.33
+offset_bottom = 36.625
 grow_horizontal = 2
 grow_vertical = 2
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://c5ipbraa1ubnx"]
+[gd_scene load_steps=58 format=3 uid="uid://c5ipbraa1ubnx"]
 
 [ext_resource type="Script" uid="uid://c5jgom1w22vgn" path="res://scripts/Root.cs" id="1_ulcgi"]
 [ext_resource type="Script" uid="uid://cyc446ovneiu4" path="res://scripts/Level.cs" id="2_ee5iq"]
@@ -17,7 +17,10 @@
 [ext_resource type="FontVariation" path="res://font/font_variation_i.tres" id="15_17rhs"]
 [ext_resource type="Script" uid="uid://dvce0w216iubm" path="res://scripts/gui/components/TipBuilder.cs" id="16_8j1ou"]
 [ext_resource type="PackedScene" uid="uid://buxe50nwnghqw" path="res://ui/dlg_part_v_2.tscn" id="20_1q4c1"]
+[ext_resource type="PackedScene" uid="uid://b7nl1knotby11" path="res://ui/dlg_separator.tscn" id="20_g6g5t"]
+[ext_resource type="Texture2D" uid="uid://djhicf4aiexta" path="res://texture/head/test.jpg" id="22_iss77"]
 [ext_resource type="Script" uid="uid://dv4m25y4xwclt" path="res://scripts/gui/Event.cs" id="23_aobyt"]
+[ext_resource type="Script" path="res://scripts/AnimationPlayerPlus.cs" id="23_xb05w"]
 [ext_resource type="Texture2D" uid="uid://cmgifkoyu8rd7" path="res://texture/char/char.png" id="24_i6j5g"]
 [ext_resource type="Script" uid="uid://dqblsea76tnfv" path="res://scripts/Interface.cs" id="54_5l17q"]
 [ext_resource type="Script" uid="uid://b7nhjoes6w41c" path="res://scripts/Camera.cs" id="55_cy07d"]
@@ -38,7 +41,101 @@ shader_parameter/square_border = false
 shader_parameter/offset = null
 shader_parameter/max_or_add = false
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g6g5t"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpof7"]
+
+[sub_resource type="Animation" id="Animation_otx46"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-69, 408)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m514l"]
+_data = {
+&"RESET": SubResource("Animation_otx46")
+}
+
+[sub_resource type="Animation" id="Animation_llic6"]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.153893, 1),
+"update": 0,
+"values": [Vector2(-69, 536), Vector2(-69, 408)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.153893, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_m514l"]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.210224, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.210224, 1),
+"update": 0,
+"values": [Vector2(-69, 408.002), Vector2(-69, 256)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yjo7n"]
+_data = {
+&"Hide": SubResource("Animation_m514l"),
+&"Show": SubResource("Animation_llic6")
+}
 
 [sub_resource type="Animation" id="Animation_gu47o"]
 length = 0.001
@@ -158,6 +255,87 @@ tracks/0/keys = {
 _data = {
 &"Hide": SubResource("Animation_xpof7"),
 &"Show": SubResource("Animation_o3hm7")
+}
+
+[sub_resource type="Animation" id="Animation_xb05w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-376, 336)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wncyr"]
+_data = {
+&"RESET": SubResource("Animation_xb05w")
+}
+
+[sub_resource type="Animation" id="Animation_iss77"]
+resource_name = "Show"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.0544097, 1.62451),
+"update": 0,
+"values": [Vector2(-432, 336), Vector2(64, 336)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xb05w"]
+_data = {
+&"Show": SubResource("Animation_iss77")
+}
+
+[sub_resource type="Animation" id="Animation_pou65"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1296, 336)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_otx46"]
+_data = {
+&"RESET": SubResource("Animation_pou65")
+}
+
+[sub_resource type="Animation" id="Animation_wncyr"]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.15932, 1),
+"update": 0,
+"values": [Vector2(1184, 336), Vector2(776, 336)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pou65"]
+_data = {
+&"Show": SubResource("Animation_wncyr")
 }
 
 [sub_resource type="Animation" id="Animation_i6j5g"]
@@ -318,6 +496,7 @@ _tipTextPackedScene = ExtResource("56_ee5iq")
 _tipHSeparatorPackedScene = ExtResource("57_cy07d")
 
 [node name="DEBUG-UIZONE" type="ReferenceRect" parent="CanvasLayer/Control"]
+z_index = 485
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -359,8 +538,9 @@ mouse_filter = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control/UpperUI"]
 layout_mode = 0
-offset_right = 1128.0
+offset_right = 1152.0
 offset_bottom = 184.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_g6g5t")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/UpperUI/PanelContainer"]
 layout_mode = 2
@@ -596,7 +776,7 @@ texture_under = ExtResource("6_bw2g3")
 texture_over = ExtResource("6_bw2g3")
 texture_progress = ExtResource("6_bw2g3")
 
-[node name="Dlg" type="Control" parent="CanvasLayer/Control" node_paths=PackedStringArray("animationPlayer", "DlgTextList", "_optionBox")]
+[node name="Dlg" type="Control" parent="CanvasLayer/Control" node_paths=PackedStringArray("animationPlayer", "DlgTextList", "_optionBox", "_headTextureRect", "_headAnimationPlayer")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -609,7 +789,13 @@ animationPlayer = NodePath("AnimationPlayer")
 DlgTextList = NodePath("Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgTextList")
 _optionButtonPackedScene = ExtResource("13_gu47o")
 _optionBox = NodePath("Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgOp")
+_separatorPackedScene = ExtResource("20_g6g5t")
 _dlgPartPackedScene = ExtResource("20_1q4c1")
+_headTextureRect = NodePath("Panel/MarginContainer/Head/PanelContainer/TextureRect")
+_bioHeadTexture = ExtResource("22_iss77")
+_psyHeadTexture = ExtResource("22_iss77")
+_socHeadTexture = ExtResource("22_iss77")
+_headAnimationPlayer = NodePath("Panel/MarginContainer/Head/AnimationPlayer")
 
 [node name="Panel" type="PanelContainer" parent="CanvasLayer/Control/Dlg"]
 modulate = Color(1, 1, 1, 0)
@@ -655,16 +841,28 @@ layout_mode = 2
 [node name="DlgOp" type="VBoxContainer" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List"]
 layout_mode = 2
 
-[node name="Control" type="Control" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer"]
+[node name="Head" type="Control" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/Control"]
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/Head"]
 layout_mode = 0
 offset_left = -69.0
-offset_top = 408.0
+offset_top = 256.0
 offset_right = 123.0
-offset_bottom = 664.0
+offset_bottom = 512.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/Head/PanelContainer"]
+layout_mode = 2
+texture = ExtResource("22_iss77")
+expand_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/Head"]
+libraries = {
+&"": SubResource("AnimationLibrary_m514l"),
+&"head": SubResource("AnimationLibrary_yjo7n")
+}
+script = ExtResource("23_xb05w")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/Dlg"]
 libraries = {
@@ -849,37 +1047,55 @@ libraries = {
 &"vote": SubResource("AnimationLibrary_xpof7")
 }
 
-[node name="Event" type="Control" parent="CanvasLayer/Control" node_paths=PackedStringArray("eventNameLabel", "eventDeLabel", "animationPlayer")]
+[node name="Event" type="Control" parent="CanvasLayer/Control" node_paths=PackedStringArray("_eventNameLabel", "_eventDeLabel", "_uiAnimationPlayer", "_playerIllustrantionAnimationPlayer", "_npcIllustrantionAnimationPlayer", "_playerSprite", "_npcSprite")]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -768.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("23_aobyt")
+_eventNameLabel = NodePath("EventName/MarginContainer/RichTextLabel")
+_eventDeLabel = NodePath("EventDetail/MarginContainer/RichTextLabel")
+_uiAnimationPlayer = NodePath("AnimationPlayer")
+_playerIllustrantionAnimationPlayer = NodePath("Illustration/Player/AnimationPlayer")
+_npcIllustrantionAnimationPlayer = NodePath("Illustration/Npc/AnimationPlayer")
+_playerSprite = NodePath("Illustration/Player/TextureRect")
+_npcSprite = NodePath("Illustration/Npc/TextureRect")
+
+[node name="Illustration" type="Control" parent="CanvasLayer/Control/Event"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-script = ExtResource("23_aobyt")
-eventNameLabel = NodePath("EventName/MarginContainer/RichTextLabel")
-eventDeLabel = NodePath("EventDetail/MarginContainer/RichTextLabel")
-animationPlayer = NodePath("AnimationPlayer")
-
-[node name="Illustration" type="Control" parent="CanvasLayer/Control/Event"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
 
 [node name="Player" type="Control" parent="CanvasLayer/Control/Event/Illustration"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/Event/Illustration/Player"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 64.0
+offset_left = -376.0
 offset_top = 336.0
-offset_right = 416.0
+offset_right = -24.0
 offset_bottom = 1076.0
 texture = ExtResource("24_i6j5g")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/Event/Illustration/Player"]
+libraries = {
+&"": SubResource("AnimationLibrary_wncyr"),
+&"player_ill": SubResource("AnimationLibrary_xb05w")
+}
 
 [node name="Npc" type="Control" parent="CanvasLayer/Control/Event/Illustration"]
 anchors_preset = 0
@@ -889,11 +1105,18 @@ offset_bottom = 40.0
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/Event/Illustration/Npc"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 64.0
+offset_left = 1296.0
 offset_top = 336.0
-offset_right = 416.0
+offset_right = 1648.0
 offset_bottom = 1076.0
 texture = ExtResource("24_i6j5g")
+flip_h = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/Event/Illustration/Npc"]
+libraries = {
+&"": SubResource("AnimationLibrary_otx46"),
+&"npc_ill": SubResource("AnimationLibrary_pou65")
+}
 
 [node name="EventName" type="PanelContainer" parent="CanvasLayer/Control/Event"]
 layout_mode = 0
