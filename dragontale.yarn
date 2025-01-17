@@ -6,11 +6,15 @@ position: -2924,-1392
 title: Node_对话
 position: -2937,-1220
 ---
-社会:当前SOC:{format_invariant(prism_get("soc"))}[continue/]
+
+<<event "开始事件" "冲冲冲！">>
+
+社会:当前SOC：{format_invariant(prism_get("soc"))}[continue/]
 ->离开
     <<end>>
 ->进入测试环节
     Maot:测试环节[continue/]
+    <<event "测试环节" "狠狠地测事！">>
     <<jump Node_测试>>
 ->序章
     <<jump Node_序章>>
@@ -23,6 +27,8 @@ position: -2986,-1012
     <<jump Node_等级修改测试>>
 ->投票测试
     <<jump Node_投票测试>>
+->返回
+    <<jump Node_对话>>
 ===
 
 title: Node_等级修改测试

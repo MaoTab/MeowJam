@@ -44,7 +44,7 @@ public partial class DlgInterface : Control, IUi
 
         DlgTextList.AddChild(node);
 
-        var showName = "";
+        var showName = name;
 
         switch (name)
         {
@@ -59,15 +59,17 @@ public partial class DlgInterface : Control, IUi
                 break;
         }
         
-        if (preName != name)
-        {
-            preName = name;
-            dlgPart.Creat(showName,true,newLine,onFinish);
-        }
-        else
-        {
-            dlgPart.Creat(showName,false,newLine,onFinish);
-        }
+        dlgPart.Creat(showName,true,newLine,onFinish);
+        
+        // if (preName != name)
+        // {
+        //     preName = name;
+        //     dlgPart.Creat(showName,true,newLine,onFinish);
+        // }
+        // else
+        // {
+        //     dlgPart.Creat(showName,false,newLine,onFinish);
+        // }
     }
     
     /// <summary>
@@ -190,8 +192,6 @@ public partial class DlgInterface : Control, IUi
     }
     
     public Action OnAnimationFinish { get; set; }
-    
-    
     
     public new void Show()
     {

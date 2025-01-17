@@ -10,7 +10,7 @@ public partial class PrismDataBar : Control
     [Export] public SplitContainer Bar { get; set; }
     
     private const int TotalStages = 4; // 进度条分为4个阶段
-    private const int TotalLength = 230; // 进度条的总长度
+    private const int TotalLength = 170; // 进度条的总长度
 
     public async Task ChangeBarAsync(float percentage)
     {

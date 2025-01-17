@@ -64,9 +64,12 @@ public class YarnRuntime
             });
         });
         
-        _dialogueRunner.AddCommandHandler(("obs"), () =>
+        _dialogueRunner.AddCommandHandler<string,string>(("event"), (name,de) =>
         {
-            
+            Game.Gui.Event.ShowEvent(name,de,(() =>
+            {
+                _dialogueRunner.ContinueDialogue();
+            }));
         });
         
         _dialogueRunner.AddCommandHandler("vote",(() =>

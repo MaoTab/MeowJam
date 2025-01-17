@@ -10,12 +10,14 @@ public partial class Interface : Control
 {
     [Export] public DlgInterface DlgInterface;
     [Export] public gui.PlayerData PlayerData;
+    [Export] public gui.Event Event;
     [Export] public gui.Vote Vote;
 
     public void Init()
     {
         PlayerData.Init();
         Vote.Init();
+        Event.Init();
     }
     
      #region Tip部分

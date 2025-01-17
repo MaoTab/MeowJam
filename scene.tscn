@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://c5ipbraa1ubnx"]
+[gd_scene load_steps=40 format=3 uid="uid://c5ipbraa1ubnx"]
 
 [ext_resource type="Script" uid="uid://c5jgom1w22vgn" path="res://scripts/Root.cs" id="1_ulcgi"]
 [ext_resource type="Script" uid="uid://cyc446ovneiu4" path="res://scripts/Level.cs" id="2_ee5iq"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://dshhm2koihtu3" path="res://texture/text_player_shadow.png" id="6_bw2g3"]
 [ext_resource type="Texture2D" uid="uid://d0v36wlaegf1l" path="res://ui.png" id="6_xpof7"]
 [ext_resource type="Script" uid="uid://dua8yc8gnrssu" path="res://scripts/gui/DlgInterface.cs" id="12_akxrc"]
-[ext_resource type="PackedScene" uid="uid://ct50h7dqufm8m" path="res://ui/right_dlg_part.tscn" id="12_gu47o"]
 [ext_resource type="Script" uid="uid://c2ahm0j0om4ty" path="res://scripts/gui/Vote.cs" id="13_8j1ou"]
 [ext_resource type="PackedScene" uid="uid://cussg35rit1ml" path="res://ui/button.tscn" id="13_gu47o"]
 [ext_resource type="Script" uid="uid://df21p28invwmp" path="res://scripts/gui/PlayerData.cs" id="14_8j1ou"]
@@ -17,7 +16,8 @@
 [ext_resource type="Script" uid="uid://ddc3jo65cw3pp" path="res://scripts/gui/components/VoteBar.cs" id="14_o3hm7"]
 [ext_resource type="FontVariation" path="res://font/font_variation_i.tres" id="15_17rhs"]
 [ext_resource type="Script" uid="uid://dvce0w216iubm" path="res://scripts/gui/components/TipBuilder.cs" id="16_8j1ou"]
-[ext_resource type="Script" uid="uid://b7muxavy7o8ok" path="res://scripts/gui/components/DlgPart.cs" id="19_302uq"]
+[ext_resource type="PackedScene" uid="uid://buxe50nwnghqw" path="res://ui/dlg_part_v_2.tscn" id="20_1q4c1"]
+[ext_resource type="Script" path="res://scripts/gui/Event.cs" id="23_aobyt"]
 [ext_resource type="Script" uid="uid://dqblsea76tnfv" path="res://scripts/Interface.cs" id="54_5l17q"]
 [ext_resource type="Script" uid="uid://b7nhjoes6w41c" path="res://scripts/Camera.cs" id="55_cy07d"]
 [ext_resource type="PackedScene" uid="uid://ds7qf64d3uyec" path="res://ui/tip_box.tscn" id="55_dcc87"]
@@ -38,138 +38,6 @@ shader_parameter/offset = null
 shader_parameter/max_or_add = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpof7"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8hm71"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mfve8"]
-
-[sub_resource type="Animation" id="Animation_8hm71"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("VBoxContainer/DlgText/Anim/PanelContainer:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("VBoxContainer/DlgText/Anim/PanelContainer:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-50.33, 36.625)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("VBoxContainer/DlgText/Anim/PanelContainer:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_223my"]
-_data = {
-&"RESET": SubResource("Animation_8hm71")
-}
-
-[sub_resource type="Animation" id="Animation_ubcxv"]
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("VBoxContainer/DlgText/Anim/PanelContainer:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(0.125, 1),
-"update": 0,
-"values": [-0.523599, 0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("VBoxContainer/DlgText/Anim/PanelContainer:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(0.125, 1),
-"update": 0,
-"values": [Vector2(-50.33, 36.625), Vector2(0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("VBoxContainer/DlgText/Anim/PanelContainer:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(0.125, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_mfve8"]
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("VBoxContainer/DlgText/Anim/PanelContainer:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(0.129408, 1),
-"update": 0,
-"values": [0.356047, -6.03893e-05]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("VBoxContainer/DlgText/Anim/PanelContainer:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(0.129408, 1),
-"update": 0,
-"values": [Vector2(62.215, 54.31), Vector2(0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("VBoxContainer/DlgText/Anim/PanelContainer:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(0.129408, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.999885)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_sxg3l"]
-_data = {
-&"Show": SubResource("Animation_ubcxv"),
-&"Show_R": SubResource("Animation_mfve8")
-}
 
 [sub_resource type="Animation" id="Animation_gu47o"]
 length = 0.001
@@ -291,6 +159,98 @@ _data = {
 &"Show": SubResource("Animation_o3hm7")
 }
 
+[sub_resource type="Animation" id="Animation_i6j5g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EventDetail:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(744, 1112)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EventName:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(80, -112)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g6g5t"]
+_data = {
+&"RESET": SubResource("Animation_i6j5g")
+}
+
+[sub_resource type="Animation" id="Animation_aobyt"]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EventDetail:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 0.4),
+"transitions": PackedFloat32Array(0.148651, 1),
+"update": 0,
+"values": [Vector2(744, 1112), Vector2(744, 944)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EventName:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.120742, 1),
+"update": 0,
+"values": [Vector2(80, -112), Vector2(80, 208)]
+}
+
+[sub_resource type="Animation" id="Animation_g6g5t"]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EventName:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.148651, 1),
+"update": 0,
+"values": [Vector2(80, 208), Vector2(80, -144)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EventDetail:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.15932, 1),
+"update": 0,
+"values": [Vector2(744, 944.002), Vector2(744, 1184)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i6j5g"]
+_data = {
+&"Hide": SubResource("Animation_g6g5t"),
+&"Show": SubResource("Animation_aobyt")
+}
+
 [node name="Root" type="Node" node_paths=PackedStringArray("_level", "_gui", "_camera")]
 script = ExtResource("1_ulcgi")
 _level = NodePath("CanvasGroup/Level-NoMove")
@@ -333,7 +293,7 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("6_xpof7")
 
-[node name="Control" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("DlgInterface", "PlayerData", "Vote", "_tipZone", "_darkMask")]
+[node name="Control" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("DlgInterface", "PlayerData", "Event", "Vote", "_tipZone", "_darkMask")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -346,6 +306,7 @@ mouse_filter = 2
 script = ExtResource("54_5l17q")
 DlgInterface = NodePath("Dlg")
 PlayerData = NodePath("UpperUI/PanelContainer/MarginContainer/PlayerData")
+Event = NodePath("Event")
 Vote = NodePath("Vote")
 _tipZone = NodePath("TipZone")
 _tipBoxPackedScene = ExtResource("55_dcc87")
@@ -645,7 +606,7 @@ animationPlayer = NodePath("AnimationPlayer")
 DlgTextList = NodePath("Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgTextList")
 _optionButtonPackedScene = ExtResource("13_gu47o")
 _optionBox = NodePath("Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgOp")
-_dlgPartPackedScene = ExtResource("12_gu47o")
+_dlgPartPackedScene = ExtResource("20_1q4c1")
 
 [node name="Panel" type="PanelContainer" parent="CanvasLayer/Control/Dlg"]
 modulate = Color(1, 1, 1, 0)
@@ -685,127 +646,11 @@ layout_mode = 2
 [node name="DlgTextList" type="VBoxContainer" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List"]
 layout_mode = 2
 
-[node name="RightDlgPart" type="HBoxContainer" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgTextList" node_paths=PackedStringArray("NameBox", "NameTextLabel", "HBox", "SizeTextLabel", "AnimTextLabel", "AnimationPlayer")]
-layout_direction = 2
-layout_mode = 2
-script = ExtResource("19_302uq")
-NameBox = NodePath("DlgPart/VBoxContainer/DlgName")
-NameTextLabel = NodePath("DlgPart/VBoxContainer/DlgName/MarginContainer/Text")
-HBox = NodePath("DlgPart/VBoxContainer")
-SizeTextLabel = NodePath("DlgPart/VBoxContainer/DlgText/SizeLayer/MarginContainer/SizeText")
-AnimTextLabel = NodePath("DlgPart/VBoxContainer/DlgText/Anim/PanelContainer/MarginContainer/AnimText")
-AnimationPlayer = NodePath("AnimationPlayer")
-
-[node name="DlgPart" type="PanelContainer" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgTextList/RightDlgPart"]
-layout_direction = 3
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxEmpty_8hm71")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgTextList/RightDlgPart/DlgPart"]
-layout_direction = 2
-layout_mode = 2
-
-[node name="DlgName" type="PanelContainer" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgTextList/RightDlgPart/DlgPart/VBoxContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgTextList/RightDlgPart/DlgPart/VBoxContainer/DlgName"]
-layout_mode = 2
-theme_override_constants/margin_left = 3
-theme_override_constants/margin_top = 3
-theme_override_constants/margin_right = 3
-theme_override_constants/margin_bottom = 3
-
-[node name="Text" type="RichTextLabel" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgTextList/RightDlgPart/DlgPart/VBoxContainer/DlgName/MarginContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_fonts/normal_font = ExtResource("14_223my")
-theme_override_fonts/italics_font = ExtResource("15_17rhs")
-theme_override_font_sizes/normal_font_size = 12
-bbcode_enabled = true
-text = "Maot"
-fit_content = true
-autowrap_mode = 0
-script = ExtResource("16_8j1ou")
-
-[node name="DlgText" type="PanelContainer" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgTextList/RightDlgPart/DlgPart/VBoxContainer"]
-custom_minimum_size = Vector2(370, 0)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_mfve8")
-
-[node name="Anim" type="Control" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgTextList/RightDlgPart/DlgPart/VBoxContainer/DlgText"]
-layout_mode = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgTextList/RightDlgPart/DlgPart/VBoxContainer/DlgText/Anim"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -50.33
-offset_top = 36.625
-offset_right = -50.33
-offset_bottom = 36.625
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgTextList/RightDlgPart/DlgPart/VBoxContainer/DlgText/Anim/PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 130
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 65
-theme_override_constants/margin_bottom = 5
-
-[node name="AnimText" type="RichTextLabel" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgTextList/RightDlgPart/DlgPart/VBoxContainer/DlgText/Anim/PanelContainer/MarginContainer"]
-layout_mode = 2
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_fonts/normal_font = ExtResource("14_223my")
-theme_override_fonts/italics_font = ExtResource("15_17rhs")
-bbcode_enabled = true
-text = "肉体：
-有如七大洋一般的水量冲入你那脑子能容纳的一小碗里，眼前叮当作响。你最后的记忆是你和桌上的十几个啤酒瓶一同从酒馆的窗户飞了出来，那是多萝西干的好事，她对所有人都露出了可怖的“獠牙”。那些啤酒瓶的玻璃碎片正“饱和式打击”你的双手，我甚至能感觉到你脸上应该也扎进去一部分。"
-scroll_active = false
-autowrap_mode = 1
-script = ExtResource("16_8j1ou")
-
-[node name="SizeLayer" type="PanelContainer" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgTextList/RightDlgPart/DlgPart/VBoxContainer/DlgText"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgTextList/RightDlgPart/DlgPart/VBoxContainer/DlgText/SizeLayer"]
-layout_mode = 2
-theme_override_constants/margin_left = 130
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 65
-theme_override_constants/margin_bottom = 5
-
-[node name="SizeText" type="RichTextLabel" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgTextList/RightDlgPart/DlgPart/VBoxContainer/DlgText/SizeLayer/MarginContainer"]
-layout_mode = 2
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_fonts/normal_font = ExtResource("14_223my")
-theme_override_fonts/italics_font = ExtResource("15_17rhs")
-bbcode_enabled = true
-text = "肉体：
-有如七大洋一般的水量冲入你那脑子能容纳的一小碗里，眼前叮当作响。你最后的记忆是你和桌上的十几个啤酒瓶一同从酒馆的窗户飞了出来，那是多萝西干的好事，她对所有人都露出了可怖的“獠牙”。那些啤酒瓶的玻璃碎片正“饱和式打击”你的双手，我甚至能感觉到你脸上应该也扎进去一部分。"
-fit_content = true
-scroll_active = false
-autowrap_mode = 1
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List/DlgTextList/RightDlgPart"]
-root_node = NodePath("../DlgPart")
-libraries = {
-&"": SubResource("AnimationLibrary_223my"),
-&"dlg_part": SubResource("AnimationLibrary_sxg3l")
-}
-
 [node name="HSeparator" type="HSeparator" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List"]
 layout_mode = 2
 
 [node name="DlgOp" type="VBoxContainer" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List"]
 layout_mode = 2
-size_flags_horizontal = 8
 
 [node name="Control" type="Control" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer"]
 layout_mode = 2
@@ -999,4 +844,73 @@ script = ExtResource("16_8j1ou")
 libraries = {
 &"": SubResource("AnimationLibrary_8j1ou"),
 &"vote": SubResource("AnimationLibrary_xpof7")
+}
+
+[node name="Event" type="Control" parent="CanvasLayer/Control" node_paths=PackedStringArray("eventNameLabel", "eventDeLabel", "animationPlayer")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("23_aobyt")
+eventNameLabel = NodePath("EventName/MarginContainer/RichTextLabel")
+eventDeLabel = NodePath("EventDetail/MarginContainer/RichTextLabel")
+animationPlayer = NodePath("AnimationPlayer")
+
+[node name="EventName" type="PanelContainer" parent="CanvasLayer/Control/Event"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = -112.0
+offset_right = 392.0
+offset_bottom = -32.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/Event/EventName"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control/Event/EventName/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("14_223my")
+theme_override_fonts/italics_font = ExtResource("15_17rhs")
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "密林之约
+"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("16_8j1ou")
+
+[node name="EventDetail" type="PanelContainer" parent="CanvasLayer/Control/Event"]
+layout_mode = 0
+offset_left = 744.0
+offset_top = 1112.0
+offset_right = 1120.0
+offset_bottom = 1184.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/Event/EventDetail"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control/Event/EventDetail/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("14_223my")
+theme_override_fonts/italics_font = ExtResource("15_17rhs")
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "他似乎有求于你...
+"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("16_8j1ou")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/Event"]
+libraries = {
+&"": SubResource("AnimationLibrary_g6g5t"),
+&"event": SubResource("AnimationLibrary_i6j5g")
 }
