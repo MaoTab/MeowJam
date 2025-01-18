@@ -20,7 +20,7 @@ public partial class PrismDataBar : Control
         // 获取当前长度
         float currentLength = Bar.SplitOffset; 
 
-        float duration = 1.0f; // 动画持续时间（秒）
+        float duration = 1.0f; // 动画持续时间
         float elapsedTime = 0.0f; // 已经过的时间
 
         // 动画循环
@@ -29,21 +29,20 @@ public partial class PrismDataBar : Control
             elapsedTime += (float)Game.PhysicsDelta; // 获取每帧的时间
             float t = Mathf.Clamp(elapsedTime / duration, 0.0f, 1.0f); // 计算插值因子，范围在 [0, 1] 之间
             
-            // 使用 Lerp 插值
+            // 使用插值
             currentLength = Mathf.Lerp(currentLength, targetLength, t);
             Bar.SplitOffset = (int)currentLength;
 
             // 更新 TextLabel 的文本，为当前阶段
             int currentStage = Mathf.Clamp((int)(currentLength / (TotalLength / TotalStages)), 0, TotalStages);
-            TextLabel.Text = $"{currentStage}"; // 显示当前阶段
+            TextLabel.Text = $"{currentStage}";
             
-            // 等待一段时间以创建动画效果
-            await Task.Delay(16); // 大约60 FPS，16毫秒每帧
+            await Task.Delay(16);
         }
 
         // 确保最后的值是目标值，并更新文本
         Bar.SplitOffset = (int)targetLength; 
         int finalStage = Mathf.Clamp((int)(targetLength / (TotalLength / TotalStages)), 0, TotalStages);
-        TextLabel.Text = $"{finalStage}"; // 最终更新文本
+        TextLabel.Text = $"{finalStage}";
     }
 }

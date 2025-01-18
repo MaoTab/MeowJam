@@ -1,9 +1,9 @@
-[gd_scene load_steps=74 format=3 uid="uid://c5ipbraa1ubnx"]
+[gd_scene load_steps=75 format=3 uid="uid://c5ipbraa1ubnx"]
 
 [ext_resource type="Script" uid="uid://c5jgom1w22vgn" path="res://scripts/Root.cs" id="1_ulcgi"]
 [ext_resource type="Script" uid="uid://cyc446ovneiu4" path="res://scripts/Level.cs" id="2_ee5iq"]
-[ext_resource type="Texture2D" uid="uid://tt2t215hq6sg" path="res://texture/townsendgover_bg_1.png" id="3_6ncfj"]
 [ext_resource type="Shader" uid="uid://dclypwy16ocid" path="res://shader/outline.gdshader" id="3_jlvtx"]
+[ext_resource type="Texture2D" uid="uid://dp7gcbhjdx3sy" path="res://texture/map.png" id="3_llic6"]
 [ext_resource type="PackedScene" uid="uid://ccko0sgx88y3t" path="res://pack/snow.tscn" id="4_5juve"]
 [ext_resource type="Texture2D" uid="uid://dshhm2koihtu3" path="res://texture/text_player_shadow.png" id="6_bw2g3"]
 [ext_resource type="Texture2D" uid="uid://d0v36wlaegf1l" path="res://ui.png" id="6_xpof7"]
@@ -26,6 +26,7 @@
 [ext_resource type="AudioStream" uid="uid://dlgba2jaddpn3" path="res://audio/bell_fast.wav" id="24_wncyr"]
 [ext_resource type="AudioStream" uid="uid://dpvxwr8cgqdoy" path="res://audio/warm_fast.wav" id="25_m514l"]
 [ext_resource type="Texture2D" uid="uid://itjk6dpqs4ft" path="res://texture/icon/icon.png" id="31_m514l"]
+[ext_resource type="Script" uid="uid://dv31utrkq6o3p" path="res://scripts/gui/Death.cs" id="32_llic6"]
 [ext_resource type="Script" uid="uid://dqblsea76tnfv" path="res://scripts/Interface.cs" id="54_5l17q"]
 [ext_resource type="Script" uid="uid://b7nhjoes6w41c" path="res://scripts/Camera.cs" id="55_cy07d"]
 [ext_resource type="PackedScene" uid="uid://ds7qf64d3uyec" path="res://ui/tip_box.tscn" id="55_dcc87"]
@@ -536,26 +537,26 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Vote/VoteRes/Panel/TextureRect:visible")
+tracks/5/path = NodePath("Vote/VoteRes/Panel/TextureRect:modulate:a")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Vote/VoteRes/Panel/TextureRect:modulate:a")
+tracks/6/path = NodePath("Vote/VoteRes/Panel/TextureRect:modulate")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0, 0, 0, 0)]
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nb0s3"]
@@ -627,26 +628,14 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Vote/VoteRes/Panel/TextureRect:visible")
+tracks/5/path = NodePath("Vote/VoteRes/Panel/TextureRect:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.10233),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Vote/VoteRes/Panel/TextureRect:modulate")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0.837245, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.100658, 0.837245, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6wd4v"]
@@ -712,7 +701,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("RichTextLabel:modulate")
+tracks/4/path = NodePath("YouDie:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -724,7 +713,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("RichTextLabel:position")
+tracks/5/path = NodePath("YouDie:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -757,6 +746,66 @@ tracks/7/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("preDeathNum:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(775, 608)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("preDeathNum:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("newDeathNum:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(775, 656)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("newDeathNum:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath(".:mouse_filter")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hyak3"]
 _data = {
@@ -764,7 +813,7 @@ _data = {
 }
 
 [sub_resource type="Animation" id="Animation_g4bmd"]
-length = 0.6
+length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -772,10 +821,10 @@ tracks/0/path = NodePath(".:theme_override_styles/panel:border_width_left")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.333333),
-"transitions": PackedFloat32Array(0.148651, 1),
+"times": PackedFloat32Array(0, 0.333333, 2.73816, 3),
+"transitions": PackedFloat32Array(0.148651, 1, 1, 1),
 "update": 0,
-"values": [0, 150]
+"values": [0, 150, 150, 0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -784,10 +833,10 @@ tracks/1/path = NodePath(".:theme_override_styles/panel:border_width_top")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.333333),
-"transitions": PackedFloat32Array(0.148651, 1),
+"times": PackedFloat32Array(0, 0.333333, 2.73816, 3),
+"transitions": PackedFloat32Array(0.148651, 1, 1, 1),
 "update": 0,
-"values": [0, 150]
+"values": [0, 150, 150, 0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -796,10 +845,10 @@ tracks/2/path = NodePath(".:theme_override_styles/panel:border_width_right")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.333333),
-"transitions": PackedFloat32Array(0.148651, 1),
+"times": PackedFloat32Array(0, 0.333333, 2.73816, 3),
+"transitions": PackedFloat32Array(0.148651, 1, 1, 1),
 "update": 0,
-"values": [0, 150]
+"values": [0, 150, 150, 0]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -808,34 +857,34 @@ tracks/3/path = NodePath(".:theme_override_styles/panel:border_width_bottom")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.333333),
-"transitions": PackedFloat32Array(0.148651, 1),
+"times": PackedFloat32Array(0, 0.333333, 2.73816, 3),
+"transitions": PackedFloat32Array(0.148651, 1, 1, 1),
 "update": 0,
-"values": [0, 150]
+"values": [0, 150, 150, 0]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("RichTextLabel:modulate")
+tracks/4/path = NodePath("YouDie:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.332478, 0.6),
-"transitions": PackedFloat32Array(1, 0.176777, 1),
+"times": PackedFloat32Array(0, 0.332478, 0.6, 1.025, 1.2),
+"transitions": PackedFloat32Array(1, 0.176777, 1, 4.75683, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("RichTextLabel:position")
+tracks/5/path = NodePath("YouDie:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.335528, 0.6),
-"transitions": PackedFloat32Array(0.176777, 1),
+"times": PackedFloat32Array(0.335528, 0.6, 1.025, 1.2),
+"transitions": PackedFloat32Array(0.176777, 1, 4.75683, 1),
 "update": 0,
-"values": [Vector2(775, 608), Vector2(775, 486)]
+"values": [Vector2(775, 608), Vector2(775, 486), Vector2(775, 486), Vector2(775, 336)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -844,10 +893,10 @@ tracks/6/path = NodePath(".:theme_override_styles/panel:bg_color")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0.176915, 0.448387),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.176915, 0.448387, 1.63333, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -860,6 +909,66 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("preDeathNum:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(1.02427, 1.19985, 1.73333, 2),
+"transitions": PackedFloat32Array(4.75, 4.75683, 4.75683, 4.75683),
+"update": 0,
+"values": [Vector2(775, 608), Vector2(775, 486), Vector2(775, 486), Vector2(775, 336)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("preDeathNum:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(1.02693, 1.2, 1.73348, 2),
+"transitions": PackedFloat32Array(4.75, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("newDeathNum:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(1.73333, 1.73559, 2, 2.63332, 3),
+"transitions": PackedFloat32Array(1, 4.75683, 4.75683, 4.75683, 4.75683),
+"update": 0,
+"values": [Vector2(775, 486), Vector2(775, 608), Vector2(775, 486), Vector2(775, 486), Vector2(775, 336)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("newDeathNum:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(1.73333, 2, 2.63332, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath(".:mouse_filter")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 2]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x5hgh"]
@@ -885,8 +994,13 @@ AiNode = NodePath("Roles-NoMove/AI")
 [node name="Static-NoMove" type="Node2D" parent="CanvasGroup/Level-NoMove"]
 
 [node name="TownsendgoverBg1" type="Sprite2D" parent="CanvasGroup/Level-NoMove/Static-NoMove"]
-position = Vector2(-24, -8)
-texture = ExtResource("3_6ncfj")
+texture_filter = 1
+position = Vector2(152, -184)
+scale = Vector2(3.24638, 3.24638)
+texture = ExtResource("3_llic6")
+
+[node name="Node2D" type="Node2D" parent="CanvasGroup/Level-NoMove/Static-NoMove"]
+position = Vector2(-8, -56)
 
 [node name="Roles-NoMove" type="Node2D" parent="CanvasGroup/Level-NoMove"]
 y_sort_enabled = true
@@ -895,11 +1009,17 @@ y_sort_enabled = true
 
 [node name="Snow" parent="CanvasGroup/Level-NoMove/Roles-NoMove" instance=ExtResource("4_5juve")]
 material = SubResource("ShaderMaterial_o3hm7")
+position = Vector2(-192, 216)
 MoveSpeed = 2.0
 
 [node name="Camera2D" type="Camera2D" parent="CanvasGroup/Level-NoMove"]
 zoom = Vector2(2, 2)
+limit_left = -295
+limit_top = -640
+limit_right = 700
+limit_bottom = 270
 editor_draw_limits = true
+editor_draw_drag_margin = true
 script = ExtResource("55_cy07d")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -911,7 +1031,7 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("6_xpof7")
 
-[node name="Control" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("DlgInterface", "PlayerData", "Event", "Vote", "AnimationPlayer", "_tipZone", "_darkMask")]
+[node name="Control" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("DlgInterface", "PlayerData", "Event", "Vote", "Death", "AnimationPlayer", "_tipZone", "_darkMask")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -926,7 +1046,8 @@ DlgInterface = NodePath("Dlg")
 PlayerData = NodePath("UpperUI/PanelContainer/MarginContainer/PlayerData")
 Event = NodePath("Event")
 Vote = NodePath("Vote")
-AnimationPlayer = NodePath("FullUI/YouDie/Panel/AnimationPlayer")
+Death = NodePath("Death")
+AnimationPlayer = NodePath("Death/YouDie/Panel/AnimationPlayer")
 _tipZone = NodePath("TipZone")
 _tipBoxPackedScene = ExtResource("55_dcc87")
 _darkMask = NodePath("Vote/VoteRes/Panel")
@@ -1647,7 +1768,6 @@ libraries = {
 script = ExtResource("23_xb05w")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/Vote/VoteRes/Panel"]
-visible = false
 modulate = Color(1, 1, 1, 0)
 texture_filter = 1
 layout_mode = 1
@@ -1664,7 +1784,20 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("31_m514l")
 
-[node name="FullUI" type="Control" parent="CanvasLayer/Control"]
+[node name="Death" type="Control" parent="CanvasLayer/Control" node_paths=PackedStringArray("AnimationPlayer", "newDeathText", "nextDeathText")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("32_llic6")
+AnimationPlayer = NodePath("YouDie/Panel/AnimationPlayer")
+newDeathText = NodePath("YouDie/Panel/preDeathNum")
+nextDeathText = NodePath("YouDie/Panel/newDeathNum")
+
+[node name="YouDie" type="Control" parent="CanvasLayer/Control/Death"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1673,16 +1806,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="YouDie" type="Control" parent="CanvasLayer/Control/FullUI"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="Panel" type="Panel" parent="CanvasLayer/Control/FullUI/YouDie"]
+[node name="Panel" type="Panel" parent="CanvasLayer/Control/Death/YouDie"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1692,14 +1816,15 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_m514l")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/FullUI/YouDie/Panel"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/Death/YouDie/Panel"]
 libraries = {
 &"": SubResource("AnimationLibrary_hyak3"),
 &"full_ui": SubResource("AnimationLibrary_x5hgh")
 }
+speed_scale = 0.5
 script = ExtResource("23_xb05w")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control/FullUI/YouDie/Panel"]
+[node name="YouDie" type="RichTextLabel" parent="CanvasLayer/Control/Death/YouDie/Panel"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 8
@@ -1721,4 +1846,54 @@ bbcode_enabled = true
 text = "[color=#ff4f35]You Die[/color]"
 fit_content = true
 autowrap_mode = 0
+script = ExtResource("16_8j1ou")
+
+[node name="preDeathNum" type="RichTextLabel" parent="CanvasLayer/Control/Death/YouDie/Panel"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -185.0
+offset_top = 68.0
+offset_right = 185.0
+offset_bottom = 176.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("14_223my")
+theme_override_fonts/italics_font = ExtResource("15_17rhs")
+theme_override_font_sizes/normal_font_size = 104
+bbcode_enabled = true
+text = "[color=#ff4f35]LOOP 1[/color]"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+script = ExtResource("16_8j1ou")
+
+[node name="newDeathNum" type="RichTextLabel" parent="CanvasLayer/Control/Death/YouDie/Panel"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -185.0
+offset_top = 116.0
+offset_right = 185.0
+offset_bottom = 224.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("14_223my")
+theme_override_fonts/italics_font = ExtResource("15_17rhs")
+theme_override_font_sizes/normal_font_size = 104
+bbcode_enabled = true
+text = "[color=#ff4f35]LOOP 1[/color]"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
 script = ExtResource("16_8j1ou")

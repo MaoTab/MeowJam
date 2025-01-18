@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tt2t215hq6sg"
-path="res://.godot/imported/townsendgover_bg_1.png-c1f008f3a281a0765de3f8108db49b6a.ctex"
+uid="uid://dp7gcbhjdx3sy"
+path="res://.godot/imported/map.png-90ca6ee816170bace2cf5d222f852490.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://texture/townsendgover_bg_1.png"
-dest_files=["res://.godot/imported/townsendgover_bg_1.png-c1f008f3a281a0765de3f8108db49b6a.ctex"]
+source_file="res://texture/map.png"
+dest_files=["res://.godot/imported/map.png-90ca6ee816170bace2cf5d222f852490.ctex"]
 
 [params]
 

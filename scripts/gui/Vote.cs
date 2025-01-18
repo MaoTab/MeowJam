@@ -12,6 +12,8 @@ public partial class Vote : Control, IUi
     [Export] private VoteBar PsyBar { get; set; }
     [Export] private VoteBar SocBar { get; set; }
     
+    
+    
     [Export] public AnimationPlayerPlus VoteResAnimationPlayer { get; set; }
     [Export] private AnimationPlayer AnimationPlayer { get; set; }
     
@@ -47,17 +49,21 @@ public partial class Vote : Control, IUi
     {
         if(State != EUIState.ShowAndIdle) return;
         
-        BioBar.ChangeBarAsync((float)Game.PlayerData.BioPrism.Level / 8);
-        PsyBar.ChangeBarAsync((float)Game.PlayerData.PsyPrism.Level / 8);
-        SocBar.ChangeBarAsync((float)Game.PlayerData.SocPrism.Level / 8);
+        var TotalStages = Game.PlayerData.PsyPrism.Level + Game.PlayerData.BioPrism.Level +
+                          Game.PlayerData.SocPrism.Level;
+        
+        BioBar.ChangeBarAsync((float)Game.PlayerData.BioPrism.Level / TotalStages,TotalStages);
+        PsyBar.ChangeBarAsync((float)Game.PlayerData.PsyPrism.Level / TotalStages,TotalStages);
+        SocBar.ChangeBarAsync((float)Game.PlayerData.SocPrism.Level / TotalStages,TotalStages);
     }
     
     public void ViewVotingResults(int bioPrism, int psyPrism, int socPrism)
     {
         if(State != EUIState.ShowAndIdle) return;
-        
-        BioBar.ChangeBarAsync((float)(Game.PlayerData.BioPrism.Level + bioPrism) / 8);
-        PsyBar.ChangeBarAsync((float)(Game.PlayerData.PsyPrism.Level + psyPrism) / 8);
-        SocBar.ChangeBarAsync((float)(Game.PlayerData.SocPrism.Level + socPrism) / 8);
+        var TotalStages = Game.PlayerData.SelfPrism.Level + Game.PlayerData.PsyPrism.Level + Game.PlayerData.BioPrism.Level +
+                          Game.PlayerData.SocPrism.Level;
+        BioBar.ChangeBarAsync((float)(Game.PlayerData.BioPrism.Level + bioPrism) / TotalStages,TotalStages);
+        PsyBar.ChangeBarAsync((float)(Game.PlayerData.PsyPrism.Level + psyPrism) / TotalStages,TotalStages);
+        SocBar.ChangeBarAsync((float)(Game.PlayerData.SocPrism.Level + socPrism) / TotalStages,TotalStages);
     }
 }

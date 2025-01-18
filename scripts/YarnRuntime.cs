@@ -256,10 +256,20 @@ public class YarnRuntime
             _dialogueRunner.ContinueDialogue();
         });
 
-        // MARK: - dead
-        _dialogueRunner.AddCommandHandler("dead", (async () =>
+        // MARK: - dead_wait
+        _dialogueRunner.AddCommandHandler("dead_wait", (async () =>
         {
-            await Game.Gui.AnimationPlayer.PlayAsync("full_ui/you_die");
+            await Game.Gui.Death.Show();
+            Game.PlayerData.DeathNum++;
+            _dialogueRunner.ContinueDialogue();
+        }));
+        
+        // MARK: - dead
+        _dialogueRunner.AddCommandHandler("dead", (() =>
+        {
+            _ = Game.Gui.Death.Show();
+            Game.PlayerData.DeathNum++;
+            _dialogueRunner.ContinueDialogue();
         }));
         
         // MARK: - end

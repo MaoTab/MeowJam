@@ -47,6 +47,7 @@ public class PlayerData
     /// </summary>
     public int Day { get; set; }
     
+    
     public void Save()
     {
         // 读取存档文件

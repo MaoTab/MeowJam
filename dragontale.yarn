@@ -7,7 +7,7 @@ title: Node_对话
 position: -2937,-1220
 ---
 <<clear_dlg>>
-<<move_to 0 0>>
+<<move_to -8 -56>>
 <<show_event "开始事件" "冲冲冲！">>
 System:当前SOC：{format_invariant(prism_get("soc"))}[continue/]
 ->离开
@@ -21,20 +21,33 @@ System:当前SOC：{format_invariant(prism_get("soc"))}[continue/]
 ===
 
 title: Node_测试
-position: -2986,-1012
+position: -2957,-953
 ---
 ->等级修改
     <<jump Node_等级修改测试>>
 ->投票测试
     <<jump Node_投票测试>>
 ->死一死
-    <<dead>>
+    <<jump Node_测试_死亡>>
 ->返回
     <<jump Node_对话>>
 ===
 
+title: Node_测试_死亡
+position: -2583,-983
+---
+<<clear_dlg>>
+<<dead_wait>>
+
+Maot:还要再死一次吗？[continue/]
+->来
+    <<jump Node_测试_死亡>>
+->返回
+    <<jump Node_测试>>
+===
+
 title: Node_等级修改测试
-position: -2801,-754
+position: -2774,-735
 ---
 ->\[color=a8d976\]+1 BIO\[/color\]
     <<prism_add "bio" 1>>
@@ -55,7 +68,7 @@ position: -2801,-754
 ===
 
 title: Node_投票测试
-position: -3314,-876 
+position: -3192,-700
 ---
 // 投票真他妈是个genius的点子啊！
 
@@ -91,7 +104,7 @@ Maot:还要再来一次吗？[continue/]
 ===
 
 title: Node_序章
-position: -3314,-876 
+position: -3409,-902
 ---
 <<clear_dlg>>
 <<show_ill "player" "char">>

@@ -12,13 +12,18 @@ public partial class Interface : Control
     [Export] public gui.PlayerData PlayerData;
     [Export] public gui.Event Event;
     [Export] public gui.Vote Vote;
+    [Export] public gui.Death Death;
+    
     [Export] public AnimationPlayerPlus AnimationPlayer;
+    
+    
         
     public void Init()
     {
         DlgInterface.Init();
         PlayerData.Init();
         Vote.Init();
+        Death.Init();
         Event.Init();
     }
 
