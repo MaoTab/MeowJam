@@ -1,13 +1,21 @@
-[gd_scene load_steps=12 format=3 uid="uid://buxe50nwnghqw"]
+[gd_scene load_steps=13 format=3 uid="uid://buxe50nwnghqw"]
 
 [ext_resource type="Script" uid="uid://b7muxavy7o8ok" path="res://scripts/gui/components/DlgPart.cs" id="1_vb1uj"]
-[ext_resource type="FontVariation" uid="uid://b2k1gvhu6adm3" path="res://font/font_variation.tres" id="2_ojjjs"]
-[ext_resource type="FontVariation" path="res://font/font_variation_i.tres" id="3_eglo4"]
 [ext_resource type="Script" uid="uid://dvce0w216iubm" path="res://scripts/gui/components/TipBuilder.cs" id="4_0t22y"]
+[ext_resource type="FontFile" uid="uid://cqnef13b4gxra" path="res://font/normal.tres" id="5_ojjjs"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8hm71"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mfve8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sghfk"]
+
+[sub_resource type="FontVariation" id="FontVariation_ojjjs"]
+base_font = ExtResource("5_ojjjs")
+spacing_glyph = 2
+spacing_space = 1
+spacing_top = 2
+spacing_bottom = 1
 
 [sub_resource type="Animation" id="Animation_8hm71"]
 length = 0.001
@@ -126,6 +134,7 @@ _data = {
 }
 
 [node name="DlgPartV2" type="HBoxContainer" node_paths=PackedStringArray("NameBox", "NameTextLabel", "HBox", "SizeTextLabel", "AnimTextLabel", "AnimationPlayer")]
+texture_filter = 1
 layout_direction = 2
 script = ExtResource("1_vb1uj")
 NameBox = NodePath("DlgPart/VBoxContainer/DlgName")
@@ -161,8 +170,7 @@ theme_override_constants/margin_bottom = 3
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_fonts/normal_font = ExtResource("2_ojjjs")
-theme_override_fonts/italics_font = ExtResource("3_eglo4")
+theme_override_fonts/normal_font = ExtResource("5_ojjjs")
 theme_override_font_sizes/normal_font_size = 12
 bbcode_enabled = true
 text = "Maot"
@@ -171,6 +179,7 @@ autowrap_mode = 0
 script = ExtResource("4_0t22y")
 
 [node name="DlgText" type="PanelContainer" parent="DlgPart/VBoxContainer"]
+texture_filter = 1
 custom_minimum_size = Vector2(370, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_mfve8")
@@ -189,6 +198,7 @@ offset_right = -50.33
 offset_bottom = 36.625
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_sghfk")
 
 [node name="MarginContainer" type="MarginContainer" parent="DlgPart/VBoxContainer/DlgText/Anim/PanelContainer"]
 layout_mode = 2
@@ -198,11 +208,12 @@ theme_override_constants/margin_right = 65
 theme_override_constants/margin_bottom = 5
 
 [node name="AnimText" type="RichTextLabel" parent="DlgPart/VBoxContainer/DlgText/Anim/PanelContainer/MarginContainer"]
+texture_filter = 1
 layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_fonts/normal_font = ExtResource("2_ojjjs")
-theme_override_fonts/italics_font = ExtResource("3_eglo4")
-theme_override_font_sizes/normal_font_size = 26
+theme_override_fonts/normal_font = SubResource("FontVariation_ojjjs")
+theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 scroll_active = false
 autowrap_mode = 1
@@ -220,11 +231,12 @@ theme_override_constants/margin_right = 65
 theme_override_constants/margin_bottom = 5
 
 [node name="SizeText" type="RichTextLabel" parent="DlgPart/VBoxContainer/DlgText/SizeLayer/MarginContainer"]
+texture_filter = 1
 layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_fonts/normal_font = ExtResource("2_ojjjs")
-theme_override_fonts/italics_font = ExtResource("3_eglo4")
-theme_override_font_sizes/normal_font_size = 26
+theme_override_fonts/normal_font = SubResource("FontVariation_ojjjs")
+theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 fit_content = true
 scroll_active = false

@@ -245,6 +245,7 @@ public partial class Role : CharacterBody2D , ISelect
             Game.ControlRole.Face2Char(this);
             Game.CanControl = false;
             Game.Yarn.PlayNode("Node_对话");
+            
         }
     }
     

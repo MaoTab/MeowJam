@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://ct50h7dqufm8m"]
+[gd_scene load_steps=11 format=3 uid="uid://ct50h7dqufm8m"]
 
 [ext_resource type="Script" uid="uid://b7muxavy7o8ok" path="res://scripts/gui/components/DlgPart.cs" id="1_mfve8"]
-[ext_resource type="FontVariation" uid="uid://b2k1gvhu6adm3" path="res://font/font_variation.tres" id="2_ubcxv"]
-[ext_resource type="FontVariation" path="res://font/font_variation_i.tres" id="3_sxg3l"]
+[ext_resource type="FontFile" uid="uid://cqnef13b4gxra" path="res://font/normal.tres" id="2_13ldu"]
 [ext_resource type="Script" uid="uid://dvce0w216iubm" path="res://scripts/gui/components/TipBuilder.cs" id="4_87wox"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8hm71"]
@@ -172,8 +171,7 @@ theme_override_constants/margin_bottom = 3
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_fonts/normal_font = ExtResource("2_ubcxv")
-theme_override_fonts/italics_font = ExtResource("3_sxg3l")
+theme_override_fonts/normal_font = ExtResource("2_13ldu")
 theme_override_font_sizes/normal_font_size = 12
 bbcode_enabled = true
 text = "Maot"
@@ -195,6 +193,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -50.33
+offset_top = 36.625
+offset_right = -50.33
+offset_bottom = 36.625
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -208,8 +210,7 @@ theme_override_constants/margin_bottom = 5
 [node name="AnimText" type="RichTextLabel" parent="DlgPart/VBoxContainer/DlgText/Anim/PanelContainer/MarginContainer"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_fonts/normal_font = ExtResource("2_ubcxv")
-theme_override_fonts/italics_font = ExtResource("3_sxg3l")
+theme_override_fonts/normal_font = ExtResource("2_13ldu")
 bbcode_enabled = true
 scroll_active = false
 autowrap_mode = 1
@@ -229,8 +230,7 @@ theme_override_constants/margin_bottom = 5
 [node name="SizeText" type="RichTextLabel" parent="DlgPart/VBoxContainer/DlgText/SizeLayer/MarginContainer"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_fonts/normal_font = ExtResource("2_ubcxv")
-theme_override_fonts/italics_font = ExtResource("3_sxg3l")
+theme_override_fonts/normal_font = ExtResource("2_13ldu")
 bbcode_enabled = true
 fit_content = true
 scroll_active = false

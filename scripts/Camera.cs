@@ -9,6 +9,9 @@ public partial class Camera : Node2D
         
     }
 
+    [Export] public float MinZoomSize = 1.29f;
+    [Export] public float MaxZoomSize = 2.42f;
+    
     public void PhysicsProcess()
     {
         Position = new Vector2(

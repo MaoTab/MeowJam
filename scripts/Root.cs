@@ -1,5 +1,6 @@
 using Godot;
 using Jam;
+using Jam.scripts;
 using YarnSpinnerGodot;
 using Interface = Jam.scripts.Interface;
 
@@ -9,6 +10,9 @@ public partial class Root : Node
     [Export] private Interface _gui;
     [Export] private Camera _camera;
 
+    [Export] private Button startButton;
+    [Export] private AnimationPlayerPlus startAnimationPlayer;
+    
     public override void _Ready()
     {
         var yarnProject = ResourceLoader.Load<YarnProject>("res://YarnProject.yarnproject");
@@ -21,8 +25,12 @@ public partial class Root : Node
         Game.Gui.Init();
         Game.Camera = _camera;
         Game.CanControl = false;
-        
-        Game.Yarn.PlayNode("Node_对话");
+
+        startButton.ButtonUp += async () =>
+        {
+            await startAnimationPlayer.PlayAsync("main/Start");
+            Game.Yarn.PlayNode("Node_对话");
+        };
     }
 
     public override void _Process(double delta)

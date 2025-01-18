@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cussg35rit1ml"]
 
 [ext_resource type="Script" uid="uid://bi4rucbqi38h0" path="res://scripts/gui/components/MButton.cs" id="1_43qr1"]
-[ext_resource type="FontFile" uid="uid://ddkndblysv701" path="res://font/AlimamaFangYuanTiVF-Thin.ttf" id="3_d6w4c"]
+[ext_resource type="FontFile" uid="uid://cqnef13b4gxra" path="res://font/normal.tres" id="2_7krdg"]
 
 [node name="Button" type="PanelContainer" node_paths=PackedStringArray("ButtonBase", "TextLabel", "_textureRect")]
 script = ExtResource("1_43qr1")
@@ -37,12 +37,12 @@ theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
 [node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/MarginContainer"]
+texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 2
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 1
-theme_override_fonts/normal_font = ExtResource("3_d6w4c")
+theme_override_fonts/normal_font = ExtResource("2_7krdg")
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 text = "Button"

@@ -1,13 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://ru31tkvn3m6i"]
+[gd_scene load_steps=3 format=3 uid="uid://ru31tkvn3m6i"]
 
-[ext_resource type="FontVariation" uid="uid://b2k1gvhu6adm3" path="res://font/font_variation.tres" id="1_cmjvc"]
-[ext_resource type="FontVariation" path="res://font/font_variation_i.tres" id="2_iiquc"]
+[ext_resource type="FontFile" uid="uid://cqnef13b4gxra" path="res://font/normal.tres" id="1_33oak"]
 [ext_resource type="Script" uid="uid://dvce0w216iubm" path="res://scripts/gui/components/TipBuilder.cs" id="3_yp0n7"]
 
 [node name="RichTextLabel" type="RichTextLabel"]
+texture_filter = 1
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_fonts/normal_font = ExtResource("1_cmjvc")
-theme_override_fonts/italics_font = ExtResource("2_iiquc")
+theme_override_fonts/normal_font = ExtResource("1_33oak")
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 text = "Tiip

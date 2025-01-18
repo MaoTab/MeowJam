@@ -15,8 +15,6 @@ public partial class Interface : Control
     [Export] public gui.Death Death;
     
     [Export] public AnimationPlayerPlus AnimationPlayer;
-    
-    
         
     public void Init()
     {

@@ -1,8 +1,0 @@
-[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://dit00seljeq5d"]
-
-[ext_resource type="FontFile" uid="uid://gqad820xpqjk" path="res://font/Makinas-4-Flat.otf" id="1_f65kq"]
-
-[resource]
-base_font = ExtResource("1_f65kq")
-spacing_top = 3
-baseline_offset = -0.08

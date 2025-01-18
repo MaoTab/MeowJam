@@ -13,16 +13,11 @@ public class YarnRuntime
     // MARK: - PlayNode()
     public void PlayNode(string node)
     {
-        Game.Gui.DlgInterface.OnAnimationFinish += OnFinish;
-        Game.Gui.DlgInterface.Show();
-        return;
-
-        void OnFinish()
-        {
-            _dialogueRunner.Dialogue.SetNode(node);
-            _dialogueRunner.ContinueDialogue();
-            Game.Gui.DlgInterface.OnAnimationFinish -= OnFinish;
-        }
+       
+        _dialogueRunner.Dialogue.SetNode(node);
+        _dialogueRunner.ContinueDialogue();
+            
+        
     }
 
     // MARK: - Stop()
@@ -43,6 +38,36 @@ public class YarnRuntime
         _dialogueRunner.onDialogueComplete += () => { GD.Print("Dialogue complete"); };
 
         _dialogueRunner.onNodeComplete += _ => { GD.Print("Node complete"); };
+        
+        
+        // MARK: - black
+        _dialogueRunner.AddCommandHandler("black", (async () =>
+        {
+            await Game.Gui.AnimationPlayer.PlayAsync("black/Show");
+            _dialogueRunner.ContinueDialogue();
+            await Game.Gui.AnimationPlayer.PlayAsync("black/Hide");
+        }));
+            
+        // MARK: - check
+        _dialogueRunner.AddCommandHandler<string>("check", ((target) =>
+        {
+            
+            
+            switch (target)
+            {
+                case "soc":
+                    
+                    break;
+                case "bio":
+                    
+                    break;
+                case "psy":
+                    
+                    break;
+            }
+
+            _dialogueRunner.ContinueDialogue();
+        }));
 
         // MARK: - dlg_mode
         _dialogueRunner.AddCommandHandler<string>("dlg_mode", ((mode) =>
@@ -230,22 +255,20 @@ public class YarnRuntime
             {
                 case "psy":
                     Game.PlayerData.PsyPrism.Level += level;
-                    Game.Gui.PlayerData.RefreshPsy();
                     break;
                 case "soc":
                     Game.PlayerData.SocPrism.Level += level;
-                    Game.Gui.PlayerData.RefreshSoc();
                     break;
                 case "self":
                     Game.PlayerData.SelfPrism.Level += level;
-                    Game.Gui.PlayerData.RefreshSelf();
                     break;
                 case "bio":
                     Game.PlayerData.BioPrism.Level += level;
-                    Game.Gui.PlayerData.RefreshBio();
                     break;
             }
 
+            Game.Gui.PlayerData.Init();
+            
             _dialogueRunner.ContinueDialogue();
         }));
 
@@ -401,10 +424,11 @@ public class YarnRuntime
                 async void OnClick()
                 {
                     Game.Gui.DlgInterface.RemoveAllOption();
-
-                    await Game.Gui.DlgInterface.AddDlgText("Player", line,
-                        () => { _dialogueRunner.SelectedOption(option.DialogueOptionID); });
-                    //
+                    _dialogueRunner.SelectedOption(option.DialogueOptionID);
+                    
+                    /*await Game.Gui.DlgInterface.AddDlgText("Player", line,
+                        () => { _dialogueRunner.SelectedOption(option.DialogueOptionID); });*/
+                    
                     // _dialogueRunner.SelectedOption(option.DialogueOptionID);
                 }
 

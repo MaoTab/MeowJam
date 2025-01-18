@@ -4,37 +4,21 @@ namespace Jam.scripts.gui;
 
 public partial class PlayerData : Control , IUi
 {
-    [Export] private PrismDataBar BioBar { get; set; }
-    [Export] private PrismDataBar PsyBar { get; set; }
-    [Export] private PrismDataBar SocBar { get; set; }
-    [Export] private PrismDataBar SelfBar { get; set; }
+    [Export] private RichTextLabel Bio { get; set; }
+    [Export] private RichTextLabel Psy { get; set; }
+    [Export] private RichTextLabel Soc { get; set; }
+    [Export] private RichTextLabel Self { get; set; }
+    [Export] private RichTextLabel Day { get; set; }
+    [Export] private RichTextLabel Loop { get; set; }
     
     public EUIState State { get; set; }
     public void Init()
     {
-        BioBar.ChangeBarAsync((float)Game.PlayerData.BioPrism.Level / 4);
-        PsyBar.ChangeBarAsync((float)Game.PlayerData.PsyPrism.Level / 4);
-        SocBar.ChangeBarAsync((float)Game.PlayerData.SocPrism.Level / 4);
-        SelfBar.ChangeBarAsync((float)Game.PlayerData.SelfPrism.Level / 4);
-    }
-
-    public void RefreshBio()
-    {
-        BioBar.ChangeBarAsync((float)Game.PlayerData.BioPrism.Level / 4);
-    }
-
-    public void RefreshPsy()
-    {
-        PsyBar.ChangeBarAsync((float)Game.PlayerData.PsyPrism.Level / 4);
-    }
-
-    public void RefreshSoc()
-    {
-        SocBar.ChangeBarAsync((float)Game.PlayerData.SocPrism.Level / 4);
-    }
-
-    public void RefreshSelf()
-    {
-        SelfBar.ChangeBarAsync((float)Game.PlayerData.SelfPrism.Level / 4);
+        Bio.Text = Game.PlayerData.BioPrism.Level.ToString();
+        Psy.Text = Game.PlayerData.PsyPrism.Level.ToString();
+        Soc.Text = Game.PlayerData.SocPrism.Level.ToString();
+        Self.Text = Game.PlayerData.SelfPrism.Level.ToString();
+        Day.Text = Game.PlayerData.Day.ToString();
+        Loop.Text = Game.PlayerData.DeathNum.ToString();
     }
 }
