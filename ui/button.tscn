@@ -43,6 +43,7 @@ mouse_filter = 2
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 1
 theme_override_fonts/normal_font = ExtResource("3_d6w4c")
+theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 text = "Button"
 fit_content = true

@@ -36,6 +36,7 @@ public partial class Root : Node
         Game.SceneMousePos = _level.GetGlobalMousePosition(); // 获取鼠标在场景中的位置
         Game.Camera.PhysicsProcess();
         Game.Level.PhysicsProcess();
+        Game.Gui.PhysicsProcess();
     }
 
     public override void _Input(InputEvent @event)
@@ -83,6 +84,11 @@ public partial class Root : Node
             direction.X += 1; // 向右
         }
 
+        if (Input.IsActionPressed("mouseScrollWheelUp"))
+        {
+            GameEvent.OnMouseScrollWheelUp?.Invoke();
+        }
+        
         Game.ControlRole.Input(direction, Input.IsActionPressed("shift"));
     }
 }

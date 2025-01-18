@@ -19,6 +19,11 @@ public partial class Interface : Control
         Vote.Init();
         Event.Init();
     }
+
+    public void PhysicsProcess()
+    {
+        DlgInterface.PhysicsProcess();
+    }
     
      #region Tip部分
     

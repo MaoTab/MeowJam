@@ -42,7 +42,7 @@ public partial class DlgPart : Control
     private RichTextLabel AnimTextLabel { get; set; }
 
     [Export] private AnimationPlayer AnimationPlayer { get; set; }
-    [Export] private float TextTypingSpeed = 0.01f;
+    [Export] private float TextTypingSpeed = 0.05f;
     public void Creat(string name,bool showName, string newLine, Action onFinish)
     {
         SizeTextLabel.Text = newLine.Replace("[br/]", "\n");
@@ -122,6 +122,7 @@ public partial class DlgPart : Control
                 // 仅在不在 BBCode 标签内部时添加下划线
                 if (!insideTag && i < fullText.Length - 1)
                 {
+                    Game.Gui.DlgInterface.PlayAudio();
                     AnimTextLabel.Text = currentText + _typingText;
                 }
 

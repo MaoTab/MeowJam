@@ -36,6 +36,16 @@ public class PlayerData
     /// 生命值
     /// </summary>
     public int Hp { get; set; }
+
+    /// <summary>
+    /// 死亡次数
+    /// </summary>
+    public int DeathNum { get; set; }
+    
+    /// <summary>
+    /// 天数
+    /// </summary>
+    public int Day { get; set; }
     
     public void Save()
     {
@@ -51,6 +61,8 @@ public class PlayerData
             {nameof(SelfPrism), SelfPrism.Level},
             {nameof(Hunger) , Hunger },
             {nameof(Hp) , Hp },
+            {nameof(DeathNum) , DeathNum },
+            {nameof(Day) , Day },
         };
         
         load.StoreLine(JsonConvert.SerializeObject(save));
@@ -73,7 +85,6 @@ public class PlayerData
         var loadData = FileAccess.GetFileAsString("user://prism.txt");
         var load = FileAccess.Open("user://prism.txt", FileAccess.ModeFlags.WriteRead);
         
-       
         if (loadData.Length > 0)
         {
             var loadToken = JsonConvert.DeserializeObject<JObject>(loadData);
@@ -86,6 +97,8 @@ public class PlayerData
                 SelfPrism.Level = loadToken[nameof(SelfPrism)]!.Value<int>();
                 Hunger = loadToken[nameof(Hunger)]!.Value<int>();
                 Hp = loadToken[nameof(Hp)]!.Value<int>();
+                DeathNum = loadToken[nameof(DeathNum)]!.Value<int>();
+                Day = loadToken[nameof(Day)]!.Value<int>();
             }
         }
         
@@ -97,6 +110,8 @@ public class PlayerData
             {nameof(SelfPrism), SelfPrism.Level},
             {nameof(Hunger) , Hunger },
             {nameof(Hp) , Hp },
+            {nameof(DeathNum) , DeathNum },
+            {nameof(Day) , Day },
         };
 
         if (load != null)

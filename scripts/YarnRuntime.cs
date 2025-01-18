@@ -50,6 +50,13 @@ public class YarnRuntime
             GD.Print("Node complete");
         };
         
+        // MARK: - dead
+        _dialogueRunner.AddCommandHandler("dead",(() =>
+        {
+            
+            _dialogueRunner.ContinueDialogue();
+        }));
+        
         // MARK: - dlg_mode
         _dialogueRunner.AddCommandHandler<string>("dlg_mode",((mode) =>
         {

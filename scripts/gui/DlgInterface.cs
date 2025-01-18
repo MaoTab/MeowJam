@@ -10,6 +10,7 @@ public partial class DlgInterface : Control, IUi
 {
     
     [Export] private AnimationPlayer animationPlayer;
+    [Export] private ScrollContainer scrollContainer;
     [Export] public Control DlgTextList;
     [Export] private PackedScene _optionButtonPackedScene;
     [Export] private Control _optionBox;
@@ -25,22 +26,56 @@ public partial class DlgInterface : Control, IUi
     
     [Export] private AnimationPlayerPlus _headAnimationPlayer;
     
+    [Export] private AudioStreamPlayer _audioStreamPlayer;
+    
+    [Export] private AudioStreamWav bioWav;
+    [Export] private AudioStreamWav psyWav;
+    [Export] private AudioStreamWav socWav;
+    
     /// <summary>
     /// 逐段打印时使用的结束符
     /// </summary>
     private string _typingText = "_";
     
     public EUIState State { get; set; }
+    
+    /// <summary>
+    /// 锁定滚动
+    /// </summary>
+    private bool _lockScroll;
+    
     public void Init()
     {
-       
+        _headAnimationPlayer.Play("RESET");
+        GameEvent.OnMouseScrollWheelUp += () =>
+        {
+            _lockScroll = true;
+        };
     }
 
+    public void PhysicsProcess()
+    {
+        if (!_lockScroll)
+        {
+            scrollContainer.ScrollVertical++;    
+        }
+    }
+    
+    public void PlayAudio()
+    {
+        _audioStreamPlayer.Play();
+    }
+    
     /// <summary>
     /// 上一个对话的角色名
     /// </summary>
     private string preName = "";
 
+    /// <summary>
+    /// 如果为true则头像已隐藏
+    /// </summary>
+    private bool headHide = true;
+    
     // MARK: - AddSeparator()
     public void AddSeparator(string text)
     {
@@ -50,6 +85,7 @@ public partial class DlgInterface : Control, IUi
             return;
         }
         
+        _lockScroll = false;
         hdlgSeparator.label.Text = text;
         
         DlgTextList.AddChild(node);
@@ -58,13 +94,13 @@ public partial class DlgInterface : Control, IUi
     // MARK: - AddDlgText()
     public async Task AddDlgText(string name, string newLine,Action onFinish)
     {
-        
         var node = _dlgPartPackedScene.Instantiate();
         if (node is not DlgPart dlgPart)
         {
             return;
         }
-
+        
+        _lockScroll = false;
         DlgTextList.AddChild(node);
         
         string showName;
@@ -75,27 +111,61 @@ public partial class DlgInterface : Control, IUi
         }
         else
         {
-            showName = name + "：";
+            // 更换文本音效
+            switch (name)
+            {
+                case "肉体":
+                    _audioStreamPlayer.Stream = bioWav;
+                    showName = $"[color=#ff6188]{name}[/color]：";
+                    break;
+                case "理性":
+                    _audioStreamPlayer.Stream = psyWav;
+                    showName = $"[color=#6dc0ca]{name}[/color]：";
+                    break;
+                case "情感":
+                    _audioStreamPlayer.Stream = socWav;
+                    showName = $"[color=#b180d3]{name}[/color]：";
+                    break;
+                default:
+                    showName = name + "：";
+                    break;
+            }
+        }
+        
+        dlgPart.Creat(showName,true,newLine,onFinish);
 
+        if (preName != name)
+        {
+            preName = name;
+
+            if (!headHide)
+            {
+                headHide = true;
+                await _headAnimationPlayer.PlayAsync("head/Hide");
+            }
+            
+            // TODO:在这里做更换对应发言人的头像 
             switch (name)
             {
                 case "肉体":
                     _headTextureRect.Texture = _bioHeadTexture;
+                    _headTextureRect.Modulate = new Color(1, 0.38f, 0.53f);
                     break;
                 case "理性":
                     _headTextureRect.Texture = _bioHeadTexture;
+                    _headTextureRect.Modulate = new Color(0.43f, 0.75f, 0.79f);
                     break;
                 case "情感":
                     _headTextureRect.Texture = _bioHeadTexture;
+                    _headTextureRect.Modulate = new Color(0.65f, 0.60f, 0.93f);
                     break;
-            }
-           
+                default:
+                    return;
+            } 
+            
+            await _headAnimationPlayer.PlayAsync("head/Show");
+            headHide = false;
         }
-        
-        dlgPart.Creat(showName,true,newLine,onFinish);
-        
-        await _headAnimationPlayer.PlayAsync("head/Hide");
-        await _headAnimationPlayer.PlayAsync("head/Show");
         
         // if (preName != name)
         // {
@@ -127,6 +197,7 @@ public partial class DlgInterface : Control, IUi
 
         if (node is MButton button)
         {
+            _lockScroll = false;
             button.TextLabel.Text = optionContent;
 
             // 实现选项逐个弹出的效果

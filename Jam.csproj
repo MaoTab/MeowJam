@@ -15,8 +15,6 @@
 <ItemGroup>
   <Content Include="data\prism.txt" />
   <Content Include="shader\outline.gdshader" />
-  <Content Include="shader\outline.gdshader.uid" />
   <Content Include="shader\scene.gdshader" />
-  <Content Include="shader\scene.gdshader.uid" />
 </ItemGroup>
 </Project>

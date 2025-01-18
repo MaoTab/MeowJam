@@ -1,23 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7nl1knotby11"]
+[gd_scene load_steps=6 format=3 uid="uid://b7nl1knotby11"]
 
-[ext_resource type="Script" path="res://scripts/gui/components/HDlgSeparator.cs" id="1_noxgr"]
+[ext_resource type="Script" uid="uid://b8a0k70f0p5e3" path="res://scripts/gui/components/HDlgSeparator.cs" id="1_noxgr"]
 [ext_resource type="FontVariation" uid="uid://b2k1gvhu6adm3" path="res://font/font_variation.tres" id="2_oawcx"]
 [ext_resource type="FontVariation" path="res://font/font_variation_i.tres" id="3_efps0"]
 [ext_resource type="Script" uid="uid://dvce0w216iubm" path="res://scripts/gui/components/TipBuilder.cs" id="4_0i3h5"]
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_noxgr"]
+color = Color(1, 1, 1, 1)
+
 [node name="separator" type="HBoxContainer" node_paths=PackedStringArray("label")]
+theme_override_constants/separation = 15
 script = ExtResource("1_noxgr")
 label = NodePath("RichTextLabel")
 
 [node name="HSeparator" type="HSeparator" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxLine_noxgr")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_fonts/normal_font = ExtResource("2_oawcx")
 theme_override_fonts/italics_font = ExtResource("3_efps0")
+theme_override_font_sizes/normal_font_size = 28
 bbcode_enabled = true
 text = "Tiip
 "
@@ -28,3 +34,4 @@ script = ExtResource("4_0i3h5")
 [node name="HSeparator2" type="HSeparator" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxLine_noxgr")
