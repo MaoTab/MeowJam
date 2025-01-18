@@ -12,9 +12,11 @@ public partial class Interface : Control
     [Export] public gui.PlayerData PlayerData;
     [Export] public gui.Event Event;
     [Export] public gui.Vote Vote;
-
+    [Export] public AnimationPlayerPlus AnimationPlayer;
+        
     public void Init()
     {
+        DlgInterface.Init();
         PlayerData.Init();
         Vote.Init();
         Event.Init();
@@ -325,11 +327,11 @@ public partial class Interface : Control
                     else
                     {
                         Vector2 tipSize = lastTip.Size;
-                        var mousePos = Game.MousePos + new Vector2(10, 0) - new Vector2(0, tipSize.Y - 35);
+                        var mousePos = Game.MousePos;
 
                         // 确定Tip最后的位置
                         var clampedPosition = new Vector2(
-                            Mathf.Clamp(mousePos.X, 10, Size.X - tipSize.X - 10),
+                            Mathf.Clamp(mousePos.X, 10, Size.X - tipSize.X - 50),
                             Mathf.Clamp(mousePos.Y, 10, Size.Y - tipSize.Y + 5)
                         );
                         // 实现
@@ -344,7 +346,7 @@ public partial class Interface : Control
                     else
                     {
                         Vector2 tipSize = lastTip.Size;
-                        var mousePos = Game.MousePos /* + new Vector2(10, 0) - new Vector2(0, tipSize.Y + 5)*/;
+                        var mousePos = Game.MousePos  + new Vector2(20, 0);
 
                         // 如果Tip框接近名称框则隐藏
                         //if (mousePos.X <= _nameZone.Size.X + 10)

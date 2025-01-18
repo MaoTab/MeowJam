@@ -6,10 +6,13 @@ public partial class Vote : Control, IUi
 {
     public EUIState State { get; set; }
     
+    [Export] public TextureRect VoteResTexture { get; set; }
+    [Export] public Control VoteResCanvas { get; set; }
     [Export] private VoteBar BioBar { get; set; }
     [Export] private VoteBar PsyBar { get; set; }
     [Export] private VoteBar SocBar { get; set; }
     
+    [Export] public AnimationPlayerPlus VoteResAnimationPlayer { get; set; }
     [Export] private AnimationPlayer AnimationPlayer { get; set; }
     
     public void Init()
@@ -36,6 +39,7 @@ public partial class Vote : Control, IUi
     
     public new void Hide()
     {
+        
         AnimationPlayer.Play("vote/Hide");
     }
     

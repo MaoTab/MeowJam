@@ -57,7 +57,7 @@ public partial class DlgInterface : Control, IUi
     {
         if (!_lockScroll)
         {
-            scrollContainer.ScrollVertical++;    
+            scrollContainer.ScrollVertical += 10;    
         }
     }
     

@@ -84,9 +84,14 @@ public partial class Root : Node
             direction.X += 1; // 向右
         }
 
-        if (Input.IsActionPressed("mouseScrollWheelUp"))
+        if (Input.IsActionJustReleased("ScrollUp"))
         {
             GameEvent.OnMouseScrollWheelUp?.Invoke();
+        }
+        
+        if (Input.IsActionPressed("Esc"))
+        {
+            GetTree().Quit();
         }
         
         Game.ControlRole.Input(direction, Input.IsActionPressed("shift"));

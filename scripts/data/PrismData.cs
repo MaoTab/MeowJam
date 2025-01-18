@@ -8,6 +8,7 @@ public struct PrismData
     {
         MaxLevel = prismData.MaxLevel;
         MinLevel = prismData.MinLevel;
+        Level = prismData.Level;
     }
     
     

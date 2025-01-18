@@ -1,5 +1,5 @@
 using System;
-
+using System.Threading.Tasks;
 using Godot;
 using Godot.Collections;
 
@@ -18,8 +18,8 @@ public partial class Event  : Control , IUi
     [Export] private RichTextLabel _eventDeLabel;
     
     [Export] private AnimationPlayer _uiAnimationPlayer;
-    [Export] private AnimationPlayer _playerIllustrantionAnimationPlayer;
-    [Export] private AnimationPlayer _npcIllustrantionAnimationPlayer;
+    [Export] private AnimationPlayerPlus _playerIllustrantionAnimationPlayer;
+    [Export] private AnimationPlayerPlus _npcIllustrantionAnimationPlayer;
     
     [Export] private TextureRect _playerSprite; 
     [Export] private TextureRect _npcSprite;
@@ -40,6 +40,19 @@ public partial class Event  : Control , IUi
     /// 立绘缓存
     /// </summary>
     public Dictionary<string, CompressedTexture2D> IllData = new();
+
+    public async Task HideIllustration(string target)
+    {
+        switch (target)
+        {
+            case "player":
+                await _playerIllustrantionAnimationPlayer.PlayAsync("player_ill/Hide");
+                break;
+            case "npc":
+                await _playerIllustrantionAnimationPlayer.PlayAsync("npc_ill/Hide");
+                break;
+        }
+    }
 
     /// <summary>
     /// 显示立绘

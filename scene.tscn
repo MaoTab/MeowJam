@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://c5ipbraa1ubnx"]
+[gd_scene load_steps=74 format=3 uid="uid://c5ipbraa1ubnx"]
 
 [ext_resource type="Script" uid="uid://c5jgom1w22vgn" path="res://scripts/Root.cs" id="1_ulcgi"]
 [ext_resource type="Script" uid="uid://cyc446ovneiu4" path="res://scripts/Level.cs" id="2_ee5iq"]
@@ -25,6 +25,7 @@
 [ext_resource type="AudioStream" uid="uid://c50jayttx108g" path="res://audio/sharp_fast.wav" id="24_otx46"]
 [ext_resource type="AudioStream" uid="uid://dlgba2jaddpn3" path="res://audio/bell_fast.wav" id="24_wncyr"]
 [ext_resource type="AudioStream" uid="uid://dpvxwr8cgqdoy" path="res://audio/warm_fast.wav" id="25_m514l"]
+[ext_resource type="Texture2D" uid="uid://itjk6dpqs4ft" path="res://texture/icon/icon.png" id="31_m514l"]
 [ext_resource type="Script" uid="uid://dqblsea76tnfv" path="res://scripts/Interface.cs" id="54_5l17q"]
 [ext_resource type="Script" uid="uid://b7nhjoes6w41c" path="res://scripts/Camera.cs" id="55_cy07d"]
 [ext_resource type="PackedScene" uid="uid://ds7qf64d3uyec" path="res://ui/tip_box.tscn" id="55_dcc87"]
@@ -66,6 +67,22 @@ _data = {
 &"RESET": SubResource("Animation_xb05w")
 }
 
+[sub_resource type="Animation" id="Animation_nb0s3"]
+resource_name = "Hide"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(2.54912, 1),
+"update": 0,
+"values": [Vector2(63.9997, 336), Vector2(-376, 336)]
+}
+
 [sub_resource type="Animation" id="Animation_iss77"]
 resource_name = "Show"
 length = 0.4
@@ -84,6 +101,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xb05w"]
 _data = {
+&"Hide": SubResource("Animation_nb0s3"),
 &"Show": SubResource("Animation_iss77")
 }
 
@@ -107,6 +125,21 @@ _data = {
 &"RESET": SubResource("Animation_pou65")
 }
 
+[sub_resource type="Animation" id="Animation_iloo5"]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1.86607, 1),
+"update": 0,
+"values": [Vector2(776.006, 336), Vector2(1176, 336)]
+}
+
 [sub_resource type="Animation" id="Animation_wncyr"]
 length = 0.4
 tracks/0/type = "value"
@@ -124,6 +157,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pou65"]
 _data = {
+&"Hide": SubResource("Animation_iloo5"),
 &"Show": SubResource("Animation_wncyr")
 }
 
@@ -220,8 +254,6 @@ _data = {
 }
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpof7"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wncyr"]
 
 [sub_resource type="Animation" id="Animation_otx46"]
 length = 0.001
@@ -391,7 +423,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(128, 0)]
+"values": [Vector2(-288, 336)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8j1ou"]
@@ -426,13 +458,413 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 0.125),
 "update": 0,
-"values": [Vector2(-312, 0), Vector2(128, 0)]
+"values": [Vector2(-312, 0), Vector2(432, 288)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xpof7"]
 _data = {
 &"Hide": SubResource("Animation_xpof7"),
 &"Show": SubResource("Animation_o3hm7")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_llic6"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_blend = true
+
+[sub_resource type="Animation" id="Animation_6wd4v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Vote/VoteRes/Panel:theme_override_styles/panel:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.6, 0.6, 0.6, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Vote/VoteRes/Panel:theme_override_styles/panel:border_width_left")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Vote/VoteRes/Panel:theme_override_styles/panel:border_width_top")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Vote/VoteRes/Panel:theme_override_styles/panel:border_width_right")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Vote/VoteRes/Panel:theme_override_styles/panel:border_width_bottom")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Vote/VoteRes/Panel/TextureRect:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Vote/VoteRes/Panel/TextureRect:modulate:a")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nb0s3"]
+_data = {
+&"RESET": SubResource("Animation_6wd4v")
+}
+
+[sub_resource type="Animation" id="Animation_yjo7n"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Vote/VoteRes/Panel:theme_override_styles/panel:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.100416, 0.2),
+"transitions": PackedFloat32Array(2.82843, 0.420448, 1),
+"update": 0,
+"values": [Color(0.6, 0.6, 0.6, 0), Color(1, 1, 1, 1), Color(0.6, 0.6, 0.6, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Vote/VoteRes/Panel:theme_override_styles/panel:border_width_left")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.101625, 0.833333, 1),
+"transitions": PackedFloat32Array(1, 1, 5.85634, 1),
+"update": 0,
+"values": [0, 100, 100, 0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Vote/VoteRes/Panel:theme_override_styles/panel:border_width_top")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.101625, 0.833333, 1),
+"transitions": PackedFloat32Array(1, 1, 5.85634, 1),
+"update": 0,
+"values": [0, 100, 100, 0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Vote/VoteRes/Panel:theme_override_styles/panel:border_width_right")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.101625, 0.833333, 1),
+"transitions": PackedFloat32Array(1, 1, 5.85634, 1),
+"update": 0,
+"values": [0, 100, 100, 0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Vote/VoteRes/Panel:theme_override_styles/panel:border_width_bottom")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.101625, 0.833333, 1),
+"transitions": PackedFloat32Array(1, 1, 5.85634, 1),
+"update": 0,
+"values": [0, 100, 100, 0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Vote/VoteRes/Panel/TextureRect:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.10233),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Vote/VoteRes/Panel/TextureRect:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.837245, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6wd4v"]
+_data = {
+&"vote_over": SubResource("Animation_yjo7n")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m514l"]
+bg_color = Color(0, 0, 0, 0)
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+
+[sub_resource type="Animation" id="Animation_x5hgh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_styles/panel:border_width_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:theme_override_styles/panel:border_width_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:theme_override_styles/panel:border_width_right")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:theme_override_styles/panel:border_width_bottom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RichTextLabel:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RichTextLabel:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(775, 486)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".:theme_override_styles/panel:bg_color")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".:theme_override_styles/panel:draw_center")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hyak3"]
+_data = {
+&"RESET": SubResource("Animation_x5hgh")
+}
+
+[sub_resource type="Animation" id="Animation_g4bmd"]
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_styles/panel:border_width_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(0.148651, 1),
+"update": 0,
+"values": [0, 150]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:theme_override_styles/panel:border_width_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(0.148651, 1),
+"update": 0,
+"values": [0, 150]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:theme_override_styles/panel:border_width_right")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(0.148651, 1),
+"update": 0,
+"values": [0, 150]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:theme_override_styles/panel:border_width_bottom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(0.148651, 1),
+"update": 0,
+"values": [0, 150]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RichTextLabel:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.332478, 0.6),
+"transitions": PackedFloat32Array(1, 0.176777, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RichTextLabel:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.335528, 0.6),
+"transitions": PackedFloat32Array(0.176777, 1),
+"update": 0,
+"values": [Vector2(775, 608), Vector2(775, 486)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".:theme_override_styles/panel:bg_color")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.176915, 0.448387),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".:theme_override_styles/panel:draw_center")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.448387),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x5hgh"]
+_data = {
+&"you_die": SubResource("Animation_g4bmd")
 }
 
 [node name="Root" type="Node" node_paths=PackedStringArray("_level", "_gui", "_camera")]
@@ -479,7 +911,7 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("6_xpof7")
 
-[node name="Control" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("DlgInterface", "PlayerData", "Event", "Vote", "_tipZone", "_darkMask")]
+[node name="Control" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("DlgInterface", "PlayerData", "Event", "Vote", "AnimationPlayer", "_tipZone", "_darkMask")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -494,9 +926,10 @@ DlgInterface = NodePath("Dlg")
 PlayerData = NodePath("UpperUI/PanelContainer/MarginContainer/PlayerData")
 Event = NodePath("Event")
 Vote = NodePath("Vote")
+AnimationPlayer = NodePath("FullUI/YouDie/Panel/AnimationPlayer")
 _tipZone = NodePath("TipZone")
 _tipBoxPackedScene = ExtResource("55_dcc87")
-_darkMask = NodePath("Panel")
+_darkMask = NodePath("Vote/VoteRes/Panel")
 _tipTextPackedScene = ExtResource("56_ee5iq")
 _tipHSeparatorPackedScene = ExtResource("57_cy07d")
 
@@ -510,16 +943,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 border_width = 4.0
-
-[node name="Panel" type="Panel" parent="CanvasLayer/Control"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
 
 [node name="TipZone" type="Control" parent="CanvasLayer/Control"]
 layout_mode = 1
@@ -830,6 +1253,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_wncyr"),
 &"player_ill": SubResource("AnimationLibrary_xb05w")
 }
+script = ExtResource("23_xb05w")
 
 [node name="Npc" type="Control" parent="CanvasLayer/Control/Event/Illustration"]
 anchors_preset = 0
@@ -851,6 +1275,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_otx46"),
 &"npc_ill": SubResource("AnimationLibrary_pou65")
 }
+script = ExtResource("23_xb05w")
 
 [node name="EventName" type="PanelContainer" parent="CanvasLayer/Control/Event"]
 layout_mode = 0
@@ -907,6 +1332,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_g6g5t"),
 &"event": SubResource("AnimationLibrary_i6j5g")
 }
+script = ExtResource("23_xb05w")
 
 [node name="Dlg" type="Control" parent="CanvasLayer/Control" node_paths=PackedStringArray("animationPlayer", "scrollContainer", "DlgTextList", "_optionBox", "_headTextureRect", "_headAnimationPlayer", "_audioStreamPlayer")]
 layout_mode = 1
@@ -977,13 +1403,9 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="DlgOp" type="VBoxContainer" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList/MarginContainer/List"]
-layout_mode = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer/ScrollContainer/ScrollList"]
 custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxEmpty_wncyr")
 
 [node name="Head" type="Control" parent="CanvasLayer/Control/Dlg/Panel/MarginContainer"]
 layout_mode = 2
@@ -1017,8 +1439,7 @@ libraries = {
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/Control/Dlg"]
 stream = ExtResource("24_wncyr")
 
-[node name="Vote" type="Control" parent="CanvasLayer/Control" node_paths=PackedStringArray("BioBar", "PsyBar", "SocBar", "AnimationPlayer")]
-visible = false
+[node name="Vote" type="Control" parent="CanvasLayer/Control" node_paths=PackedStringArray("VoteResTexture", "VoteResCanvas", "BioBar", "PsyBar", "SocBar", "VoteResAnimationPlayer", "AnimationPlayer")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1027,16 +1448,20 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("13_8j1ou")
+VoteResTexture = NodePath("VoteRes/Panel/TextureRect")
+VoteResCanvas = NodePath("VoteRes")
 BioBar = NodePath("MarginContainer/HBoxContainer/VBoxContainer")
 PsyBar = NodePath("MarginContainer/HBoxContainer/VBoxContainer2")
 SocBar = NodePath("MarginContainer/HBoxContainer/VBoxContainer3")
+VoteResAnimationPlayer = NodePath("VoteRes/Panel/AnimationPlayer")
 AnimationPlayer = NodePath("AnimationPlayer")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/Vote"]
 layout_mode = 0
-offset_left = 128.0
-offset_right = 576.0
-offset_bottom = 832.0
+offset_left = -288.0
+offset_top = 336.0
+offset_right = -88.0
+offset_bottom = 944.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/Vote/MarginContainer"]
 layout_mode = 2
@@ -1193,3 +1618,107 @@ libraries = {
 &"": SubResource("AnimationLibrary_8j1ou"),
 &"vote": SubResource("AnimationLibrary_xpof7")
 }
+
+[node name="VoteRes" type="Control" parent="CanvasLayer/Control/Vote"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Control/Vote/VoteRes"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_llic6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/Vote/VoteRes/Panel"]
+root_node = NodePath("../../../..")
+libraries = {
+&"": SubResource("AnimationLibrary_nb0s3"),
+&"all_gui": SubResource("AnimationLibrary_6wd4v")
+}
+script = ExtResource("23_xb05w")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/Vote/VoteRes/Panel"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -236.0
+offset_top = -236.0
+offset_right = 236.0
+offset_bottom = 236.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("31_m514l")
+
+[node name="FullUI" type="Control" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="YouDie" type="Control" parent="CanvasLayer/Control/FullUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Control/FullUI/YouDie"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_m514l")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/FullUI/YouDie/Panel"]
+libraries = {
+&"": SubResource("AnimationLibrary_hyak3"),
+&"full_ui": SubResource("AnimationLibrary_x5hgh")
+}
+script = ExtResource("23_xb05w")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control/FullUI/YouDie/Panel"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -185.0
+offset_top = -54.0
+offset_right = 185.0
+offset_bottom = 54.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("14_223my")
+theme_override_fonts/italics_font = ExtResource("15_17rhs")
+theme_override_font_sizes/normal_font_size = 104
+bbcode_enabled = true
+text = "[color=#ff4f35]You Die[/color]"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("16_8j1ou")
