@@ -4,12 +4,11 @@ using Godot;
 
 namespace Jam;
 
-public partial class VoteBar  : Control
+public partial class VoteBar  : TextureProgressBar
 {
-    [Export] public RichTextLabel TextLabel { get; set; }
-    [Export] public SplitContainer Bar { get; set; }
-    
-    private const int TotalLength = 550; // 进度条的总长度
+    private const int PointTotalLength = 520; // 进度条的总长度
+
+    [Export] private SplitContainer Point;
     
     private CancellationTokenSource _cancellationTokenSource; // 取消令牌源
 
@@ -21,11 +20,11 @@ public partial class VoteBar  : Control
         CancellationToken token = _cancellationTokenSource.Token;
 
         // 计算每个阶段的目标长度
-        float targetLength = TotalLength * (1 - percentage); // 因为进度条竖起来了，故反转长度，0为满，1为空
+        float targetLength = (float)MaxValue * percentage; // 因为进度条竖起来了，故反转长度，0为满，1为空
+        float pointTargetLength = PointTotalLength * percentage; // 因为进度条竖起来了，故反转长度，0为满，1为空
 
-        // 获取当前长度
-        float currentLength = Bar.SplitOffset; 
-
+        float currentLength = Point.SplitOffset; 
+        
         float duration = 1.0f; // 动画持续时间
         float elapsedTime = 0.0f; // 已经过的时间
 
@@ -34,14 +33,11 @@ public partial class VoteBar  : Control
         {
             elapsedTime += (float)Game.PhysicsDelta; // 获取每帧的时间
             float t = Mathf.Clamp(elapsedTime / duration, 0.0f, 1.0f); // 计算插值因子，范围在 [0, 1] 之间
-
+            
             // 使用插值
-            currentLength = Mathf.Lerp(currentLength, targetLength, t);
-            Bar.SplitOffset = (int)currentLength;
-
-            // 更新文本，为当前阶段
-            int currentStage = Mathf.Clamp((int)(currentLength / (TotalLength / totalStages)), 0, totalStages);
-            TextLabel.Text = $"{totalStages - currentStage}"; // 显示当前阶段
+            currentLength = Mathf.Lerp(currentLength, pointTargetLength, t);
+            Point.SplitOffset = (int)currentLength;
+            Value = Mathf.Lerp(Value, targetLength, t);
             
             // 检查是否已请求取消
             if (token.IsCancellationRequested)
@@ -50,15 +46,6 @@ public partial class VoteBar  : Control
             }
             
             await Task.Delay(16);
-        }
-
-        // 如果不是被取消的，确保最后的值是目标值，并更新文本
-        if (!token.IsCancellationRequested)
-        {
-            // 确保最后的值是目标值，并更新文本
-            Bar.SplitOffset = (int)targetLength; 
-            int finalStage = Mathf.Clamp((int)(targetLength / (TotalLength / totalStages)), 0, totalStages);
-            TextLabel.Text = $"{totalStages - finalStage}";
         }
     }
 }

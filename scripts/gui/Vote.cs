@@ -12,7 +12,9 @@ public partial class Vote : Control, IUi
     [Export] private VoteBar PsyBar { get; set; }
     [Export] private VoteBar SocBar { get; set; }
     
-    
+    [Export] private TextureRect BioBarOk { get; set; }
+    [Export] private TextureRect PsyBarOk { get; set; }
+    [Export] private TextureRect SocBarOk { get; set; }
     
     [Export] public AnimationPlayerPlus VoteResAnimationPlayer { get; set; }
     [Export] private AnimationPlayer AnimationPlayer { get; set; }
@@ -52,6 +54,10 @@ public partial class Vote : Control, IUi
         var TotalStages = Game.PlayerData.PsyPrism.Level + Game.PlayerData.BioPrism.Level +
                           Game.PlayerData.SocPrism.Level;
         
+        BioBarOk.Visible = false;
+        PsyBarOk.Visible = false;
+        SocBarOk.Visible = false;
+        
         BioBar.ChangeBarAsync((float)Game.PlayerData.BioPrism.Level / TotalStages,TotalStages);
         PsyBar.ChangeBarAsync((float)Game.PlayerData.PsyPrism.Level / TotalStages,TotalStages);
         SocBar.ChangeBarAsync((float)Game.PlayerData.SocPrism.Level / TotalStages,TotalStages);
@@ -62,6 +68,11 @@ public partial class Vote : Control, IUi
         if(State != EUIState.ShowAndIdle) return;
         var TotalStages = Game.PlayerData.SelfPrism.Level + Game.PlayerData.PsyPrism.Level + Game.PlayerData.BioPrism.Level +
                           Game.PlayerData.SocPrism.Level;
+
+        BioBarOk.Visible = bioPrism > 0;
+        PsyBarOk.Visible = psyPrism > 0;
+        SocBarOk.Visible = socPrism > 0;
+        
         BioBar.ChangeBarAsync((float)(Game.PlayerData.BioPrism.Level + bioPrism) / TotalStages,TotalStages);
         PsyBar.ChangeBarAsync((float)(Game.PlayerData.PsyPrism.Level + psyPrism) / TotalStages,TotalStages);
         SocBar.ChangeBarAsync((float)(Game.PlayerData.SocPrism.Level + socPrism) / TotalStages,TotalStages);

@@ -279,11 +279,20 @@ public class YarnRuntime
             _dialogueRunner.ContinueDialogue();
         });
 
+        // MARK: - day_set
+        _dialogueRunner.AddCommandHandler<int>("day_set", ((num) =>
+        {
+            Game.PlayerData.Day = num;
+            Game.Gui.PlayerData.Init();
+            _dialogueRunner.ContinueDialogue();
+        }));
+        
         // MARK: - dead_wait
         _dialogueRunner.AddCommandHandler("dead_wait", (async () =>
         {
-            await Game.Gui.Death.Show();
             Game.PlayerData.DeathNum++;
+            Game.Gui.PlayerData.Init();
+            await Game.Gui.Death.Show();
             _dialogueRunner.ContinueDialogue();
         }));
         
@@ -292,6 +301,7 @@ public class YarnRuntime
         {
             _ = Game.Gui.Death.Show();
             Game.PlayerData.DeathNum++;
+            Game.Gui.PlayerData.Init();
             _dialogueRunner.ContinueDialogue();
         }));
         
