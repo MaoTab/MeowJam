@@ -79,5 +79,6 @@ Esc={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+rendering_device/driver.windows="d3d12"
 renderer/rendering_method="mobile"
 anti_aliasing/screen_space_roughness_limiter/enabled=false

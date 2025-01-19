@@ -180,7 +180,7 @@ position: -2940,-1005
 
 
 title: Node_序章_安眠
-position: -3049,-762
+position: -2812,-737
 ---
 <<dlg_mode "do">>
 
@@ -198,7 +198,7 @@ position: -3049,-762
 ===
 
 title: Node_序章_下山
-position: -3331,-748
+position: -3094,-723
 ---
 <<dlg_mode "do">>
 
@@ -226,7 +226,7 @@ position: -3331,-748
 ===
 
 title: Node_第一章_城镇
-position: -3195,-483
+position: -2958,-458
 ---
 <<clear_dlg>>
 <<show_event "城镇" "XXXXX">>
@@ -278,7 +278,7 @@ position: -3195,-483
 ===
 
 title: Node_第二章_循环节_开始
-position: -3191,-256
+position: -2954,-231
 ---
 <<clear_dlg>>
 <<declare $event1 = false>>
@@ -288,7 +288,7 @@ position: -3191,-256
 ===
 
 title: Node_第二章_循环节
-position: -3188,4
+position: -2951,29
 ---
 <<clear_dlg>>
 
@@ -320,7 +320,7 @@ position: -3188,4
 ===
 
 title: Node_第二章_寒冷
-position: -3706,226
+position: -3469,251
 ---
 <<clear_dlg>>
 <<show_event "寒冷" "XXXXX">>
@@ -328,7 +328,7 @@ position: -3706,226
 
 神性:你再次来到了这片满是寒冷的土地。[skip b={!$event1}/]
 
-肉体:你被来自雪山的寒意包裹着，就像是一滴岩浆暴露在常温之下的空气中——没关系，序章炙热的血液仍在你的体内流窜，你并无冻僵的迹象。
+肉体:你被来自雪山的寒意包裹着，就像是一滴岩浆暴露在常温之下的空气中没关系，炙热的血液仍在你的体内流窜，你并无冻僵的迹象。
 
 理性:这样的宁静不会持续很久，雪山杀死的人数不胜数，你所挪步过的森林就算典例。
 
@@ -385,7 +385,7 @@ position: -3706,226
 ===
 
 title: Node_第二章_冲破暴风雪_成功
-position: -4069,467
+position: -3832,492
 ---
 <<dlg_mode "do">>
 <<set $event1 = true>>
@@ -415,7 +415,7 @@ position: -4069,467
 
 
 title: Node_第二章_冲破暴风雪_失败
-position: -3847,470
+position: -3610,495
 ---
 <<dlg_mode "do">>
 肉体:灼热的岩浆逐渐冷却，狂风与暴雪不断的击打你的身体。
@@ -433,7 +433,7 @@ position: -3847,470
 ===
 
 title: Node_第二章_寻求庇护_成功
-position: -3619,469
+position: -3382,494
 ---
 <<dlg_mode "do">>
 <<set $event1 = true>>
@@ -449,7 +449,7 @@ position: -3619,469
 ===
 
 title: Node_第二章_寻求庇护_失败
-position: -3405,471
+position: -3168,496
 ---
 <<dlg_mode "do">>
 
@@ -466,7 +466,7 @@ position: -3405,471
 ===
 
 title: Node_第二章_泡影
-position: -2387,9
+position: -2150,34
 ---
 <<clear_dlg>>
 <<show_event "泡影" "XXXXX">>
@@ -521,7 +521,7 @@ position: -2387,9
 ===
 
 title: Node_第二章_这是幻影_成功
-position: -2515,273
+position: -2278,298
 ---
 <<dlg_mode "do">>
 <<set $event2 = true>>
@@ -545,7 +545,7 @@ position: -2515,273
 ===
 
 title: Node_第二章_这是幻影_失败
-position: -2284,275
+position: -2047,300
 ---
 <<dlg_mode "do">>
 
@@ -571,7 +571,7 @@ position: -2284,275
 ===
 
 title: Node_第二章_这是真实
-position: -2768,274
+position: -2531,299
 ---
 肉体:一边擦拭着吧台上打翻的饮料，一边无奈的看着多萝西练舞。你回到家里，过上了熟悉且温馨的生活。
 
@@ -587,7 +587,7 @@ position: -2768,274
 ===
 
 title: Node_第二章_安葬
-position: -3007,453
+position: -2770,478
 ---
 <<clear_dlg>>
 <<show_event "安葬" "XXXXX">>
@@ -654,7 +654,7 @@ position: -3007,453
 ===
 
 title: Node_第二章_帮助_成功
-position: -3043,766
+position: -2806,791
 ---
 <<dlg_mode "do">>
 <<set $event3 = true>>
@@ -679,7 +679,7 @@ position: -3043,766
 ===
 
 title: Node_第二章_帮助_失败
-position: -2808,760
+position: -2571,785
 ---
 <<dlg_mode "do">>
 
@@ -707,7 +707,7 @@ position: -2808,760
 ===
 
 title: Node_第二章_忽视_成功
-position: -3541,752
+position: -3304,777
 ---
 <<dlg_mode "do">>
 <<set $event3 = true>>
@@ -726,7 +726,7 @@ position: -3541,752
 ===
 
 title: Node_第二章_忽视_失败
-position: -3325,756
+position: -3088,781
 ---
 <<dlg_mode "do">>
 
@@ -745,7 +745,7 @@ position: -3325,756
 ===
 
 title: Node_第三章_岩壁冲刺
-position: -3175,1029
+position: -2938,1054
 ---
 <<dlg_mode "perception">>
 
@@ -779,7 +779,7 @@ position: -3175,1029
 ===
 
 title: Node_第三章_岩壁冲刺_检定
-position: -3154,1281
+position: -2917,1306
 ---
 <<dlg_mode "do">>
 
@@ -859,7 +859,7 @@ position: -3154,1281
 ===
 
 title: Node_第三章_登顶
-position: -3138,1532
+position: -2901,1557
 ---
 <<clear_dlg>>
 “山顶的风景倒也不赖对吧。”他看向你，也看向躺倒在木桩一侧的劳伦。她已经不如相片那般年轻了，不过雪山将她保存的相当完好。
@@ -910,7 +910,7 @@ position: -3138,1532
 ===
 
 title: Node_第三章_山顶
-position: -3136,1748
+position: -2899,1773
 ---
 漫天星辰散布在漆黑的夜空下，铺散在空中闪烁着无数的星光。它们如同浪潮一般在天空中涌动，一层一层地如同波涛如同浪潮，同时又如同银铃般轻柔。
 
