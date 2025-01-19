@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://buxe50nwnghqw"]
+[gd_scene load_steps=16 format=3 uid="uid://buxe50nwnghqw"]
 
 [ext_resource type="Script" uid="uid://b7muxavy7o8ok" path="res://scripts/gui/components/DlgPart.cs" id="1_vb1uj"]
 [ext_resource type="Script" uid="uid://dvce0w216iubm" path="res://scripts/gui/components/TipBuilder.cs" id="4_0t22y"]
@@ -16,6 +16,20 @@ texture_margin_right = 30.0
 texture_margin_bottom = 35.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sghfk"]
+
+[sub_resource type="FontVariation" id="FontVariation_ojjjs"]
+base_font = ExtResource("4_ojjjs")
+spacing_glyph = 1
+spacing_space = 1
+spacing_top = 1
+spacing_bottom = 1
+
+[sub_resource type="FontVariation" id="FontVariation_eglo4"]
+base_font = ExtResource("4_ojjjs")
+spacing_glyph = 1
+spacing_space = 1
+spacing_top = 1
+spacing_bottom = 1
 
 [sub_resource type="Animation" id="Animation_8hm71"]
 length = 0.001
@@ -211,10 +225,9 @@ theme_override_constants/margin_bottom = 5
 clip_contents = false
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("4_ojjjs")
+theme_override_fonts/normal_font = SubResource("FontVariation_ojjjs")
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
-text = "Node_第二章_泡影"
 scroll_active = false
 autowrap_mode = 1
 script = ExtResource("4_0t22y")
@@ -234,10 +247,9 @@ theme_override_constants/margin_bottom = 5
 clip_contents = false
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("4_ojjjs")
+theme_override_fonts/normal_font = SubResource("FontVariation_eglo4")
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
-text = "Node_第二章_泡影"
 fit_content = true
 scroll_active = false
 autowrap_mode = 1

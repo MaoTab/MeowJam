@@ -14,6 +14,7 @@
   </ItemGroup>
 <ItemGroup>
   <Content Include="data\prism.txt" />
+  <Content Include="LICENSE.md" />
   <Content Include="README.md" />
   <Content Include="shader\change.gdshader" />
   <Content Include="shader\outline.gdshader" />

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Godot;
 using YarnSpinnerGodot;
@@ -49,11 +50,31 @@ public class YarnRuntime
         }));
             
         // MARK: - audio
-        _dialogueRunner.AddCommandHandler<string,bool>("audio", ((path,loop) =>
+        _dialogueRunner.AddCommandHandler<string>("audio", ((path) =>
         {
+            switch (path)
+            {
+                case "deng_shan":
+                    Game.Audio.PlayDengShan();
+                    break;
+            }
+          
             _dialogueRunner.ContinueDialogue();
         }));
             
+        // MARK: - audio_stop
+        _dialogueRunner.AddCommandHandler<string>("audio_stop", ((path) =>
+        {
+            switch (path)
+            {
+                case "deng_shan":
+                    Game.Audio.StopDengShan();
+                    break;
+            }
+            
+            _dialogueRunner.ContinueDialogue();
+        }));
+        
         // MARK: - check
         _dialogueRunner.AddCommandHandler<string,int>("check", (async (target,dc) =>
         {
@@ -317,11 +338,7 @@ public class YarnRuntime
         // MARK: - end
         _dialogueRunner.AddCommandHandler("end", (() =>
         {
-            Game.Gui.DlgInterface.Hide();
-
-            Game.Gui.DlgInterface.RemoveAllDlg();
-
-            Game.CanControl = true;
+            Game.Gui.Death.AnimationPlayer.Play("full_ui/thank");
         }));
 
         // MARK: - OnDialogueRunnerOnHandleOptions()
@@ -332,6 +349,8 @@ public class YarnRuntime
             var charName = localizedLine.CharacterName;
             var skipContinue = false;
 
+            // GD.Print(localizedLine.LineResource.);
+            
             foreach (var attribute in localizedLine.TextWithoutCharacterName.Attributes)
             {
                 switch (attribute.Name)
@@ -381,6 +400,17 @@ public class YarnRuntime
         // 对选项的处理
         async void OnDialogueRunnerOnHandleOptions(DialogueOption[] options)
         {
+            Game.Gui.DlgInterface.AddOption("NULL", () =>
+                {
+                    Game.Gui.DlgInterface.RemoveAllOption();
+                    _dialogueRunner.ContinueDialogue();
+                },
+                //() => HandleTipDisplay(true), // OnEnter
+                //() => HandleTipDisplay(false), // OnExit
+                () => { },
+                () => { },
+                () => { }, 10,true);
+            
             // 遍历选项
             foreach (var option in options)
             {
@@ -388,8 +418,9 @@ public class YarnRuntime
 
                 Action onEnter = () => { };
                 Action onExit = () => { };
-
+                
                 var line = option.Line.TextWithoutCharacterName.Text;
+                line = Regex.Replace(line, "</n>", "\n");
                 var hasTip = false;
 
                 // 用于显示检定内容
@@ -408,6 +439,12 @@ public class YarnRuntime
                 {
                     switch (attribute.Name)
                     {
+                        case "tip":
+                            if (attribute.Properties.TryGetValue("s", out var sProperty))
+                            {
+                                tipChiContent = sProperty.ToString();
+                            }
+                            break;
                         case "check":
                             if (attribute.Properties.TryGetValue("dc", out var dcProperty))
                             {
@@ -425,7 +462,7 @@ public class YarnRuntime
                                     checkTarget = checkTargetV.StringValue;
                                 }
                                 
-                                tipMainContent = "[p align=center]" + checkName + "\n" + dc + "[/p]";
+                                tipMainContent = "[p align=center]" + checkName + "\n" + "难度：" + dc + "[/p]";
                                 hasCheck = true;
                             }
 
@@ -503,9 +540,6 @@ public class YarnRuntime
                         var sub = " + " + ii;
                         tipMainContent += $"[font_size=9]{sub}({dc + ii})[/font_size]";
                     }
-
-                   
-                    
                     
                     var cdTarget = 0;
                     
@@ -537,8 +571,8 @@ public class YarnRuntime
                     };
 
                     tipList.Add(tipMainContent);
-                    // tipList.Add("line");
-                    // tipList.Add(tipChiContent);
+                    tipList.Add("line");
+                    tipList.Add(tipChiContent);
                     // tipList.Add("line");
                     // tipList.Add(
                     //     $"[p align=center]成功率:[color={hexColor}]{cd:P1}[/color][font_size=9]({cdTarget}d6{add})[/font_size]");

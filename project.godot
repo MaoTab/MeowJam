@@ -13,7 +13,9 @@ config_version=5
 config/name="Jam"
 run/main_scene="res://scene.tscn"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0.180392, 0.113725, 0.2, 1)
+boot_splash/image="uid://g1t1q0kgk2f1"
+config/icon="uid://g1t1q0kgk2f1"
 
 [display]
 

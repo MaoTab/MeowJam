@@ -11,6 +11,8 @@ public partial class MButton : Control
     [Export] private TextureRect _textureRect;
     public override void _Ready()
     {
+        TextLabel.Modulate = new Color(.18f,.11f,.20f);
+        
         if (!EnableTexture)
         {
             _textureRect.Free();
@@ -36,11 +38,11 @@ public partial class MButton : Control
     
     private void OnMouseEntered()
     {
-        
+        TextLabel.Modulate = new Color(1f,1f,1f);
     }
 
     private void OnMouseExited()
     {
-
+        TextLabel.Modulate = new Color(.18f,.11f,.20f);
     }
 }

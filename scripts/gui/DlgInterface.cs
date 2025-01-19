@@ -178,7 +178,7 @@ public partial class DlgInterface : Control, IUi
         //     dlgPart.Creat(showName,false,newLine,onFinish);
         // }
     }
-    
+
     /// <summary>
     /// 添加选项
     /// </summary>
@@ -190,7 +190,7 @@ public partial class DlgInterface : Control, IUi
     /// <param name="waitTime">创建延迟，用于逐个弹出效果</param>
     // MARK: - AddOption()
     public async Task AddOption(string optionContent, Action onClick, Action onEnter = null,
-        Action onExit = null, Action onHoldDown = null, int waitTime = 0)
+        Action onExit = null, Action onHoldDown = null, int waitTime = 0, bool hide=false)
     {
         var node = _optionButtonPackedScene.Instantiate();
         
@@ -201,6 +201,12 @@ public partial class DlgInterface : Control, IUi
             _lockScroll = false;
             button.TextLabel.Text = optionContent;
 
+            if (hide)
+            {
+                button.Modulate = new Color(1, 1, 1, 0);
+                return;
+            }
+            
             // 实现选项逐个弹出的效果
             if (waitTime != 0)
                 await Task.Delay(waitTime);
@@ -338,6 +344,8 @@ public partial class DlgInterface : Control, IUi
     
     public async Task<bool> Check(int d,int dc)
     {
+        if(d == 4) return true;
+        
         // 骰子数必须在1到4之间
         if (d is < 1 or > 4)
         {
@@ -366,10 +374,10 @@ public partial class DlgInterface : Control, IUi
             allResults += result;
         }
 
-        checkResText.Text = allResults > dc ? "[color=#9cca6f]成功[/color]" : "[color=#ff6188]失败[/color]";
+        checkResText.Text = allResults >= dc ? "[color=#9cca6f]成功[/color]" : "[color=#ff6188]失败[/color]";
         
         await checkResAnimationPlayer.PlayAsync("check/Show");
         
-        return allResults > dc;
+        return allResults >= dc;
     }
 }

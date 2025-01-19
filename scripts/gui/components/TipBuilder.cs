@@ -44,13 +44,14 @@ public partial class TipBuilder : RichTextLabel
 
             if (!isLink)
             {
-                Game.Gui.CreatListTip(tipList,LockPos);
+                Game.Gui.CreatListTip(tipList,true);
             }
             
         };
 
         MetaClicked += meta =>
         {
+            return;
             if (Freeze) return;
     
             var isLink = false;
@@ -82,6 +83,9 @@ public partial class TipBuilder : RichTextLabel
 
         MetaHoverEnded += meta =>
         {
+            Game.Gui.RemoveAllTip();
+            return;
+            
             if (Freeze) return;
             var isLink = false;
             if (ParseExpression(meta.ToString(),out var datas))

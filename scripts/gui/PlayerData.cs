@@ -14,10 +14,10 @@ public partial class PlayerData : Control , IUi
     public EUIState State { get; set; }
     public void Init()
     {
-        Bio.Text = Game.PlayerData.BioPrism.GetRomanNumber();
-        Psy.Text = Game.PlayerData.PsyPrism.GetRomanNumber();
-        Soc.Text = Game.PlayerData.SocPrism.GetRomanNumber();
-        Self.Text = Game.PlayerData.SelfPrism.GetRomanNumber();
+        Bio.Text = "[url=\"肉体等级\"]" + Game.PlayerData.BioPrism.GetRomanNumber();
+        Psy.Text = "[url=\"理性等级\"]" + Game.PlayerData.PsyPrism.GetRomanNumber();
+        Soc.Text = "[url=\"情感等级\"]" +Game.PlayerData.SocPrism.GetRomanNumber();
+        Self.Text = "[url=\"神性等级\"]" +Game.PlayerData.SelfPrism.GetRomanNumber();
         Day.Text = Game.PlayerData.Day.ToString();
         Loop.Text = Game.PlayerData.DeathNum.ToString();
     }

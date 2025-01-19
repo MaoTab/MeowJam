@@ -4,12 +4,15 @@
 [ext_resource type="FontFile" uid="uid://bpw7nkpw6cndg" path="res://font/hzk-pixel-12px.ttf" id="2_7krdg"]
 
 [node name="Button" type="PanelContainer" node_paths=PackedStringArray("ButtonBase", "TextLabel", "_textureRect")]
+self_modulate = Color(1, 1, 1, 0)
 script = ExtResource("1_43qr1")
 ButtonBase = NodePath("Button")
 TextLabel = NodePath("HBoxContainer/MarginContainer/RichTextLabel")
 _textureRect = NodePath("HBoxContainer/MarginContainer2/TextureRect")
 
 [node name="Button" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+texture_filter = 1
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -45,6 +48,6 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_fonts/normal_font = ExtResource("2_7krdg")
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
-text = "Button"
+text = "◆ Button"
 fit_content = true
 autowrap_mode = 0
