@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Godot;
@@ -344,8 +345,6 @@ public partial class DlgInterface : Control, IUi
     
     public async Task<bool> Check(int d,int dc)
     {
-        if(d == 4) return true;
-        
         // 骰子数必须在1到4之间
         if (d is < 1 or > 4)
         {
@@ -362,17 +361,14 @@ public partial class DlgInterface : Control, IUi
         // 生成每个骰子的结果
         for (int i = 0; i < d; i++)
         {
-            var point = random.Next(1, 7); // 生成1到6之间的随机数
+            var point = d == 4 ? 6 : random.Next(1, 7); // 生成1到6之间的随机数 ，如果4级则全大成功
+
             dices[i].Visible = true;
             results[i] = point;
             dicePoint[i].Play(point.ToString());
         }   
-        var allResults = 0;
         
-        foreach (var result in results)
-        {
-            allResults += result;
-        }
+        var allResults = results.Sum();
 
         checkResText.Text = allResults >= dc ? "[color=#9cca6f]成功[/color]" : "[color=#ff6188]失败[/color]";
         

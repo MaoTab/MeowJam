@@ -15,7 +15,7 @@ public partial class Root : Node
     [Export] private AudioMgr audio;
     [Export] private Control UIROOT;
     
-    public override void _Ready()
+    public override void _Ready() 
     {
         var yarnProject = ResourceLoader.Load<YarnProject>("res://YarnProject.yarnproject");
  

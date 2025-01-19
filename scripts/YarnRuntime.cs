@@ -571,8 +571,19 @@ public class YarnRuntime
                     };
 
                     tipList.Add(tipMainContent);
-                    tipList.Add("line");
-                    tipList.Add(tipChiContent);
+
+                    if (!string.IsNullOrEmpty(tipChiContent))
+                    {
+                        tipList.Add("line");
+                        tipList.Add(tipChiContent);
+                    }
+                    
+                    if (cdTarget >= 4)
+                    {
+                        tipList.Add("line");
+                        tipList.Add("[color=#a9dc76]绝对成功[/color]");
+                    }
+                    
                     // tipList.Add("line");
                     // tipList.Add(
                     //     $"[p align=center]成功率:[color={hexColor}]{cd:P1}[/color][font_size=9]({cdTarget}d6{add})[/font_size]");
