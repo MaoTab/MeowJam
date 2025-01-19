@@ -13,11 +13,12 @@ public partial class Root : Node
     [Export] private Button startButton;
     [Export] private AnimationPlayerPlus startAnimationPlayer;
     [Export] private AudioMgr audio;
+    [Export] private Control UIROOT;
     
     public override void _Ready()
     {
         var yarnProject = ResourceLoader.Load<YarnProject>("res://YarnProject.yarnproject");
-
+ 
         Game.Yarn = new YarnRuntime().Init(yarnProject);
         Game.Yarn.Start();
         Game.Level = _level.Init();
@@ -32,7 +33,7 @@ public partial class Root : Node
         startButton.ButtonUp += async () =>
         {
             await startAnimationPlayer.PlayAsync("main/Start");
-            Game.Yarn.PlayNode("Node_第二章_寒冷");
+            Game.Yarn.PlayNode("Node_对话");
         };
     }
 

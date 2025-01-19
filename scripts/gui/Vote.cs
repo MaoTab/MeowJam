@@ -7,6 +7,9 @@ public partial class Vote : Control, IUi
     public EUIState State { get; set; }
     
     [Export] public TextureRect VoteResTexture { get; set; }
+    [Export] public CompressedTexture2D PsyVoteResTexture { get; set; }
+    [Export] public CompressedTexture2D BioVoteResTexture { get; set; }
+    [Export] public CompressedTexture2D SocVoteResTexture { get; set; }
     [Export] public Control VoteResCanvas { get; set; }
     [Export] private VoteBar BioBar { get; set; }
     [Export] private VoteBar PsyBar { get; set; }

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b7nl1knotby11"]
 
 [ext_resource type="Script" uid="uid://b8a0k70f0p5e3" path="res://scripts/gui/components/HDlgSeparator.cs" id="1_noxgr"]
-[ext_resource type="FontFile" uid="uid://cqnef13b4gxra" path="res://font/normal.tres" id="2_w4y21"]
+[ext_resource type="FontFile" uid="uid://bpw7nkpw6cndg" path="res://font/hzk-pixel-12px.ttf" id="2_w4y21"]
 [ext_resource type="Script" uid="uid://dvce0w216iubm" path="res://scripts/gui/components/TipBuilder.cs" id="4_0i3h5"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_noxgr"]

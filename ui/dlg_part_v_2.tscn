@@ -2,20 +2,14 @@
 
 [ext_resource type="Script" uid="uid://b7muxavy7o8ok" path="res://scripts/gui/components/DlgPart.cs" id="1_vb1uj"]
 [ext_resource type="Script" uid="uid://dvce0w216iubm" path="res://scripts/gui/components/TipBuilder.cs" id="4_0t22y"]
-[ext_resource type="FontFile" uid="uid://cqnef13b4gxra" path="res://font/normal.tres" id="5_ojjjs"]
+[ext_resource type="FontFile" uid="uid://bpw7nkpw6cndg" path="res://font/hzk-pixel-12px.ttf" id="4_ojjjs"]
+[ext_resource type="FontFile" uid="uid://cgxgi3q6lt71j" path="res://font/SourceHanSerif_zh.otf" id="4_vb1uj"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8hm71"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mfve8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sghfk"]
-
-[sub_resource type="FontVariation" id="FontVariation_ojjjs"]
-base_font = ExtResource("5_ojjjs")
-spacing_glyph = 2
-spacing_space = 1
-spacing_top = 2
-spacing_bottom = 1
 
 [sub_resource type="Animation" id="Animation_8hm71"]
 length = 0.001
@@ -170,7 +164,7 @@ theme_override_constants/margin_bottom = 3
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_fonts/normal_font = ExtResource("5_ojjjs")
+theme_override_fonts/normal_font = ExtResource("4_vb1uj")
 theme_override_font_sizes/normal_font_size = 12
 bbcode_enabled = true
 text = "Maot"
@@ -208,13 +202,13 @@ theme_override_constants/margin_right = 65
 theme_override_constants/margin_bottom = 5
 
 [node name="AnimText" type="RichTextLabel" parent="DlgPart/VBoxContainer/DlgText/Anim/PanelContainer/MarginContainer"]
-texture_filter = 1
+clip_contents = false
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_fonts/normal_font = SubResource("FontVariation_ojjjs")
+theme_override_fonts/normal_font = ExtResource("4_ojjjs")
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
+text = "Node_第二章_泡影"
 scroll_active = false
 autowrap_mode = 1
 script = ExtResource("4_0t22y")
@@ -231,13 +225,13 @@ theme_override_constants/margin_right = 65
 theme_override_constants/margin_bottom = 5
 
 [node name="SizeText" type="RichTextLabel" parent="DlgPart/VBoxContainer/DlgText/SizeLayer/MarginContainer"]
-texture_filter = 1
+clip_contents = false
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_fonts/normal_font = SubResource("FontVariation_ojjjs")
+theme_override_fonts/normal_font = ExtResource("4_ojjjs")
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
+text = "Node_第二章_泡影"
 fit_content = true
 scroll_active = false
 autowrap_mode = 1

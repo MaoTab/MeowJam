@@ -165,13 +165,16 @@ public class YarnRuntime
             switch (target)
             {
                 case "bio":
-                    Game.Gui.Vote.VoteResCanvas.Modulate = new Color(1, 0.38f, 0.53f);
+                    Game.Gui.Vote.VoteResTexture.Texture = Game.Gui.Vote.BioVoteResTexture;
+                    Game.Gui.Vote.VoteResCanvas.Modulate = new Color(.61f, .28f, .24f);
                     break;
                 case "psy":
-                    Game.Gui.Vote.VoteResCanvas.Modulate = new Color(0.43f, 0.75f, 0.79f);
+                    Game.Gui.Vote.VoteResTexture.Texture = Game.Gui.Vote.PsyVoteResTexture;
+                    Game.Gui.Vote.VoteResCanvas.Modulate = new Color(.21f, .32f, .42f);
                     break;
                 case "soc":
-                    Game.Gui.Vote.VoteResCanvas.Modulate = new Color(0.65f, 0.60f, 0.93f);
+                    Game.Gui.Vote.VoteResTexture.Texture = Game.Gui.Vote.SocVoteResTexture;
+                    Game.Gui.Vote.VoteResCanvas.Modulate = new Color(.30f, .43f, .40f);
                     break;
                 default:
                     return;

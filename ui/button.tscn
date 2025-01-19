@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cussg35rit1ml"]
 
 [ext_resource type="Script" uid="uid://bi4rucbqi38h0" path="res://scripts/gui/components/MButton.cs" id="1_43qr1"]
-[ext_resource type="FontFile" uid="uid://cqnef13b4gxra" path="res://font/normal.tres" id="2_7krdg"]
+[ext_resource type="FontFile" uid="uid://bpw7nkpw6cndg" path="res://font/hzk-pixel-12px.ttf" id="2_7krdg"]
 
 [node name="Button" type="PanelContainer" node_paths=PackedStringArray("ButtonBase", "TextLabel", "_textureRect")]
 script = ExtResource("1_43qr1")

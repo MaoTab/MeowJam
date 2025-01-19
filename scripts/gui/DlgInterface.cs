@@ -24,6 +24,7 @@ public partial class DlgInterface : Control, IUi
     [Export] private CompressedTexture2D _bioHeadTexture;
     [Export] private CompressedTexture2D _psyHeadTexture;
     [Export] private CompressedTexture2D _socHeadTexture;
+    [Export] private CompressedTexture2D _selfHeadTexture;
     
     [Export] private AnimationPlayerPlus _headAnimationPlayer;
     
@@ -117,15 +118,15 @@ public partial class DlgInterface : Control, IUi
             {
                 case "肉体":
                     _audioStreamPlayer.Stream = bioWav;
-                    showName = $"[color=#ff6188]{name}[/color]：";
+                    showName = $"[color=#a0453a]{name}[/color]：";
                     break;
                 case "理性":
                     _audioStreamPlayer.Stream = psyWav;
-                    showName = $"[color=#6dc0ca]{name}[/color]：";
+                    showName = $"[color=#35516c]{name}[/color]：";
                     break;
                 case "情感":
                     _audioStreamPlayer.Stream = socWav;
-                    showName = $"[color=#b180d3]{name}[/color]：";
+                    showName = $"[color=#4c6e66]{name}[/color]：";
                     break;
                 default:
                     showName = name + "：";
@@ -145,20 +146,19 @@ public partial class DlgInterface : Control, IUi
                 await _headAnimationPlayer.PlayAsync("head/Hide");
             }
             
-            // TODO:在这里做更换对应发言人的头像 
             switch (name)
             {
                 case "肉体":
                     _headTextureRect.Texture = _bioHeadTexture;
-                    _headTextureRect.Modulate = new Color(1, 0.38f, 0.53f);
                     break;
                 case "理性":
-                    _headTextureRect.Texture = _bioHeadTexture;
-                    _headTextureRect.Modulate = new Color(0.43f, 0.75f, 0.79f);
+                    _headTextureRect.Texture = _psyHeadTexture;
                     break;
                 case "情感":
-                    _headTextureRect.Texture = _bioHeadTexture;
-                    _headTextureRect.Modulate = new Color(0.65f, 0.60f, 0.93f);
+                    _headTextureRect.Texture = _socHeadTexture;
+                    break;
+                case "神性":
+                    _headTextureRect.Texture = _selfHeadTexture;
                     break;
                 default:
                     return;

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ru31tkvn3m6i"]
 
-[ext_resource type="FontFile" uid="uid://cqnef13b4gxra" path="res://font/normal.tres" id="1_33oak"]
+[ext_resource type="FontFile" uid="uid://bpw7nkpw6cndg" path="res://font/hzk-pixel-12px.ttf" id="1_33oak"]
 [ext_resource type="Script" uid="uid://dvce0w216iubm" path="res://scripts/gui/components/TipBuilder.cs" id="3_yp0n7"]
 
 [node name="RichTextLabel" type="RichTextLabel"]
