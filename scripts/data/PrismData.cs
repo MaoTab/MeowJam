@@ -22,6 +22,19 @@ public struct PrismData
         set { level = int.Clamp(value, MinLevel, MaxLevel); }
     }
 
+    public string GetRomanNumber()
+    {
+        return level switch
+        {
+            1 => "I",
+            2 => "II",
+            3 => "III",
+            4 => "IV",
+            5 => "V",
+            _ => "???"
+        };
+    }
+    
     /// <summary>
     /// 最大等级
     /// </summary>

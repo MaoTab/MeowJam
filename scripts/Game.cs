@@ -11,6 +11,7 @@ public static class Game
     public static Root Root { get; set; }
     
     public static scripts.Interface Gui;
+    public static AudioMgr Audio;
     
     /// <summary>
     /// Yarn运行时

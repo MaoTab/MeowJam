@@ -12,6 +12,7 @@ public partial class Root : Node
 
     [Export] private Button startButton;
     [Export] private AnimationPlayerPlus startAnimationPlayer;
+    [Export] private AudioMgr audio;
     
     public override void _Ready()
     {
@@ -25,11 +26,13 @@ public partial class Root : Node
         Game.Gui.Init();
         Game.Camera = _camera;
         Game.CanControl = false;
-
+        Game.Audio = audio;
+        audio.Init();
+        
         startButton.ButtonUp += async () =>
         {
             await startAnimationPlayer.PlayAsync("main/Start");
-            Game.Yarn.PlayNode("Node_对话");
+            Game.Yarn.PlayNode("Node_第二章_寒冷");
         };
     }
 

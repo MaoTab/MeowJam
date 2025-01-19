@@ -16,8 +16,6 @@ public class YarnRuntime
        
         _dialogueRunner.Dialogue.SetNode(node);
         _dialogueRunner.ContinueDialogue();
-            
-        
     }
 
     // MARK: - Stop()
@@ -27,6 +25,8 @@ public class YarnRuntime
         // _dialogueRunner.Stop();
     }
 
+    public bool checkResults;
+    
     // MARK: - Init()
     public YarnRuntime Init(YarnProject project)
     {
@@ -48,27 +48,33 @@ public class YarnRuntime
             await Game.Gui.AnimationPlayer.PlayAsync("black/Hide");
         }));
             
-        // MARK: - check
-        _dialogueRunner.AddCommandHandler<string>("check", ((target) =>
+        // MARK: - audio
+        _dialogueRunner.AddCommandHandler<string,bool>("audio", ((path,loop) =>
         {
+            _dialogueRunner.ContinueDialogue();
+        }));
             
-            
-            switch (target)
+        // MARK: - check
+        _dialogueRunner.AddCommandHandler<string,int>("check", (async (target,dc) =>
+        {
+            checkResults = target switch
             {
-                case "soc":
-                    
-                    break;
-                case "bio":
-                    
-                    break;
-                case "psy":
-                    
-                    break;
-            }
-
+                "soc" => await Game.Gui.DlgInterface.Check(Game.PlayerData.SocPrism.Level, dc),
+                "bio" => await Game.Gui.DlgInterface.Check(Game.PlayerData.BioPrism.Level, dc),
+                "psy" => await Game.Gui.DlgInterface.Check(Game.PlayerData.PsyPrism.Level, dc),
+                "self" => await Game.Gui.DlgInterface.Check(Game.PlayerData.SelfPrism.Level, dc),
+                _ => false
+            };
+            
             _dialogueRunner.ContinueDialogue();
         }));
 
+        // MARK: - check_get
+        _dialogueRunner.AddFunction<bool>("check_get", (() =>
+        {
+            return checkResults;
+        }));
+        
         // MARK: - dlg_mode
         _dialogueRunner.AddCommandHandler<string>("dlg_mode", ((mode) =>
         {
@@ -330,9 +336,19 @@ public class YarnRuntime
                     case "continue":
                         skipContinue = true;
                         break;
+                    case "skip":
+                        if (attribute.Properties.TryGetValue("b", out var bProperty))
+                        {
+                            if (bProperty.ToString() == "True")
+                            {
+                                _dialogueRunner.ContinueDialogue();
+                                return;
+                            }
+                        }
+                        break;
                 }
             }
-
+            
 #pragma warning disable VSTHRD101
             await Game.Gui.DlgInterface.AddDlgText(charName, line, async void () =>
             {
@@ -380,6 +396,7 @@ public class YarnRuntime
                 var dc = 0;
                 var i = 0; //用于加值显示
                 var ii = 0; //用于减值显示
+                var checkTarget = ""; //用于减值显示
 
                 List<string> tipList = new List<string>();
                 bool isTipHeld;
@@ -400,6 +417,11 @@ public class YarnRuntime
                                     checkName = checkNameV.StringValue;
                                 }
 
+                                if (attribute.Properties.TryGetValue("target", out var checkTargetV))
+                                {
+                                    checkTarget = checkTargetV.StringValue;
+                                }
+                                
                                 tipMainContent = "[p align=center]" + checkName + "\n" + dc + "[/p]";
                                 hasCheck = true;
                             }
@@ -479,37 +501,44 @@ public class YarnRuntime
                         tipMainContent += $"[font_size=9]{sub}({dc + ii})[/font_size]";
                     }
 
-                    var cd = CalculateDnd(i, dc + ii);
-
+                   
+                    
+                    
+                    var cdTarget = 0;
+                    
+                    switch (checkTarget)
+                    {
+                        case "self":
+                            cdTarget = Game.PlayerData.SelfPrism.Level;
+                            break;
+                        case "soc":
+                            cdTarget = Game.PlayerData.SocPrism.Level;
+                            break;
+                        case "psy":
+                            cdTarget = Game.PlayerData.PsyPrism.Level;
+                            break;
+                        case "bio":
+                            cdTarget = Game.PlayerData.BioPrism.Level;
+                            break;
+                    }
+                    
+                    var cd = MathfHelper.Calculate4D6Rate(cdTarget,dc);
+                    
                     var hexColor = cd switch
                     {
-                        >= 90 => "#a9dc76", // 简单 - 绿色
-                        >= 70 => "#fd971f", // 普通 - 黄色
-                        >= 50 => "#c25d2b", // 困难 - 橙色
-                        >= 30 => "#ff6188", // 非常困难 - 红色
+                        >= 24 => "#a9dc76", // 简单 - 绿色
+                        >= 18 => "#fd971f", // 普通 - 黄色
+                        >= 14 => "#c25d2b", // 困难 - 橙色
+                        >= 8 => "#ff6188", // 非常困难 - 红色
                         _ => "#cc3941"
                     };
 
                     tipList.Add(tipMainContent);
-                    tipList.Add("line");
-                    tipList.Add(tipChiContent);
-                    tipList.Add("line");
-                    tipList.Add(
-                        $"[p align=center]成功率:[color={hexColor}]{cd:P1}[/color][font_size=9](1d20{add})[/font_size]");
-
-                    // 1d20骰子概率计算，不带大成功、大失败。
-                    static double CalculateDnd(int modifier, int difficultyClass)
-                    {
-                        // 计算成功的最低骰子结果
-                        int minimumRollNeeded = difficultyClass - modifier;
-
-                        return minimumRollNeeded switch
-                        {
-                            <= 1 => 1.0, // 如果最低骰子结果小于1，说明总是成功
-                            > 20 => 0.0, // 如果最低骰子结果大于20，说明总是失败
-                            _ => (21 - minimumRollNeeded) / 20.0 // 计算成功的概率
-                        };
-                    }
+                    // tipList.Add("line");
+                    // tipList.Add(tipChiContent);
+                    // tipList.Add("line");
+                    // tipList.Add(
+                    //     $"[p align=center]成功率:[color={hexColor}]{cd:P1}[/color][font_size=9]({cdTarget}d6{add})[/font_size]");
 
                     onEnter += () =>
                     {

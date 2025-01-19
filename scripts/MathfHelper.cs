@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Godot;
 
 namespace Jam;
@@ -24,5 +25,20 @@ public static class MathfHelper
     public static bool AetF(float a, float b, float tolerance = 0.1f)
     {
         return Math.Abs(a - b) < tolerance;
+    }
+    
+    public static double Calculate4D6Rate(int d, int dc)
+    {
+        // 计算成功和失败的概率
+        double successProbability = (7 - dc) / 6.0; // 每个骰子成功的概率
+        double failureProbability = 1 - successProbability; // 每个骰子失败的概率
+
+        // 计算所有骰子都失败的概率
+        double allFailProbability = Math.Pow(failureProbability, d);
+
+        // 计算至少一个骰子成功的概率
+        double successRate = 1 - allFailProbability;
+
+        return successRate;
     }
 }

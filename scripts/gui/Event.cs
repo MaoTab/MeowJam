@@ -63,27 +63,27 @@ public partial class Event  : Control , IUi
     public void ShowIllustration(string target, string path, Action onFinish)
     {
         // 从缓存中查找立绘，如果没有缓存则尝试从资源里加载精灵图
-        CompressedTexture2D texture;
+        // CompressedTexture2D texture;
         /*texture = IllData.TryGetValue(path, out var ill) ? ill :
             ResourceLoader.Load<CompressedTexture2D>($"res://texture/char/{path}.png");*/
         
-        if(IllData.TryGetValue(path, out var ill))
-        {
-            texture = ill;
-        }
-        else
-        {
-            texture =  ResourceLoader.Load<CompressedTexture2D>($"res://texture/char/{path}.png");
-            if(texture == null) return;
-            // 缓存立绘
-            IllData.Add(path, texture);
-        }
+        // if(IllData.TryGetValue(path, out var ill))
+        // {
+        //     texture = ill;
+        // }
+        // else
+        // {
+        //     texture =  ResourceLoader.Load<CompressedTexture2D>($"res://texture/char/{path}.png");
+        //     if(texture == null) return;
+        //     // 缓存立绘
+        //     IllData.Add(path, texture);
+        // }
         
         // 一坨简单粗暴的状态机
         switch (target)
         {
             case "player":
-                _playerSprite.Texture = texture;
+                // _playerSprite.Texture = texture;
                 _playerIllustrantionAnimationPlayer.Play("player_ill/Show");
                 
                 void OnPlayerShowFinish(StringName s)
@@ -95,7 +95,7 @@ public partial class Event  : Control , IUi
                 _playerIllustrantionAnimationPlayer.AnimationFinished += OnPlayerShowFinish;
                 break;
             case "npc":
-                _npcSprite.Texture = texture;
+                //_npcSprite.Texture = texture;
                 _npcIllustrantionAnimationPlayer.Play("npc_ill/Show");
                 
                 void OnNpcShowFinish(StringName s)

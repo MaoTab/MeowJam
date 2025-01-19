@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Godot;
+using Godot.Collections;
 using Jam.scripts;
 
 namespace Jam;
@@ -324,5 +325,51 @@ public partial class DlgInterface : Control, IUi
     public new void Hide()
     {
         animationPlayer.PlayBackwards("dlg/Show");
+    }
+    
+    
+    // 下面是逼养的检定表现功能区
+    [Export] private Array<AnimatedSprite2D> dicePoint;
+    [Export] private Array<Control> dices;
+    [Export] private RichTextLabel checkResText;
+    [Export] private AnimationPlayerPlus checkResAnimationPlayer;
+    
+    private Random random = new();
+    
+    public async Task<bool> Check(int d,int dc)
+    {
+        // 骰子数必须在1到4之间
+        if (d is < 1 or > 4)
+        {
+            return false;
+        }
+        
+        foreach (var dice in dices)
+        {
+            dice.Visible = false;
+        }
+        
+        int[] results = new int[d];
+
+        // 生成每个骰子的结果
+        for (int i = 0; i < d; i++)
+        {
+            var point = random.Next(1, 7); // 生成1到6之间的随机数
+            dices[i].Visible = true;
+            results[i] = point;
+            dicePoint[i].Play(point.ToString());
+        }   
+        var allResults = 0;
+        
+        foreach (var result in results)
+        {
+            allResults += result;
+        }
+
+        checkResText.Text = allResults > dc ? "[color=#9cca6f]成功[/color]" : "[color=#ff6188]失败[/color]";
+        
+        await checkResAnimationPlayer.PlayAsync("check/Show");
+        
+        return allResults > dc;
     }
 }
