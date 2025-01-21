@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Godot;
 
-namespace Jam.scripts;
+namespace SnowBlindness.scripts;
 
 public partial class AnimationPlayerPlus : AnimationPlayer
 {

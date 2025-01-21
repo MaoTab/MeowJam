@@ -1,6 +1,6 @@
 using Godot;
 
-namespace Jam;
+namespace SnowBlindness;
 
 public partial class HDlgSeparator: Control
 {

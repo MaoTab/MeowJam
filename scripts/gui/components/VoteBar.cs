@@ -2,7 +2,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Godot;
 
-namespace Jam;
+namespace SnowBlindness;
 
 public partial class VoteBar  : TextureProgressBar
 {

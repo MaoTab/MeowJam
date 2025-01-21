@@ -1,6 +1,6 @@
 ﻿using System;
 using Godot;
-namespace Jam;
+namespace SnowBlindness;
 
 public struct GameEvent
 {

@@ -1,4 +1,4 @@
-﻿namespace Jam;
+﻿namespace SnowBlindness;
 
 public interface IUi
 {

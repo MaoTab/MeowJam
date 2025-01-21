@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Godot;
 
-namespace Jam;
+namespace SnowBlindness;
 
 public partial class PrismDataBar : Control
 {

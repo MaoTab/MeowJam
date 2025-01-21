@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
-namespace Jam;
+namespace SnowBlindness;
 
 public partial class TipBuilder : RichTextLabel
 {

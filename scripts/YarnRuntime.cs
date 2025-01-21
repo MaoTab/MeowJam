@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Godot;
 using YarnSpinnerGodot;
 
-namespace Jam;
+namespace SnowBlindness;
 
 public class YarnRuntime
 {

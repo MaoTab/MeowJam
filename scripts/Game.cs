@@ -1,7 +1,7 @@
 ﻿using System;
 using Godot;
 
-namespace Jam;
+namespace SnowBlindness;
 
 public static class Game
 {

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Godot;
 using Godot.Collections;
 
-namespace Jam.scripts.gui;
+namespace SnowBlindness.scripts.gui;
 
 public partial class Event  : Control , IUi
 {

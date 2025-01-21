@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Jam.data;
+namespace SnowBlindness.data;
 
 public struct PrismData
 {

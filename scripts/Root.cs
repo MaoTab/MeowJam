@@ -1,8 +1,8 @@
 using Godot;
-using Jam;
-using Jam.scripts;
+using SnowBlindness;
+using SnowBlindness.scripts;
 using YarnSpinnerGodot;
-using Interface = Jam.scripts.Interface;
+using Interface = SnowBlindness.scripts.Interface;
 
 public partial class Root : Node
 {

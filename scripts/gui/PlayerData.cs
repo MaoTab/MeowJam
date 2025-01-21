@@ -1,6 +1,6 @@
 using Godot;
 
-namespace Jam.scripts.gui;
+namespace SnowBlindness.scripts.gui;
 
 public partial class PlayerData : Control , IUi
 {

@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Godot;
 
-namespace Jam.scripts.gui;
+namespace SnowBlindness.scripts.gui;
 
 public partial class Death : Control , IUi
 {

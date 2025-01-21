@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Godot;
 
-namespace Jam;
+namespace SnowBlindness;
 
 public partial class Role : CharacterBody2D , ISelect
 {

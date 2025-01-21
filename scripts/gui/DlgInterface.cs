@@ -4,9 +4,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Godot;
 using Godot.Collections;
-using Jam.scripts;
+using SnowBlindness.scripts;
 
-namespace Jam;
+namespace SnowBlindness;
 
 public partial class DlgInterface : Control, IUi
 {

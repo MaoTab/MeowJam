@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Godot;
 
-namespace Jam.scripts;
+namespace SnowBlindness.scripts;
 
 public partial class Interface : Control
 {

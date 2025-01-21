@@ -3,7 +3,7 @@
 
 using System.Threading.Tasks;
 using Godot;
-using Jam.scripts;
+using SnowBlindness.scripts;
 
 public partial class AudioMgr : Node
 {

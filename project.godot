@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Jam"
+config/name="雪盲症"
+config/version="demo 0.2"
 run/main_scene="res://scene.tscn"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 boot_splash/bg_color=Color(0.180392, 0.113725, 0.2, 1)
@@ -30,7 +31,7 @@ window/hdr_2d=false
 
 [dotnet]
 
-project/assembly_name="Jam"
+project/assembly_name="SnowBlindness"
 
 [editor_plugins]
 
@@ -74,6 +75,10 @@ Esc={
 ]
 }
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [layer_names]
 
 2d_physics/layer_1="Wall"
@@ -83,4 +88,5 @@ Esc={
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true
 anti_aliasing/screen_space_roughness_limiter/enabled=false

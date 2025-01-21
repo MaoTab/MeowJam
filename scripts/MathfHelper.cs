@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Godot;
 
-namespace Jam;
+namespace SnowBlindness;
 public static class MathfHelper
 {
     public static Vector2 V2Lerp(Vector2 a, Vector2 b, float t)

@@ -1,7 +1,7 @@
 ﻿using Godot;
 using Godot.Collections;
 
-namespace Jam;
+namespace SnowBlindness;
 
 public partial class Level : Node2D
 {

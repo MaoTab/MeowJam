@@ -1,9 +1,9 @@
 ﻿using Godot;
-using Jam.data;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using SnowBlindness.data;
 
-namespace Jam;
+namespace SnowBlindness;
 
 public class PlayerData
 {
