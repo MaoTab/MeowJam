@@ -1,10 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://buxe50nwnghqw"]
+[gd_scene load_steps=15 format=3 uid="uid://buxe50nwnghqw"]
 
 [ext_resource type="Script" uid="uid://b7muxavy7o8ok" path="res://scripts/gui/components/DlgPart.cs" id="1_vb1uj"]
 [ext_resource type="Script" uid="uid://dvce0w216iubm" path="res://scripts/gui/components/TipBuilder.cs" id="4_0t22y"]
 [ext_resource type="Texture2D" uid="uid://bopcw3trlyq64" path="res://texture/ui/babo.png" id="4_eglo4"]
 [ext_resource type="FontFile" uid="uid://bpw7nkpw6cndg" path="res://font/hzk-pixel-12px.ttf" id="4_ojjjs"]
-[ext_resource type="FontFile" uid="uid://cgxgi3q6lt71j" path="res://font/SourceHanSerif_zh.otf" id="4_vb1uj"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8hm71"]
 
@@ -184,7 +183,6 @@ theme_override_constants/margin_bottom = 3
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_fonts/normal_font = ExtResource("4_vb1uj")
 theme_override_font_sizes/normal_font_size = 12
 bbcode_enabled = true
 text = "Maot"
