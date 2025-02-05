@@ -1,5 +1,6 @@
 ﻿using System;
 using Godot;
+using SnowBlindness.scripts.system;
 
 namespace SnowBlindness;
 
@@ -17,6 +18,8 @@ public static class Game
     /// Yarn运行时
     /// </summary>
     public static YarnRuntime Yarn { get; set; }
+    
+    public static SteamMgr Steam { get; set; }
     
     /// <summary>
     /// 鼠标在场景中的位置

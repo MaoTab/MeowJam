@@ -1,6 +1,7 @@
 using Godot;
 using SnowBlindness;
 using SnowBlindness.scripts;
+using SnowBlindness.scripts.system;
 using YarnSpinnerGodot;
 using Interface = SnowBlindness.scripts.Interface;
 
@@ -29,6 +30,9 @@ public partial class Root : Node
         Game.CanControl = false;
         Game.Audio = audio;
         audio.Init();
+
+        Game.Steam = new SteamMgr();
+        Game.Steam.Init();
         
         startButton.ButtonUp += async () =>
         {
@@ -39,6 +43,7 @@ public partial class Root : Node
 
     public override void _Process(double delta)
     {
+        Game.Steam.Process();
         Game.Gui.Process();
     }
 

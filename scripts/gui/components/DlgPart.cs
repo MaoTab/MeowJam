@@ -126,7 +126,7 @@ public partial class DlgPart : Control
                 // 仅在不在 BBCode 标签内部时添加下划线
                 if (!insideTag && i < fullText.Length - 1)
                 {
-                    // 每X字播放一次
+                    // 每X字播放一次"嘟"
                     if (i % 4 == 0)
                     {
                         Game.Gui.DlgInterface.PlayAudio();
